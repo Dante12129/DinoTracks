@@ -5,6 +5,8 @@
 #ifndef DINOTRACKS_APPLICATION_HPP
 #define DINOTRACKS_APPLICATION_HPP
 
+#include <logic/Logic.hpp>
+
 class Application
 {
 public:
@@ -15,7 +17,11 @@ public:
     int loop();
 
 private:
+    // Status
     bool running = true;
+
+    // Main Objects
+    Logic gameLogic;
 };
 
 
