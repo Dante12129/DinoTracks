@@ -4,8 +4,10 @@
 
 #include <iostream>
 
-int main() {
-  std::cout << "Hello, world!" << std::endl;
+#include "Application.hpp"
 
-  return 0;
+int main() {
+  Application dinoTracks;
+
+  return dinoTracks.loop();
 }
