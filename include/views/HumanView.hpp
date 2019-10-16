@@ -17,6 +17,7 @@ namespace dt
 
         // Game Loop
         void processEvents();
+        void draw();
 
     private:
         sf::RenderWindow window;

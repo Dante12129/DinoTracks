@@ -12,6 +12,8 @@ namespace dt
     {
       playerView.processEvents();
 
+      playerView.draw();
+
       running = false; // TODO: implement EventManager so application can be closed.
     }
 

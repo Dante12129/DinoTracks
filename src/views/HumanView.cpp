@@ -24,4 +24,13 @@ namespace dt
         }
       }
     }
+
+    void HumanView::draw()
+    {
+      window.clear();
+
+      // Draw stuff here
+
+      window.display();
+    }
 }
