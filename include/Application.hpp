@@ -6,13 +6,14 @@
 #define DINOTRACKS_APPLICATION_HPP
 
 #include <logic/Logic.hpp>
+#include <views/HumanView.hpp>
 
 namespace dt
 {
   class Application
   {
   public:
-      // Setup
+      // Constructors
       Application() = default;
 
       // Main Game Loop
@@ -24,6 +25,7 @@ namespace dt
 
       // Main Objects
       Logic gameLogic;
+      HumanView playerView;
   };
 }
 

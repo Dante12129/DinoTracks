@@ -8,6 +8,13 @@ namespace dt
 {
   int Application::loop()
   {
+    while(running)
+    {
+      playerView.processEvents();
+
+      running = false; // TODO: implement EventManager so application can be closed.
+    }
+
     return 0;
   }
 }
