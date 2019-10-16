@@ -5,11 +5,21 @@
 #ifndef DINOTRACKS_HUMANVIEW_HPP
 #define DINOTRACKS_HUMANVIEW_HPP
 
+#include <SFML/Graphics/RenderWindow.hpp>
+
 namespace dt
 {
     class HumanView
     {
+    public:
+        // Constructors
+        HumanView();
 
+        // Game Loop
+        void processEvents();
+
+    private:
+        sf::RenderWindow window;
     };
 }
 
