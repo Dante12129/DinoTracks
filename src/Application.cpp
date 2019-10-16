@@ -6,11 +6,6 @@
 
 namespace dt
 {
-  Application::Application()
-  {
-
-  }
-
   int Application::loop()
   {
     return 0;

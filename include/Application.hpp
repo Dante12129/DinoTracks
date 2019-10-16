@@ -13,7 +13,7 @@ namespace dt
   {
   public:
       // Setup
-      Application();
+      Application() = default;
 
       // Main Game Loop
       int loop();
