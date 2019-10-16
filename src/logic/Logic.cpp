@@ -3,3 +3,8 @@
 //
 
 #include "logic/Logic.hpp"
+
+namespace dt
+{
+
+}

@@ -7,7 +7,7 @@
 #include "Application.hpp"
 
 int main() {
-  Application dinoTracks;
+  dt::Application dinoTracks;
 
   return dinoTracks.loop();
 }

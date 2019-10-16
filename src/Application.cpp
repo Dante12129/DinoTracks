@@ -4,12 +4,15 @@
 
 #include "Application.hpp"
 
-Application::Application()
+namespace dt
 {
+  Application::Application()
+  {
 
-}
+  }
 
-int Application::loop()
-{
-  return 0;
+  int Application::loop()
+  {
+    return 0;
+  }
 }

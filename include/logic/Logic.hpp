@@ -5,11 +5,13 @@
 #ifndef DINOTRACKS_LOGIC_HPP
 #define DINOTRACKS_LOGIC_HPP
 
-
-class Logic
+namespace dt
 {
+    class Logic
+    {
 
-};
+    };
+}
 
 
 #endif //DINOTRACKS_LOGIC_HPP

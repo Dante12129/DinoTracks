@@ -7,22 +7,25 @@
 
 #include <logic/Logic.hpp>
 
-class Application
+namespace dt
 {
-public:
-    // Setup
-    Application();
+  class Application
+  {
+  public:
+      // Setup
+      Application();
 
-    // Main Game Loop
-    int loop();
+      // Main Game Loop
+      int loop();
 
-private:
-    // Status
-    bool running = true;
+  private:
+      // Status
+      bool running = true;
 
-    // Main Objects
-    Logic gameLogic;
-};
+      // Main Objects
+      Logic gameLogic;
+  };
+}
 
 
 #endif //DINOTRACKS_APPLICATION_HPP
