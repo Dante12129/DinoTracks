@@ -6,5 +6,8 @@
 
 namespace dt
 {
+    void Logic::update(const sf::Time& delta)
+    {
 
+    }
 }

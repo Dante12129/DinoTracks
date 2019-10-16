@@ -5,11 +5,16 @@
 #ifndef DINOTRACKS_LOGIC_HPP
 #define DINOTRACKS_LOGIC_HPP
 
+// Forward Declarations
+namespace sf { class Time; }
+
 namespace dt
 {
     class Logic
     {
-
+    public:
+        // Game Loop
+        void update(const sf::Time& delta);
     };
 }
 
