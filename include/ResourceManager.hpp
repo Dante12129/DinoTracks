@@ -6,6 +6,7 @@
 #define DINOTRACKS_RESOURCEMANAGER_HPP
 
 #include <string>
+#include <unordered_map>
 
 // Forward Declarations
 namespace sf { class Font; class Texture; class SoundBuffer; }
@@ -22,7 +23,7 @@ namespace dt
         };
 
         // Loading Functions
-        bool load(Type type, const std::string& id);
+        void load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename);
 
         // Retrieval Functions
         sf::Texture& getTexture(const std::string& id) const;
@@ -30,7 +31,10 @@ namespace dt
         sf::SoundBuffer& getSoundBuffer(const std::string& id) const;
 
     private:
-        //
+        // Maps of resource identifiers to actual resources
+        std::unordered_map<std::string, sf::Texture> textures;
+        std::unordered_map<std::string, sf::Font> fonts;
+        std::unordered_map<std::string, sf::SoundBuffer> sounds;
     };
 }
 
