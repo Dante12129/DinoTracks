@@ -11,9 +11,14 @@ namespace dt
 {
     Application::Application()
     {
+      // Let the HumanView Quit The App
       playerView.setWindowClosedCallback([&] {
           running = false;
       });
+
+      // Load global resources here
+      // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
+      // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
     }
 
     int Application::loop()

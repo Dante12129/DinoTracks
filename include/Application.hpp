@@ -5,6 +5,7 @@
 #ifndef DINOTRACKS_APPLICATION_HPP
 #define DINOTRACKS_APPLICATION_HPP
 
+#include <ResourceManager.hpp>
 #include <logic/Logic.hpp>
 #include <views/HumanView.hpp>
 
@@ -26,6 +27,9 @@ namespace dt
       // Main Objects
       Logic gameLogic;
       HumanView playerView;
+
+      // Managers
+      ResourceManager resources;
   };
 }
 
