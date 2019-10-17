@@ -8,7 +8,7 @@
 
 namespace dt
 {
-    HumanView::HumanView() : window({640, 480}, "DinoTracks")
+    HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close)
     {}
 
     void HumanView::processEvents()
