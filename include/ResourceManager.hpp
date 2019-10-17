@@ -25,9 +25,9 @@ namespace dt
         bool load(Type type, const std::string& id);
 
         // Retrieval Functions
-        sf::Texture& getTexture() const;
-        sf::Font& getFont() const;
-        sf::SoundBuffer& getSoundBuffer() const;
+        sf::Texture& getTexture(const std::string& id) const;
+        sf::Font& getFont(const std::string& id) const;
+        sf::SoundBuffer& getSoundBuffer(const std::string& id) const;
 
     private:
         //
