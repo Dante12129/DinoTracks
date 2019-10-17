@@ -47,15 +47,15 @@ void dt::ResourceManager::load(dt::ResourceManager::Type type, const std::string
 
 sf::Texture& dt::ResourceManager::getTexture(const std::string& id) const
 {
-  return;
+  return textures.at(id);
 }
 
 sf::Font& dt::ResourceManager::getFont(const std::string& id) const
 {
-  return;
+  return fonts.at(id);
 }
 
 sf::SoundBuffer& dt::ResourceManager::getSoundBuffer(const std::string& id) const
 {
-  return;
+  return sounds.at(id);
 }
