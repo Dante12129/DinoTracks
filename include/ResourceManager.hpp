@@ -1,9 +1,14 @@
 //
-// Created by dan9c on 10/17/2019.
+// Created by Dan on 10/17/2019.
 //
 
 #ifndef DINOTRACKS_RESOURCEMANAGER_HPP
 #define DINOTRACKS_RESOURCEMANAGER_HPP
+
+#include <string>
+
+// Forward Declarations
+namespace sf { class Font; class Texture; class SoundBuffer; }
 
 namespace dt
 {
@@ -13,8 +18,19 @@ namespace dt
         enum class Type {
             Texture,
             Font,
-            Sound
+            SoundBuffer
         };
+
+        // Loading Functions
+        bool load(Type type, const std::string& id);
+
+        // Retrieval Functions
+        sf::Texture& getTexture() const;
+        sf::Font& getFont() const;
+        sf::SoundBuffer& getSoundBuffer() const;
+
+    private:
+        //
     };
 }
 
