@@ -25,6 +25,16 @@ namespace dt
       }
     }
 
+    void HumanView::sendCommands(Logic& logic) const
+    {
+
+    }
+
+    void updateFrom(const Logic& logic)
+    {
+
+    }
+
     void HumanView::draw()
     {
       window.clear();

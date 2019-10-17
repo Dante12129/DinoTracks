@@ -9,6 +9,9 @@
 
 namespace dt
 {
+    // Forward Delcarations
+    class Logic;
+
     class HumanView
     {
     public:
@@ -17,6 +20,8 @@ namespace dt
 
         // Game Loop
         void processEvents();
+        void sendCommands(Logic& logic) const;
+        void updateFrom(const Logic& logic);
         void draw();
 
     private:
