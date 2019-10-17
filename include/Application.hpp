@@ -14,7 +14,7 @@ namespace dt
   {
   public:
       // Constructors
-      Application() = default;
+      Application();
 
       // Main Game Loop
       int loop();

@@ -19,7 +19,7 @@ namespace dt
         switch(event.type)
         {
           case sf::Event::Closed:
-            // TODO: emit quit event when EventManager has been implemented
+            windowClosedCallback();
             break;
         }
       }
@@ -30,7 +30,7 @@ namespace dt
 
     }
 
-    void updateFrom(const Logic& logic)
+    void HumanView::updateFrom(const Logic& logic)
     {
 
     }
@@ -42,5 +42,10 @@ namespace dt
       // Draw stuff here
 
       window.display();
+    }
+
+    void HumanView::setWindowClosedCallback(std::function<void()> callback)
+    {
+      windowClosedCallback = callback;
     }
 }

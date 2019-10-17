@@ -5,6 +5,8 @@
 #ifndef DINOTRACKS_HUMANVIEW_HPP
 #define DINOTRACKS_HUMANVIEW_HPP
 
+#include <functional>
+
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace dt
@@ -24,8 +26,12 @@ namespace dt
         void updateFrom(const Logic& logic);
         void draw();
 
+        // Signals
+        void setWindowClosedCallback(std::function<void()> callback);
+
     private:
         sf::RenderWindow window;
+        std::function<void()> windowClosedCallback;
     };
 }
 
