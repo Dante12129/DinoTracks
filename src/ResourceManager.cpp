@@ -6,52 +6,55 @@
 
 #include <stdexcept>
 
-void dt::ResourceManager::load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename)
+namespace dt
 {
-  bool fileResult = false;
-  bool insertResult = false;
+    ResourceManager* ResourceManager::currentManager = nullptr;
 
-  // Try loading appropriate resources
-  if(type == Type::Texture)
-  {
-    sf::Texture tex;
-    fileResult = tex.loadFromFile("resources/textures/" + filename);
-    insertResult = textures.insert({id, tex}).second;
-  }
-  else if(type == Type::Font)
-  {
-    sf::Font font;
-    fileResult = font.loadFromFile("resources/fonts/" + filename);
-    insertResult = fonts.insert({id, font}).second;
-  }
-  else if(type == Type::SoundBuffer)
-  {
-    sf::SoundBuffer sbuf;
-    fileResult = sbuf.loadFromFile("resources/sounds/" + filename);
-    insertResult = sounds.insert({id, sbuf}).second;
-  }
+    void ResourceManager::load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename)
+    {
+      bool fileResult = false;
+      bool insertResult = false;
 
-  if(!fileResult)
-  {
-    throw std::runtime_error("Could not resource file: " + filename);
-  }
-  if(!insertResult)
-  {
-    throw std::runtime_error("Could not save resource: " + filename);
-  }
-}
+      // Try loading appropriate resources
+      if (type == Type::Texture)
+      {
+        sf::Texture tex;
+        fileResult = tex.loadFromFile("resources/textures/" + filename);
+        insertResult = textures.insert({id, tex}).second;
+      } else if (type == Type::Font)
+      {
+        sf::Font font;
+        fileResult = font.loadFromFile("resources/fonts/" + filename);
+        insertResult = fonts.insert({id, font}).second;
+      } else if (type == Type::SoundBuffer)
+      {
+        sf::SoundBuffer sbuf;
+        fileResult = sbuf.loadFromFile("resources/sounds/" + filename);
+        insertResult = sounds.insert({id, sbuf}).second;
+      }
 
-sf::Texture& dt::ResourceManager::getTexture(const std::string& id)
-{
-  return textures.at(id);
-}
+      if (!fileResult)
+      {
+        throw std::runtime_error("Could not resource file: " + filename);
+      }
+      if (!insertResult)
+      {
+        throw std::runtime_error("Could not save resource: " + filename);
+      }
+    }
 
-sf::Font& dt::ResourceManager::getFont(const std::string& id)
-{
-  return fonts.at(id);
-}
+    sf::Texture& ResourceManager::getTexture(const std::string& id)
+    {
+      return textures.at(id);
+    }
 
-sf::SoundBuffer& dt::ResourceManager::getSoundBuffer(const std::string& id)
-{
-  return sounds.at(id);
+    sf::Font& ResourceManager::getFont(const std::string& id)
+    {
+      return fonts.at(id);
+    }
+
+    sf::SoundBuffer& ResourceManager::getSoundBuffer(const std::string& id)
+    {
+      return sounds.at(id);
+    }
 }
