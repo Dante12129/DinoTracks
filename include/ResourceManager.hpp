@@ -15,12 +15,16 @@ namespace dt
 {
     class ResourceManager
     {
+    public:
         // Enums
         enum class Type {
             Texture,
             Font,
             SoundBuffer
         };
+
+        // The Global ResourceManager (will be initialized by application)
+        static ResourceManager* currentManager;
 
         // Loading Functions
         void load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename);

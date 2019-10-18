@@ -16,6 +16,9 @@ namespace dt
           running = false;
       });
 
+      // Set the global ResourceManager
+      ResourceManager::currentManager = &resources;
+
       // Load global resources here
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
