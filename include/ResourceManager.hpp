@@ -8,8 +8,9 @@
 #include <string>
 #include <unordered_map>
 
-// Forward Declarations
-namespace sf { class Font; class Texture; class SoundBuffer; }
+#include <SFML/Audio/SoundBuffer.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Texture.hpp>
 
 namespace dt
 {
@@ -30,9 +31,10 @@ namespace dt
         void load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename);
 
         // Retrieval Functions
-        sf::Texture& getTexture(const std::string& id) const;
-        sf::Font& getFont(const std::string& id) const;
-        sf::SoundBuffer& getSoundBuffer(const std::string& id) const;
+        // Can't be const if we want the returned resource to be modifiable
+        sf::Texture& getTexture(const std::string& id);
+        sf::Font& getFont(const std::string& id);
+        sf::SoundBuffer& getSoundBuffer(const std::string& id);
 
     private:
         // Maps of resource identifiers to actual resources

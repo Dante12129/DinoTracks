@@ -6,10 +6,6 @@
 
 #include <stdexcept>
 
-#include <SFML/Audio/SoundBuffer.hpp>
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Texture.hpp>
-
 void dt::ResourceManager::load(dt::ResourceManager::Type type, const std::string& id, const std::string& filename)
 {
   bool fileResult = false;
@@ -45,17 +41,17 @@ void dt::ResourceManager::load(dt::ResourceManager::Type type, const std::string
   }
 }
 
-sf::Texture& dt::ResourceManager::getTexture(const std::string& id) const
+sf::Texture& dt::ResourceManager::getTexture(const std::string& id)
 {
   return textures.at(id);
 }
 
-sf::Font& dt::ResourceManager::getFont(const std::string& id) const
+sf::Font& dt::ResourceManager::getFont(const std::string& id)
 {
   return fonts.at(id);
 }
 
-sf::SoundBuffer& dt::ResourceManager::getSoundBuffer(const std::string& id) const
+sf::SoundBuffer& dt::ResourceManager::getSoundBuffer(const std::string& id)
 {
   return sounds.at(id);
 }
