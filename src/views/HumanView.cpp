@@ -43,19 +43,19 @@ namespace dt
 
     void HumanView::sendCommands(Logic& logic) const
     {
-      if(input.isActive("MOVE_UP"))
+      if(input.isActiveOnce("MOVE_UP"))
       {
         std::cout << "MOVE_UP" << std::endl;
       }
-      if(input.isActive("MOVE_DOWN"))
+      if(input.isActiveOnce("MOVE_DOWN"))
       {
         std::cout << "MOVE_DOWN" << std::endl;
       }
-      if(input.isActive("MOVE_LEFT"))
+      if(input.isActiveOnce("MOVE_LEFT"))
       {
         std::cout << "MOVE_LEFT" << std::endl;
       }
-      if(input.isActive("MOVE_RIGHT"))
+      if(input.isActiveOnce("MOVE_RIGHT"))
       {
         std::cout << "MOVE_RIGHT" << std::endl;
       }

@@ -57,4 +57,20 @@ namespace dt
         return actionIterator->second;
       }
     }
+
+    bool InputManager::isActiveOnce(const std::string& action) const
+    {
+      // Get action
+      auto actionIterator = state.find(action);
+      if(actionIterator == state.end()) // Action not found
+      {
+        throw std::runtime_error("Action not found: " + action);
+      }
+      else // Action found
+      {
+        bool result = actionIterator->second; // Save action state to return
+        actionIterator->second = false; // Reset state
+        return result;
+      }
+    }
 }

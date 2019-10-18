@@ -22,10 +22,11 @@ namespace dt
         void activate(sf::Keyboard::Key key);
         void deactivate(sf::Keyboard::Key key);
         bool isActive(const std::string& action) const;
+        bool isActiveOnce(const std::string& action) const;
 
     private:
         std::unordered_map<sf::Keyboard::Key, std::string> keys; // Map actions to keys
-        std::unordered_map<std::string, bool> state;
+        mutable std::unordered_map<std::string, bool> state;
     };
 }
 
