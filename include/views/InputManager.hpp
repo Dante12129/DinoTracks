@@ -20,6 +20,7 @@ namespace dt
 
         // Action State
         void activate(sf::Keyboard::Key key);
+        void deactivate(sf::Keyboard::Key key);
         bool isActive(const std::string& action);
 
     private:

@@ -29,6 +29,21 @@ namespace dt
         }
     }
 
+    void InputManager::deactivate(sf::Keyboard::Key key)
+    {
+      // Get action associated with key
+      auto keyIterator = keys.find(key);
+      if(keyIterator == keys.end()) // Key not found (no associated action)
+      {
+        throw std::runtime_error("No action found for key");
+      }
+      else // Key is found
+      {
+        // Set state for action
+        state[keyIterator->second] = false;
+      }
+    }
+
     bool InputManager::isActive(const std::string& action)
     {
       // Get action
