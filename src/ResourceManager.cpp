@@ -20,19 +20,19 @@ void dt::ResourceManager::load(dt::ResourceManager::Type type, const std::string
   {
     sf::Texture tex;
     fileResult = tex.loadFromFile("resources/textures/" + filename);
-    insertResult = textures.insert(tex).second;
+    insertResult = textures.insert({id, tex}).second;
   }
   else if(type == Type::Font)
   {
     sf::Font font;
     fileResult = font.loadFromFile("resources/fonts/" + filename);
-    insertResult = fonts.insert(font).second;
+    insertResult = fonts.insert({id, font}).second;
   }
   else if(type == Type::SoundBuffer)
   {
     sf::SoundBuffer sbuf;
     fileResult = sbuf.loadFromFile("resources/sounds/" + filename);
-    insertResult = sounds.insert(sbuf).second;
+    insertResult = sounds.insert({id, sbuf}).second;
   }
 
   if(!fileResult)
