@@ -44,7 +44,7 @@ namespace dt
       }
     }
 
-    bool InputManager::isActive(const std::string& action)
+    bool InputManager::isActive(const std::string& action) const
     {
       // Get action
       auto actionIterator = state.find(action);

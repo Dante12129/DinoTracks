@@ -9,6 +9,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#include <InputManager.hpp>
+
 namespace dt
 {
     // Forward Delcarations
@@ -30,8 +32,12 @@ namespace dt
         void setWindowClosedCallback(std::function<void()> callback);
 
     private:
+        // Window-Related
         sf::RenderWindow window;
         std::function<void()> windowClosedCallback;
+
+        // Input-Related
+        InputManager input;
     };
 }
 

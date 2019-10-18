@@ -4,12 +4,22 @@
 
 #include "views/HumanView.hpp"
 
+#include <iostream>
+
 #include <SFML/Window/Event.hpp>
 
 namespace dt
 {
     HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close)
-    {}
+    {
+      window.setKeyRepeatEnabled(false);
+
+      // Create default key associations
+      input.associate(sf::Keyboard::W, "MOVE_UP");
+      input.associate(sf::Keyboard::S, "MOVE_DOWN");
+      input.associate(sf::Keyboard::A, "MOVE_LEFT");
+      input.associate(sf::Keyboard::D, "MOVE_RIGHT");
+    }
 
     void HumanView::processEvents()
     {
@@ -21,18 +31,38 @@ namespace dt
           case sf::Event::Closed:
             windowClosedCallback();
             break;
+          case sf::Event::KeyPressed:
+            input.activate(event.key.code);
+            break;
+          case sf::Event::KeyReleased:
+            input.deactivate(event.key.code);
+            break;
         }
       }
     }
 
     void HumanView::sendCommands(Logic& logic) const
     {
-
+      if(input.isActive("MOVE_UP"))
+      {
+        std::cout << "MOVE_UP" << std::endl;
+      }
+      if(input.isActive("MOVE_DOWN"))
+      {
+        std::cout << "MOVE_DOWN" << std::endl;
+      }
+      if(input.isActive("MOVE_LEFT"))
+      {
+        std::cout << "MOVE_LEFT" << std::endl;
+      }
+      if(input.isActive("MOVE_RIGHT"))
+      {
+        std::cout << "MOVE_RIGHT" << std::endl;
+      }
     }
 
     void HumanView::updateFrom(const Logic& logic)
     {
-
     }
 
     void HumanView::draw()

@@ -21,7 +21,7 @@ namespace dt
         // Action State
         void activate(sf::Keyboard::Key key);
         void deactivate(sf::Keyboard::Key key);
-        bool isActive(const std::string& action);
+        bool isActive(const std::string& action) const;
 
     private:
         std::unordered_map<sf::Keyboard::Key, std::string> keys; // Map actions to keys
