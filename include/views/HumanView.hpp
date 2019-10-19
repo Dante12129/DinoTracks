@@ -11,6 +11,7 @@
 
 #include <InputManager.hpp>
 #include <UserInterface.hpp>
+#include <MapLoader.hpp>
 
 namespace dt
 {
@@ -37,6 +38,7 @@ namespace dt
         sf::RenderWindow window;
         std::function<void()> windowClosedCallback;
         UserInterface ui;
+        MapLoader loader;
 
         // Input-Related
         InputManager input;

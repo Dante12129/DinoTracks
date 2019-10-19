@@ -23,6 +23,8 @@ namespace dt
       
       UserInterface ui(window.getSize());
       this->ui = ui;
+      
+      loader.loadMapFromFile(1);
     }
 
     void HumanView::processEvents()
