@@ -4,14 +4,15 @@
 
 #include <vector>
 #include "logic\Entity.hpp"
+#include "components/ComponentsBase.hpp"
 
 namespace dt
 {
-    void Entity::update()
+    void Entity::update(float flt)
     {
 
     }
-    void Entity::draw()
+    /*void Entity::draw()
     {
 
     }
@@ -22,5 +23,7 @@ namespace dt
     void Entity::destroy()
     {
         alive = false;
-    }
+    }*/
+
+
 }

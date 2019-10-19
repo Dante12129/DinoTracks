@@ -12,12 +12,13 @@ namespace dt {
     class Entity {
     private:
         bool alive{true};
-        std::vector<std::unique_ptr<ComponentsBase>> components;
+//        std::vector<std::unique_ptr<ComponentsBase>> components;
+
     public:
-        void update()
-        void draw()
+        void update(float flt)
+       /* void draw()
         bool checkAlive() const
-        void destroy()
+        void destroy()*/
     };
 }
 #endif //DINOTRACKS_ENTITY_HPP

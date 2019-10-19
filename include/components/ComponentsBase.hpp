@@ -5,11 +5,14 @@
 #ifndef DINOTRACKS_COMPONENTSBASE_HPP
 #define DINOTRACKS_COMPONENTSBASE_HPP
 
-#include "Entity.hpp"
+#include "logic/Entity.hpp"
 
-namespace dt {
+namespace dt
+{
+    class Entity;
     struct ComponentsBase {
-        virtual void update() {}
+        Entity* entity{nullptr};
+        virtual void update(float flt) {}
         virtual void draw() {}
         virtual ~ComponentsBase() {}
     };

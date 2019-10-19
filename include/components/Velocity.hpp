@@ -5,6 +5,9 @@
 #ifndef DINOTRACKS_VELOCITY_HPP
 #define DINOTRACKS_VELOCITY_HPP
 
+#include "logic/Entity.hpp"
+#include "components/ComponentsBase.hpp"
+
 namespace dt
 {
 
