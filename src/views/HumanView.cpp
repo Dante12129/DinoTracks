@@ -19,6 +19,10 @@ namespace dt
       input.associate(sf::Keyboard::S, "MOVE_DOWN");
       input.associate(sf::Keyboard::A, "MOVE_LEFT");
       input.associate(sf::Keyboard::D, "MOVE_RIGHT");
+      input.associate(sf::Keyboard::Enter, "NOTHING");
+      
+      UserInterface ui(window.getSize());
+      this->ui = ui;
     }
 
     void HumanView::processEvents()
@@ -69,7 +73,7 @@ namespace dt
     {
       window.clear();
 
-      // Draw stuff here
+      ui.draw(window);
 
       window.display();
     }

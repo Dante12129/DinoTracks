@@ -10,6 +10,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 
 #include <InputManager.hpp>
+#include <UserInterface.hpp>
 
 namespace dt
 {
@@ -35,6 +36,7 @@ namespace dt
         // Window-Related
         sf::RenderWindow window;
         std::function<void()> windowClosedCallback;
+        UserInterface ui;
 
         // Input-Related
         InputManager input;
