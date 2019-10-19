@@ -6,13 +6,13 @@
 #define DINOTRACKS_ENTITY_HPP
 
 #include <vector>
-#include "Component.hpp"
+#include "components/ComponentsBase.hpp"
 
 namespace dt {
     class Entity {
     private:
         bool alive{true};
-        std::vector<std::unique_ptr<Component>> components;
+        std::vector<std::unique_ptr<ComponentsBase>> components;
     public:
         void update()
         void draw()
