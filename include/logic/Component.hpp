@@ -11,7 +11,7 @@ namespace dt {
     struct Component {
         virtual void update() {}
         virtual void draw() {}
-        virtual ~Component() { }
+        virtual ~Component() {}
     };
 }
 #endif //DINOTRACKS_COMPONENT_HPP
