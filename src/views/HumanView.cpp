@@ -74,7 +74,8 @@ namespace dt
     void HumanView::draw()
     {
       window.clear();
-
+      
+      loader.draw(window);
       ui.draw(window);
 
       window.display();
