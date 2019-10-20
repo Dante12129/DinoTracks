@@ -13,11 +13,13 @@ namespace dt
     class Position : ComponentsBase
     {
     public:
-        virtual std::string getName() const = 0;
-        virtual int getIntData() const = 0;
-        virtual sf::Vector2f getVectorData() const = 0;
-        virtual void setData(const sf::Vector2f posVec) = 0;
-        virtual void setData(int posInt) = 0;
+        std::string getName() const;
+        int getIntData() const;
+        sf::Vector2i getVectorData() const;
+        void setData(const sf::Vector2i& posVec);
+        void setData(int posInt);
+    private:
+        sf::Vector2i dinoPos;
     };
 }
 

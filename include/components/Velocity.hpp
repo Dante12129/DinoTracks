@@ -5,7 +5,7 @@
 #ifndef DINOTRACKS_VELOCITY_HPP
 #define DINOTRACKS_VELOCITY_HPP
 
-#include "logic/Entity.hpp"
+#include <SFML/System/Vector2.hpp>
 #include "components/ComponentsBase.hpp"
 
 namespace dt
@@ -13,11 +13,13 @@ namespace dt
     class Velocity : ComponentsBase
     {
     public:
-        virtual std::string getName() const = 0;
-        virtual int getIntData() const = 0;
-        virtual sf::Vector2f getVectorData() const = 0;
-        virtual void setData(const sf::Vector2f velVec) = 0;
-        virtual void setData(int velInt) = 0;
+        std::string getName() const;
+        int getIntData() const;
+        sf::Vector2i getVectorData() const;
+        void setData(const sf::Vector2i& velVec);
+        void setData(int velInt);
+    private:
+        sf::Vector2i dinoVelocity;
     };
 }
 
