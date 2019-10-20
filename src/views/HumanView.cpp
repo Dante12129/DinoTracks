@@ -69,6 +69,7 @@ namespace dt
 
     void HumanView::updateFrom(const Logic& logic)
     {
+		loader.updateFrom(logic);
     }
 
     void HumanView::draw()

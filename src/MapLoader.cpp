@@ -11,7 +11,7 @@ namespace dt
 	void MapLoader::loadMapFromFile(int mapNumber)
 	{
 		std::ifstream mapFile;
-		std::string filePath = "../data/maps/" + std::to_string(mapNumber) + ".map";
+		std::string filePath = "../resources/maps/" + std::to_string(mapNumber) + ".map";
 		mapFile.open(filePath);
 		
 		int tile;
@@ -35,14 +35,12 @@ namespace dt
 		
 		int posX = 0;
 		int posY = 0;
-		int curX = 0;
-		int curY = 0;
 		
 		for (int r = curY; r < curY + 24; ++r)
 		{
 			for (int c = curX; c < curX + 43; ++c)
 			{
-				switch (terrainMap[c + (43 * r)])
+				switch (terrainMap[c + (48 * r)])
 				{
 					case 0:
 						water.setPosition(sf::Vector2f(posX, posY));
@@ -61,6 +59,12 @@ namespace dt
 			posY += 32;
 		}
 		
+	}
+	
+	void MapLoader::updateFrom(const Logic& logic)
+	{
+		curX = 0;
+		curY = 0;
 	}
    
 }
