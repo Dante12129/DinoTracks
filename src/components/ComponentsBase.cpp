@@ -7,7 +7,7 @@
 
 namespace dt
 {
-
+    //pure virtual functions not implemented in component base class
 }
 
 

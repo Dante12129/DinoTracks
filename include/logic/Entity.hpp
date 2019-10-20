@@ -5,20 +5,22 @@
 #ifndef DINOTRACKS_ENTITY_HPP
 #define DINOTRACKS_ENTITY_HPP
 
-#include <vector>
+#include <unordered_map>
 #include "components/ComponentsBase.hpp"
+#include "components/Position.hpp"
+#include "components/Velocity.hpp"
 
-namespace dt {
-    class Entity {
-    private:
-        bool alive{true};
-//        std::vector<std::unique_ptr<ComponentsBase>> components;
-
+namespace dt
+{
+    class Entity
+    {
     public:
-        void update(float flt)
-       /* void draw()
-        bool checkAlive() const
-        void destroy()*/
+        void addComponent(ComponentsBase& comp); //add components to entity
+        const ComponentsBase& getComponent(const std::string& name) const; //get component specified in parameter
+        bool hasComponent(const std::string& name) const; //check if entity has a component
+    private:
+        std::unordered_map<std::string, ComponentsBase> components; //map that stores the components of an entity
     };
 }
+
 #endif //DINOTRACKS_ENTITY_HPP

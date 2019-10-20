@@ -8,5 +8,19 @@
 
 namespace dt
 {
-
+    sf::Vector2f dinoVelocity;
+    std::string Velocity::getName() const
+    {
+        return "Velocity";
+    }
+    sf::Vector2f Velocity::getVectorData() const
+    {
+        return dinoVelocity;
+    }
+    void Velocity::setData(const sf::Vector2f velVec)
+    {
+        dinoVelocity = velVec;
+    }
+    int Velocity::getIntData() const{}
+    void Velocity::setData(int velInt){}
 }

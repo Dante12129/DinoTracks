@@ -3,6 +3,7 @@
 //
 
 #include "logic/Logic.hpp"
+#include "logic/Entity.hpp"
 
 namespace dt
 {
@@ -10,4 +11,9 @@ namespace dt
     {
 
     }
+    void update(const sf::Time& delta, const sf::Vector2<Entity>& entities)
+    {
+
+    }
+
 }
