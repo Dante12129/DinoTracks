@@ -22,6 +22,7 @@ namespace dt
           components.insert({comp->getName(), std::move(comp)});
         }
         const ComponentsBase& getComponent(const std::string& name) const; //get component specified in parameter
+        ComponentsBase& getComponent(const std::string& name); // non-const version of above
         bool hasComponent(const std::string& name) const; //check if entity has a component
     private:
         std::unordered_map<std::string, std::unique_ptr<ComponentsBase>> components; //map that stores the components of an entity

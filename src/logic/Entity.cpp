@@ -12,9 +12,14 @@ namespace dt
     {
         return *components.at(name);
     }
+
+    ComponentsBase& Entity::getComponent(const std::string& name)
+    {
+      return *components.at(name);
+    }
+
     bool Entity::hasComponent(const std::string& name) const
     {
         if(components.find(name) != components.end()) {return true;}
     }
-
 }
