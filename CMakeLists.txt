@@ -30,4 +30,4 @@ file(GLOB VIEW_SRC ${PROJECT_SOURCE_DIR}/src/views/*cpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Set target
-add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} include/logic/Entity.hpp include/components/ComponentsBase.hpp src/components/ComponentsBase.cpp src/logic/Entity.cpp include/components/Position.hpp src/components/Position.cpp src/components/Velocity.cpp include/components/Velocity.hpp)
+add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} include/logic/Entity.hpp include/components/ComponentsBase.hpp src/components/ComponentsBase.cpp src/logic/Entity.cpp include/components/Position.hpp src/components/Position.cpp src/components/Velocity.cpp include/components/Velocity.hpp include/logic/MovementSystem.hpp src/logic/MovementSystem.cpp)
