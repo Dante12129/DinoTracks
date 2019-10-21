@@ -12,7 +12,7 @@
 
 namespace dt
 {
-    class MovementSystem
+    class MovementSystem //This system deals with functionality of movement
     {
         public:
             void moveUp(dt::Entity& dino);
