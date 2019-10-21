@@ -3,12 +3,12 @@
 // Created by Ben on 10/19/2019.
 //
 
-#include "MapLoader.hpp"
+#include "Map.hpp"
 
 namespace dt
 {
 	
-	void MapLoader::loadMapFromFile(int mapNumber)
+	void Map::loadMapFromFile(int mapNumber)
 	{
 		std::ifstream mapFile;
 		std::string filePath = "../resources/maps/" + std::to_string(mapNumber) + ".map";
@@ -23,7 +23,7 @@ namespace dt
 		mapFile.close();
 	}
 	
-	void MapLoader::draw(sf::RenderWindow & window)
+	void Map::draw(sf::RenderWindow & window)
 	{
 		sf::Sprite grass;
 		grass.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
@@ -61,10 +61,10 @@ namespace dt
 		
 	}
 	
-	void MapLoader::updateFrom(const Logic& logic)
+	void Map::updateFrom(const Logic& logic)
 	{
 		curX = 0;
-		curY = 0;
+		curY = 1;
 	}
    
 }

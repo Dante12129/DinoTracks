@@ -2,8 +2,8 @@
 // Created by Ben on 10/19/2019.
 //
 
-#ifndef DINOTRACKS_MAPLOADER_HPP
-#define DINOTRACKS_MAPLOADER_HPP
+#ifndef DINOTRACKS_MAP_HPP
+#define DINOTRACKS_MAP_HPP
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -17,7 +17,7 @@ namespace dt
 	// Forward Delcarations
     class Logic;
     
-    class MapLoader
+    class Map
     {
     public:
         void loadMapFromFile(int mapNumber);
@@ -33,5 +33,5 @@ namespace dt
 }
 
 
-#endif //DINOTRACKS_MAPLOADER_HPP
+#endif //DINOTRACKS_MAP_HPP
 

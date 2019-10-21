@@ -24,7 +24,7 @@ namespace dt
       UserInterface ui(window.getSize());
       this->ui = ui;
       
-      loader.loadMapFromFile(1);
+      map.loadMapFromFile(1);
     }
 
     void HumanView::processEvents()
@@ -69,14 +69,14 @@ namespace dt
 
     void HumanView::updateFrom(const Logic& logic)
     {
-		loader.updateFrom(logic);
+		map.updateFrom(logic);
     }
 
     void HumanView::draw()
     {
       window.clear();
       
-      loader.draw(window);
+      map.draw(window);
       ui.draw(window);
 
       window.display();
