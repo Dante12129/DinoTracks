@@ -10,7 +10,7 @@
 
 namespace dt
 {
-    class Position : ComponentsBase
+    class Position : public ComponentsBase
     {
     public:
         std::string getName() const;

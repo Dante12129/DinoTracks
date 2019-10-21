@@ -15,11 +15,11 @@ namespace dt
     class MovementSystem
     {
         public:
-            void moveUp(Entity dino);
-            void moveDown(Entity dino);
-            void moveLeft(Entity dino);
-            void moveRight(Entity dino);
-            void stop(Entity dino);
+            void moveUp(dt::Entity& dino);
+            void moveDown(dt::Entity& dino);
+            void moveLeft(dt::Entity& dino);
+            void moveRight(dt::Entity& dino);
+            void stop(dt::Entity& dino);
     };
 }
 

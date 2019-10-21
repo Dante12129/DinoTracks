@@ -10,7 +10,7 @@
 
 namespace dt
 {
-    class Velocity : ComponentsBase
+    class Velocity : public ComponentsBase
     {
     public:
         std::string getName() const;
