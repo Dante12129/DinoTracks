@@ -3,7 +3,7 @@
 //
 
 #include <SFML/System/Vector2.hpp>
-#include "components/ComponentsBase.hpp"
+#include "components/Components.hpp"
 #include "components/Position.hpp"
 #include "components/Velocity.hpp"
 #include "Entity.hpp"
@@ -18,8 +18,8 @@ namespace dt
         //get position and velocity from component
         std::string posi_str = "Position";
         std::string velo_str = "Velocity";
-        ComponentsBase& posi = dino.getComponent(posi_str);
-        ComponentsBase& velo = dino.getComponent(velo_str);
+        Components& posi = dino.getComponent(posi_str);
+        Components& velo = dino.getComponent(velo_str);
 
         //move position of the entity by subtracting y-coordinate with y-velocity
         sf::Vector2i cur_velo = velo.getVectorData();
@@ -33,8 +33,8 @@ namespace dt
         //get position and velocity from component
         std::string posi_str = "Position";
         std::string velo_str = "Velocity";
-        ComponentsBase& posi = dino.getComponent(posi_str);
-        ComponentsBase& velo = dino.getComponent(velo_str);
+        Components& posi = dino.getComponent(posi_str);
+        Components& velo = dino.getComponent(velo_str);
 
         //move position of the entity by adding y-coordinate with y-velocity
         sf::Vector2i cur_velo = velo.getVectorData();
@@ -48,8 +48,8 @@ namespace dt
         //get position and velocity from component
         std::string posi_str = "Position";
         std::string velo_str = "Velocity";
-        ComponentsBase& posi = dino.getComponent(posi_str);
-        ComponentsBase& velo = dino.getComponent(velo_str);
+        Components& posi = dino.getComponent(posi_str);
+        Components& velo = dino.getComponent(velo_str);
 
         //move position of the entity by subtracting x-coordinate with x-velocity
         sf::Vector2i cur_velo = velo.getVectorData();
@@ -63,8 +63,8 @@ namespace dt
         //get position and velocity from component
         std::string posi_str = "Position";
         std::string velo_str = "Velocity";
-        ComponentsBase& posi = dino.getComponent(posi_str);
-        ComponentsBase& velo = dino.getComponent(velo_str);
+        Components& posi = dino.getComponent(posi_str);
+        Components& velo = dino.getComponent(velo_str);
 
         //move position of the entity by adding x-coordinate with x-velocity
         sf::Vector2i cur_velo = velo.getVectorData();
@@ -78,8 +78,8 @@ namespace dt
         //get position and velocity from component
         std::string posi_str = "Position";
         std::string velo_str = "Velocity";
-        ComponentsBase& posi = dino.getComponent(posi_str);
-        ComponentsBase& velo = dino.getComponent(velo_str);
+        Components& posi = dino.getComponent(posi_str);
+        Components& velo = dino.getComponent(velo_str);
 
         //set velocity as 0
         sf::Vector2i cur_velo = velo.getVectorData();

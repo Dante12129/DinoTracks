@@ -6,11 +6,11 @@
 #define DINOTRACKS_VELOCITY_HPP
 
 #include <SFML/System/Vector2.hpp>
-#include "components/ComponentsBase.hpp"
+#include "components/Components.hpp"
 
 namespace dt
 {
-    class Velocity : public ComponentsBase
+    class Velocity : public Components
     {
     public:
         std::string getName() const;
