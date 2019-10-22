@@ -22,12 +22,14 @@ link_libraries(${SFML_LIBRARIES})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/logic)
 include_directories(${PROJECT_SOURCE_DIR}/include/views)
+include_directories(${PROJECT_SOURCE_DIR}/include/components)
 file(GLOB SRC ${PROJECT_SOURCE_DIR}/src/*cpp)
 file(GLOB LOGIC_SRC ${PROJECT_SOURCE_DIR}/src/logic/*cpp)
 file(GLOB VIEW_SRC ${PROJECT_SOURCE_DIR}/src/views/*cpp)
+file(GLOB COMPONENTS_SRC ${PROJECT_SOURCE_DIR}/src/components/*cpp)
 
 # Compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Set target
-add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC})
+add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC})
