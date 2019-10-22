@@ -6,11 +6,11 @@
 #define DINOTRACKS_POSITION_HPP
 
 #include <SFML/System/Vector2.hpp>
-#include "components/Components.hpp"
+#include "components/Component.hpp"
 
 namespace dt
 {
-    class Position : public Components
+    class Position : public Component
     {
     public:
         std::string getName() const;

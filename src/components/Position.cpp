@@ -3,7 +3,7 @@
 //
 
 #include <SFML/System/Vector2.hpp>
-#include "components/Components.hpp"
+#include "components/Component.hpp"
 #include "components/Position.hpp"
 
 namespace dt

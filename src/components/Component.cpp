@@ -3,7 +3,7 @@
 //
 
 #include "logic/Entity.hpp"
-#include "components/Components.hpp"
+#include "components/Component.hpp"
 
 namespace dt
 {

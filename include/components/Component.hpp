@@ -2,15 +2,15 @@
 // Created by Cindy on 10/19/2019.
 //
 
-#ifndef DINOTRACKS_COMPONENTS_HPP
-#define DINOTRACKS_COMPONENTS_HPP
+#ifndef DINOTRACKS_COMPONENT_HPP
+#define DINOTRACKS_COMPONENT_HPP
 
 #include <string>
 #include <SFML/System/Vector2.hpp>
 
 namespace dt
 {
-    class Components
+    class Component
     {
     public:
         virtual std::string getName() const = 0;
@@ -20,4 +20,4 @@ namespace dt
         virtual void setData(int) = 0;
     };
 }
-#endif //DINOTRACKS_COMPONENTS_HPP
+#endif //DINOTRACKS_COMPONENT_HPP

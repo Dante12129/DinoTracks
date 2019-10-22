@@ -4,16 +4,16 @@
 
 #include <unordered_map>
 #include "logic/Entity.hpp"
-#include "components/Components.hpp"
+#include "components/Component.hpp"
 
 namespace dt
 {
-    const Components& Entity::getComponent(const std::string& name) const
+    const Component& Entity::getComponent(const std::string& name) const
     {
         return *components.at(name);
     }
 
-    Components& Entity::getComponent(const std::string& name)
+    Component& Entity::getComponent(const std::string& name)
     {
       return *components.at(name);
     }
