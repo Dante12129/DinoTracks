@@ -19,17 +19,17 @@ namespace dt
       if (type == Type::Texture)
       {
         sf::Texture tex;
-        fileResult = tex.loadFromFile("resources/textures/" + filename);
+        fileResult = tex.loadFromFile("../resources/textures/" + filename);
         insertResult = textures.insert({id, tex}).second;
       } else if (type == Type::Font)
       {
         sf::Font font;
-        fileResult = font.loadFromFile("resources/fonts/" + filename);
+        fileResult = font.loadFromFile("../resources/fonts/" + filename);
         insertResult = fonts.insert({id, font}).second;
       } else if (type == Type::SoundBuffer)
       {
         sf::SoundBuffer sbuf;
-        fileResult = sbuf.loadFromFile("resources/sounds/" + filename);
+        fileResult = sbuf.loadFromFile("../resources/sounds/" + filename);
         insertResult = sounds.insert({id, sbuf}).second;
       }
 
