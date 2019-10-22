@@ -10,7 +10,6 @@
 #include "components/Component.hpp"
 #include "components/Position.hpp"
 #include "components/Velocity.hpp"
-#include "Logic.hpp"
 #include "Entity.hpp"
 #include "System.hpp"
 

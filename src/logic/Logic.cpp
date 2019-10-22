@@ -24,7 +24,30 @@ namespace dt
 
     void Logic::update(const sf::Time& delta)
     {
+      movement.update(delta, entities);
+      movement.stop(entities[0]);
+    }
 
+    void Logic::movePlayer(Direction dir)
+    {
+      switch (dir)
+      {
+        case Direction::Up:
+          movement.moveUp(entities[0]);
+          break;
+        case Direction::Down:
+          movement.moveDown(entities[0]);
+          break;
+        case Direction::Left:
+          movement.moveLeft(entities[0]);
+          break;
+        case Direction::Right:
+          movement.moveRight(entities[0]);
+          break;
+        case Direction::None:
+          movement.stop(entities[0]);
+          break;
+      }
     }
 
     const sf::Vector2i& Logic::getPlayerPosition() const

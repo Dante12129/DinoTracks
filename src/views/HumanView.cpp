@@ -57,18 +57,22 @@ namespace dt
       if(input.isActiveOnce("MOVE_UP"))
       {
         std::cout << "MOVE_UP" << std::endl;
+        logic.movePlayer(Direction::Up);
       }
       if(input.isActiveOnce("MOVE_DOWN"))
       {
         std::cout << "MOVE_DOWN" << std::endl;
+        logic.movePlayer(Direction::Down);
       }
       if(input.isActiveOnce("MOVE_LEFT"))
       {
         std::cout << "MOVE_LEFT" << std::endl;
+        logic.movePlayer(Direction::Left);
       }
       if(input.isActiveOnce("MOVE_RIGHT"))
       {
         std::cout << "MOVE_RIGHT" << std::endl;
+        logic.movePlayer(Direction::Right);
       }
     }
 

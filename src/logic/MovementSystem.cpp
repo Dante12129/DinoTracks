@@ -36,7 +36,7 @@ namespace dt
       Component& velo = dino.getComponent(velo_str);
 
       // Set velocity
-      velo.setData({velo.getVectorData().x, 1});
+      velo.setData({velo.getVectorData().x, -1});
 
   }
   void MovementSystem::moveDown(dt::Entity& dino)
@@ -46,7 +46,7 @@ namespace dt
       Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({velo.getVectorData().x, -1});
+    velo.setData({velo.getVectorData().x, 1});
 
   }
   void MovementSystem::moveLeft(dt::Entity& dino)
@@ -66,7 +66,7 @@ namespace dt
     Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({-1, velo.getVectorData().y});
+    velo.setData({1, velo.getVectorData().y});
   }
   void MovementSystem::stop(dt::Entity& dino)
   {

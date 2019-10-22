@@ -8,12 +8,21 @@
 #include <vector>
 
 #include "logic/Entity.hpp"
+#include "MovementSystem.hpp"
 
 // Forward Declarations
 namespace sf { class Time; }
 
 namespace dt
 {
+    enum class Direction {
+        Up,
+        Down,
+        Left,
+        Right,
+        None
+    };
+
     class Logic
     {
     public:
@@ -24,10 +33,13 @@ namespace dt
         void update(const sf::Time& delta);
 
         // View-Logic Communication
+        void movePlayer(Direction dir);
         const sf::Vector2i& getPlayerPosition() const;
 
     private:
         std::vector<Entity> entities;
+
+         MovementSystem movement;
     };
 }
 
