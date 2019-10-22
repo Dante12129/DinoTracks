@@ -2,10 +2,10 @@
 // Created by ywzKe on 2019/10/21.
 //
 
+#include "MovementSystem.hpp"
+
 #include <SFML/System/Vector2.hpp>
-#include "components/Components.hpp"
-#include "components/Position.hpp"
-#include "components/Velocity.hpp"
+#include "components/Component.hpp"
 #include "Entity.hpp"
 
 
@@ -13,79 +13,67 @@
 
 namespace dt
 {
-    void moveUp(dt::Entity& dino) {
+  const std::string MovementSystem::posi_str = "Position";
+  const std::string MovementSystem::velo_str = "Velocity";
 
-        //get position and velocity from component
-        std::string posi_str = "Position";
-        std::string velo_str = "Velocity";
-        Components& posi = dino.getComponent(posi_str);
-        Components& velo = dino.getComponent(velo_str);
+  void MovementSystem::update(const sf::Time& delta, std::vector<Entity>& entities)
+  {
+    for(Entity& entity : entities)
+    {
+      // Get position and velocity components
+      Component& positionComponent = entity.getComponent(posi_str);
+      Component& velocityComponent = entity.getComponent(velo_str);
 
-        //move position of the entity by subtracting y-coordinate with y-velocity
-        sf::Vector2i cur_velo = velo.getVectorData();
-        sf::Vector2i cur_posi = posi.getVectorData();
-        cur_posi.y = cur_posi.y - cur_velo.y;
-        posi.setData(cur_posi);
-
+      // Calculate new position based on velocity
+      sf::Vector2i newPosition = positionComponent.getVectorData() + velocityComponent.getVectorData();
+      positionComponent.setData(newPosition);
     }
-    void moveDown(dt::Entity& dino) {
+  }
 
-        //get position and velocity from component
-        std::string posi_str = "Position";
-        std::string velo_str = "Velocity";
-        Components& posi = dino.getComponent(posi_str);
-        Components& velo = dino.getComponent(velo_str);
+  void MovementSystem::moveUp(dt::Entity& dino)
+  {
+      //get position and velocity from component
+      Component& velo = dino.getComponent(velo_str);
 
-        //move position of the entity by adding y-coordinate with y-velocity
-        sf::Vector2i cur_velo = velo.getVectorData();
-        sf::Vector2i cur_posi = posi.getVectorData();
-        cur_posi.y = cur_posi.y + cur_velo.y;
-        posi.setData(cur_posi);
+      // Set velocity
+      velo.setData({velo.getVectorData().x, 1});
 
-    }
-    void moveLeft(dt::Entity& dino) {
+  }
+  void MovementSystem::moveDown(dt::Entity& dino)
+  {
+      //get position and velocity from component
+      Component& posi = dino.getComponent(posi_str);
+      Component& velo = dino.getComponent(velo_str);
 
-        //get position and velocity from component
-        std::string posi_str = "Position";
-        std::string velo_str = "Velocity";
-        Components& posi = dino.getComponent(posi_str);
-        Components& velo = dino.getComponent(velo_str);
+    // Set velocity
+    velo.setData({velo.getVectorData().x, -1});
 
-        //move position of the entity by subtracting x-coordinate with x-velocity
-        sf::Vector2i cur_velo = velo.getVectorData();
-        sf::Vector2i cur_posi = posi.getVectorData();
-        cur_posi.x = cur_posi.x - cur_velo.x;
-        posi.setData(cur_posi);
+  }
+  void MovementSystem::moveLeft(dt::Entity& dino)
+  {
+      //get position and velocity from component
+      Component& posi = dino.getComponent(posi_str);
+      Component& velo = dino.getComponent(velo_str);
 
-    }
-    void moveRight(dt::Entity& dino) {
+    // Set velocity
+    velo.setData({-1, velo.getVectorData().y});
 
-        //get position and velocity from component
-        std::string posi_str = "Position";
-        std::string velo_str = "Velocity";
-        Components& posi = dino.getComponent(posi_str);
-        Components& velo = dino.getComponent(velo_str);
+  }
+  void MovementSystem::moveRight(dt::Entity& dino)
+  {
+    //get position and velocity from component
+    Component& posi = dino.getComponent(posi_str);
+    Component& velo = dino.getComponent(velo_str);
 
-        //move position of the entity by adding x-coordinate with x-velocity
-        sf::Vector2i cur_velo = velo.getVectorData();
-        sf::Vector2i cur_posi = posi.getVectorData();
-        cur_posi.x = cur_posi.x + cur_velo.x;
-        posi.setData(cur_posi);
+    // Set velocity
+    velo.setData({-1, velo.getVectorData().y});
+  }
+  void MovementSystem::stop(dt::Entity& dino)
+  {
+    //get position and velocity from component
+    Component& velo = dino.getComponent(velo_str);
 
-    }
-    void stop(dt::Entity& dino) {
-
-        //get position and velocity from component
-        std::string posi_str = "Position";
-        std::string velo_str = "Velocity";
-        Components& posi = dino.getComponent(posi_str);
-        Components& velo = dino.getComponent(velo_str);
-
-        //set velocity as 0
-        sf::Vector2i cur_velo = velo.getVectorData();
-        cur_velo.x = 0;
-        cur_velo.y = 0;
-        velo.setData(cur_velo);
-    }
-
+    //set velocity as 0
+    velo.setData({0, 0});
+  }
 }
