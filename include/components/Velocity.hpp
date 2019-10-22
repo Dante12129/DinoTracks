@@ -13,6 +13,8 @@ namespace dt
     class Velocity : public Component
     {
     public:
+        Velocity(int x, int y);
+
         std::string getName() const;
         int getIntData() const;
         sf::Vector2i getVectorData() const;

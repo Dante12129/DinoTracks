@@ -13,6 +13,8 @@ namespace dt
     class Position : public Component
     {
     public:
+        Position(int x, int y);
+
         std::string getName() const;
         int getIntData() const;
         sf::Vector2i getVectorData() const;

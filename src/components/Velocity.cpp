@@ -8,6 +8,9 @@
 
 namespace dt
 {
+    Velocity::Velocity(int x, int y) : dinoVelocity(x, y)
+    {}
+
     std::string Velocity::getName() const
     {
         return "Velocity";

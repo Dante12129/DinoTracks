@@ -8,6 +8,9 @@
 
 namespace dt
 {
+    Position::Position(int x, int y) : dinoPos(x, y)
+    {}
+
     std::string Position::getName() const
     {
          return "Position";
