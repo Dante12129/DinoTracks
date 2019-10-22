@@ -18,12 +18,6 @@ namespace dt
         // Game Loop
         void update(const sf::Time& delta);
     };
-
-    class System
-    {
-        //System base class
-        virtual void update(const sf::Time& delta, const sf::Vector2<Entity>& entities) = 0;
-    };
 }
 
 
