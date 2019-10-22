@@ -17,10 +17,18 @@ namespace dt
       Entity player;
       player.addComponent<Position>(playerPosition);
       player.addComponent<Velocity>(playerVelocity);
+
+      // Add player to entities
+      entities.push_back(std::move(player));
     }
 
     void Logic::update(const sf::Time& delta)
     {
 
+    }
+
+    const sf::Vector2i& Logic::getPlayerPosition() const
+    {
+      return entities[0].getComponent("Position").getVectorData();
     }
 }

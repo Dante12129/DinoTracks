@@ -15,7 +15,7 @@ namespace dt
     {
          return "Position";
     }
-    sf::Vector2i Position::getVectorData() const
+    const sf::Vector2i& Position::getVectorData() const
     {
         return dinoPos;
     }

@@ -8,9 +8,12 @@
 
 #include <SFML/Window/Event.hpp>
 
+#include <Logic.hpp>
+
 namespace dt
 {
-    HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close)
+    HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
+    ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
 
@@ -20,11 +23,13 @@ namespace dt
       input.associate(sf::Keyboard::A, "MOVE_LEFT");
       input.associate(sf::Keyboard::D, "MOVE_RIGHT");
       input.associate(sf::Keyboard::Enter, "NOTHING");
-      
-      UserInterface ui(window.getSize());
-      this->ui = ui;
-      
+
+      // Load the default map
       map.loadMapFromFile(1);
+
+      // Create player's visual representation
+      player.setSize({32, 32});
+      player.setFillColor(sf::Color::Red);
     }
 
     void HumanView::processEvents()
@@ -69,7 +74,10 @@ namespace dt
 
     void HumanView::updateFrom(const Logic& logic)
     {
-		map.updateFrom(logic);
+      // Update player's position on screen
+      player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
+
+		  map.updateFrom(logic);
     }
 
     void HumanView::draw()
@@ -78,6 +86,8 @@ namespace dt
       
       map.draw(window);
       ui.draw(window);
+
+      window.draw(player);
 
       window.display();
     }

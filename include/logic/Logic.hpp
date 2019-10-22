@@ -23,6 +23,9 @@ namespace dt
         // Game Loop
         void update(const sf::Time& delta);
 
+        // View-Logic Communication
+        const sf::Vector2i& getPlayerPosition() const;
+
     private:
         std::vector<Entity> entities;
     };

@@ -15,7 +15,7 @@ namespace dt
     public:
         virtual std::string getName() const = 0;
         virtual int getIntData() const = 0;
-        virtual sf::Vector2i getVectorData() const = 0;
+        virtual const sf::Vector2i& getVectorData() const = 0;
         virtual void setData(const sf::Vector2i&) = 0;
         virtual void setData(int) = 0;
     };

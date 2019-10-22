@@ -17,7 +17,7 @@ namespace dt
 
         std::string getName() const;
         int getIntData() const;
-        sf::Vector2i getVectorData() const;
+        const sf::Vector2i& getVectorData() const;
         void setData(const sf::Vector2i& velVec);
         void setData(int velInt);
     private:

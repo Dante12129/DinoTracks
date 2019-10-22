@@ -37,8 +37,11 @@ namespace dt
         // Window-Related
         sf::RenderWindow window;
         std::function<void()> windowClosedCallback;
+
+        // Drawn objects
         UserInterface ui;
         Map map;
+        sf::RectangleShape player;
 
         // Input-Related
         InputManager input;

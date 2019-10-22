@@ -15,7 +15,7 @@ namespace dt
     {
         return "Velocity";
     }
-    sf::Vector2i Velocity::getVectorData() const
+    const sf::Vector2i& Velocity::getVectorData() const
     {
         return dinoVelocity;
     }
