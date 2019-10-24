@@ -19,7 +19,7 @@ namespace dt
     public:
         template <class T>
         void addComponent(std::unique_ptr<T>& comp) { //add components to entity
-          components.insert({comp->getName(), std::move(comp)});
+          components.emplace(comp->getName(), std::move(comp));
         }
         const Component& getComponent(const std::string& name) const; //get component specified in parameter
         Component& getComponent(const std::string& name); // non-const version of above
