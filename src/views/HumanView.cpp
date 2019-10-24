@@ -34,21 +34,28 @@ namespace dt
 
     void HumanView::processEvents()
     {
-      sf::Event event;
-      while(window.pollEvent(event))
+      try
       {
-        switch(event.type)
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-          case sf::Event::Closed:
-            windowClosedCallback();
-            break;
-          case sf::Event::KeyPressed:
-            input.activate(event.key.code);
-            break;
-          case sf::Event::KeyReleased:
-            input.deactivate(event.key.code);
-            break;
+          switch (event.type)
+          {
+            case sf::Event::Closed:
+              windowClosedCallback();
+              break;
+            case sf::Event::KeyPressed:
+              input.activate(event.key.code);
+              break;
+            case sf::Event::KeyReleased:
+              input.deactivate(event.key.code);
+              break;
+          }
         }
+      }
+      catch(std::exception& e)
+      {
+        std::cout << e.what() << std::endl;
       }
     }
 
