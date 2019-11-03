@@ -15,7 +15,8 @@ namespace sf { class Time; }
 
 namespace dt
 {
-    enum class Direction {
+    enum class Direction
+    {
         Up,
         Down,
         Left,
