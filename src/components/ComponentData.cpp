@@ -14,8 +14,9 @@ namespace dt
       asInt = val;
     }
 
-    ComponentData::ComponentData(int x, int y)
-    {
-      asVec2i = {x, y};
-    }
+    ComponentData::ComponentData(sf::Vector2i vec) : ComponentData(vec.x, vec.y)
+    {}
+
+    ComponentData::ComponentData(int x, int y) : asVec2i(x, y)
+    {}
 }

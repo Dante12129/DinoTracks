@@ -13,6 +13,7 @@ namespace dt
     {
         ComponentData();
         ComponentData(int val);
+        ComponentData(sf::Vector2i vec);
         ComponentData(int x, int y);
 
         int asInt;

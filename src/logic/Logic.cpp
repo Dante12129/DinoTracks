@@ -63,6 +63,6 @@ namespace dt
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
-      return entities[0].getComponent("Position").getVectorData();
+      return entities[0].getComponent("Position").getData().asVec2i;
     }
 }

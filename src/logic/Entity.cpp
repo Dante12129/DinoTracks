@@ -21,5 +21,6 @@ namespace dt
     bool Entity::hasComponent(const std::string& name) const
     {
         if(components.find(name) != components.end()) {return true;}
+        return false;
     }
 }

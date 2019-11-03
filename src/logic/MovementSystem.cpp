@@ -25,8 +25,8 @@ namespace dt
       Component& velocityComponent = entity.getComponent(velo_str);
 
       // Calculate new position based on velocity
-      sf::Vector2i newPosition = positionComponent.getVectorData() + velocityComponent.getVectorData();
-      positionComponent.setData(newPosition);
+      sf::Vector2i newPosition = positionComponent.getData().asVec2i + velocityComponent.getData().asVec2i;
+      positionComponent.setData(ComponentData(newPosition));
     }
   }
 
@@ -36,7 +36,7 @@ namespace dt
       Component& velo = dino.getComponent(velo_str);
 
       // Set velocity
-      velo.setData({velo.getVectorData().x, -1});
+      velo.setData({velo.getData().asVec2i.x, -1});
 
   }
   void MovementSystem::moveDown(dt::Entity& dino)
@@ -46,7 +46,7 @@ namespace dt
       Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({velo.getVectorData().x, 1});
+    velo.setData({velo.getData().asVec2i.x, 1});
 
   }
   void MovementSystem::moveLeft(dt::Entity& dino)
@@ -56,7 +56,7 @@ namespace dt
       Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({-1, velo.getVectorData().y});
+    velo.setData({-1, velo.getData().asVec2i.y});
 
   }
   void MovementSystem::moveRight(dt::Entity& dino)
@@ -66,7 +66,7 @@ namespace dt
     Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({1, velo.getVectorData().y});
+    velo.setData({1, velo.getData().asVec2i.y});
   }
   void MovementSystem::stop(dt::Entity& dino)
   {

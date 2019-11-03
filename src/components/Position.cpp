@@ -11,6 +11,11 @@ namespace dt
     Position::Position(int x, int y) : pos(x, y)
     {}
 
+    std::string Position::getName() const
+    {
+      return "Position";
+    }
+
     const ComponentData& Position::getData() const
     {
       return pos;
