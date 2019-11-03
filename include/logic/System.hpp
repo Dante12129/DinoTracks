@@ -16,7 +16,7 @@ namespace dt
 {
   class System
   {
-      virtual void update(const sf::Time& delta, std::vector<Entity>& entities) = 0;
+      virtual void update(std::vector<Entity>& entities) = 0;
   };
 }
 

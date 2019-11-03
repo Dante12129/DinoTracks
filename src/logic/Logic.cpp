@@ -2,6 +2,7 @@
 // Created by Dan on 10/13/2019.
 //
 
+#include <SFML/System/Time.hpp>
 #include "logic/Logic.hpp"
 #include "logic/Entity.hpp"
 
@@ -24,7 +25,15 @@ namespace dt
 
     void Logic::update(const sf::Time& delta)
     {
-      movement.update(delta, entities);
+      if(actionPerformed)
+      {
+        doTurn();
+        actionPerformed = false;
+      }
+    }
+
+    void Logic::doTurn() {
+      movement.update(entities);
       movement.stop(entities[0]);
     }
 
@@ -48,6 +57,8 @@ namespace dt
           movement.stop(entities[0]);
           break;
       }
+
+      actionPerformed = true;
     }
 
     const sf::Vector2i& Logic::getPlayerPosition() const

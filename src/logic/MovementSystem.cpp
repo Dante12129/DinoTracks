@@ -16,7 +16,7 @@ namespace dt
   const std::string MovementSystem::posi_str = "Position";
   const std::string MovementSystem::velo_str = "Velocity";
 
-  void MovementSystem::update(const sf::Time& delta, std::vector<Entity>& entities)
+  void MovementSystem::update(std::vector<Entity>& entities)
   {
     for(Entity& entity : entities)
     {

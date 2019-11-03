@@ -18,7 +18,7 @@ namespace dt
   class MovementSystem : public System //This system deals with functionality of movement
   {
   public:
-    virtual void update(const sf::Time& delta, std::vector<Entity>& entities) override;
+    virtual void update(std::vector<Entity>& entities) override;
 
     void moveUp(dt::Entity& dino);
     void moveDown(dt::Entity& dino);

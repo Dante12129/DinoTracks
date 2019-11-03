@@ -31,6 +31,7 @@ namespace dt
 
         // Game Loop
         void update(const sf::Time& delta);
+        void doTurn();
 
         // View-Logic Communication
         void movePlayer(Direction dir);
@@ -39,7 +40,11 @@ namespace dt
     private:
         std::vector<Entity> entities;
 
-         MovementSystem movement;
+        // Systems
+        MovementSystem movement;
+
+        // State
+        bool actionPerformed = false;
     };
 }
 
