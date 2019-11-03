@@ -8,21 +8,21 @@
 
 namespace dt
 {
-    Velocity::Velocity(int x, int y) : dinoVelocity(x, y)
+    Velocity::Velocity(int x, int y) : vel(x, y)
     {}
 
     std::string Velocity::getName() const
     {
-        return "Velocity";
+      return "Velocity";
     }
-    const sf::Vector2i& Velocity::getVectorData() const
+
+    const ComponentData& Velocity::getData() const
     {
-        return dinoVelocity;
+      return vel;
     }
-    void Velocity::setData(const sf::Vector2i& velVec)
+
+    void Velocity::setData(const ComponentData& data)
     {
-        dinoVelocity = velVec;
+      vel.asVec2i = data.asVec2i;
     }
-    int Velocity::getIntData() const{}
-    void Velocity::setData(int velInt){}
 }

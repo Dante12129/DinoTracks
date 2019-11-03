@@ -8,21 +8,16 @@
 
 namespace dt
 {
-    Position::Position(int x, int y) : dinoPos(x, y)
+    Position::Position(int x, int y) : pos(x, y)
     {}
 
-    std::string Position::getName() const
+    const ComponentData& Position::getData() const
     {
-         return "Position";
+      return pos;
     }
-    const sf::Vector2i& Position::getVectorData() const
+
+    void Position::setData(const ComponentData& data)
     {
-        return dinoPos;
+      pos.asVec2i = data.asVec2i;
     }
-    void Position::setData(const sf::Vector2i& posVec)
-    {
-        dinoPos = posVec;
-    }
-    int Position::getIntData() const{}
-    void Position::setData(int posInt){}
 }

@@ -15,13 +15,13 @@ namespace dt
     public:
         Velocity(int x, int y);
 
-        std::string getName() const;
-        int getIntData() const;
-        const sf::Vector2i& getVectorData() const;
-        void setData(const sf::Vector2i& velVec);
-        void setData(int velInt);
+        std::string getName() const override;
+
+        const ComponentData& getData() const override;
+        void setData(const ComponentData& data) override;
+
     private:
-        sf::Vector2i dinoVelocity;
+        ComponentData vel;
     };
 }
 
