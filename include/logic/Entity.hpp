@@ -24,6 +24,10 @@ namespace dt
         const Component& getComponent(const std::string& name) const; //get component specified in parameter
         Component& getComponent(const std::string& name); // non-const version of above
         bool hasComponent(const std::string& name) const; //check if entity has a component
+
+        const ComponentData& getData(const std::string& name) const;
+        void setData(const std::string& name, const ComponentData& data);
+
     private:
         std::unordered_map<std::string, std::unique_ptr<Component>> components; //map that stores the components of an entity
     };
