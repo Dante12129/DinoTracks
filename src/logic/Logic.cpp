@@ -33,7 +33,13 @@ namespace dt
     }
 
     void Logic::doTurn() {
-      movement.update(entities);
+      // Go through each entity and update it with systems
+      for(Entity& entity : entities)
+      {
+        movement.update(entity);
+      }
+
+      // Stop player
       movement.stop(entities[0]);
     }
 

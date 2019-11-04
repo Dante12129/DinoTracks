@@ -16,18 +16,15 @@ namespace dt
   const std::string MovementSystem::posi_str = "Position";
   const std::string MovementSystem::velo_str = "Velocity";
 
-  void MovementSystem::update(std::vector<Entity>& entities)
+  void MovementSystem::update(Entity& entity)
   {
-    for(Entity& entity : entities)
-    {
-      // Get position and velocity components
-      Component& positionComponent = entity.getComponent(posi_str);
-      Component& velocityComponent = entity.getComponent(velo_str);
+    // Get position and velocity components
+    Component& positionComponent = entity.getComponent(posi_str);
+    Component& velocityComponent = entity.getComponent(velo_str);
 
-      // Calculate new position based on velocity
-      sf::Vector2i newPosition = positionComponent.getData().asVec2i + velocityComponent.getData().asVec2i;
-      positionComponent.setData(ComponentData(newPosition));
-    }
+    // Calculate new position based on velocity
+    sf::Vector2i newPosition = positionComponent.getData().asVec2i + velocityComponent.getData().asVec2i;
+    positionComponent.setData(ComponentData(newPosition));
   }
 
   void MovementSystem::moveUp(dt::Entity& dino)
