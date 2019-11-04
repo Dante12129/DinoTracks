@@ -5,7 +5,6 @@
 #ifndef DINOTRACKS_POSITION_HPP
 #define DINOTRACKS_POSITION_HPP
 
-#include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 
 namespace dt
@@ -14,6 +13,7 @@ namespace dt
     {
     public:
         Position(int x, int y);
+        Position(const sf::Vector2i& vec);
 
         std::string getName() const override;
 

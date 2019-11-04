@@ -5,7 +5,6 @@
 #ifndef DINOTRACKS_VELOCITY_HPP
 #define DINOTRACKS_VELOCITY_HPP
 
-#include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 
 namespace dt
@@ -14,6 +13,7 @@ namespace dt
     {
     public:
         Velocity(int x, int y);
+        Velocity(const sf::Vector2i& vec);
 
         std::string getName() const override;
 

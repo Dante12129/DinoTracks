@@ -11,6 +11,9 @@ namespace dt
     Position::Position(int x, int y) : pos(x, y)
     {}
 
+    Position::Position(const sf::Vector2i& vec) : pos(vec)
+    {}
+
     std::string Position::getName() const
     {
       return "Position";

@@ -12,10 +12,15 @@ namespace dt
     class EntityBuilder
     {
     public:
+        // Constructors
+        EntityBuilder(Entity& entity);
 
+        // Create components on entity
+        void addPositionComponent(const sf::Vector2i& pos);
+        void addVelocityComponent(const sf::Vector2i& vel);
 
     private:
-        Entity entity;
+        Entity& entity;
     };
 }
 

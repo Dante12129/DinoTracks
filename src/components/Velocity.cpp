@@ -11,6 +11,9 @@ namespace dt
     Velocity::Velocity(int x, int y) : vel(x, y)
     {}
 
+    Velocity::Velocity(const sf::Vector2i& vec) : vel(vec)
+    {}
+
     std::string Velocity::getName() const
     {
       return "Velocity";
