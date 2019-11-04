@@ -3,21 +3,20 @@
 //
 
 #include <SFML/System/Time.hpp>
-#include "logic/Logic.hpp"
-#include "logic/Entity.hpp"
+
+#include <Logic.hpp>
+#include <Entity.hpp>
+#include <EntityBuilder.hpp>
 
 namespace dt
 {
     Logic::Logic()
     {
-      // Create player's components
-      auto playerPosition = std::unique_ptr<Position>(new Position(5, 5));
-      auto playerVelocity = std::unique_ptr<Velocity>(new Velocity(0, 0));
-
-      // Create player and add components
+      // Create player
       Entity player;
-      player.addComponent<Position>(playerPosition);
-      player.addComponent<Velocity>(playerVelocity);
+      EntityBuilder playerBuilder(player);
+      playerBuilder.addPositionComponent({5, 5});
+      playerBuilder.addVelocityComponent({0, 0});
 
       // Add player to entities
       entities.push_back(std::move(player));
