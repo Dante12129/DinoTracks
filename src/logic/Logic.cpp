@@ -15,7 +15,7 @@ namespace dt
       // Create player
       Entity player;
       EntityBuilder playerBuilder(player);
-      playerBuilder.addPositionComponent({5, 5});
+      playerBuilder.addPositionComponent({20, 11});
       playerBuilder.addVelocityComponent({0, 0});
 
       // Add player to entities

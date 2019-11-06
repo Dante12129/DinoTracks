@@ -63,8 +63,8 @@ namespace dt
 	
 	void Map::updateFrom(const Logic& logic)
 	{
-		curX = 0;
-		curY = 1;
+		curX = logic.getPlayerPosition().x - 20;
+		curY = logic.getPlayerPosition().y - 11;
 	}
    
 }

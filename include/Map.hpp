@@ -11,6 +11,7 @@
 #include <string>
 
 #include "../ResourceManager.hpp"
+#include "logic/Logic.hpp"
 
 namespace dt
 {
