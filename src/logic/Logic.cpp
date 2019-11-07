@@ -12,14 +12,22 @@ namespace dt
 {
     Logic::Logic()
     {
+      // Resize vector and assign Entity IDs based on position
+
+      // Generate random coordinates
+
       // Create player
-      Entity player;
-      EntityBuilder playerBuilder(player);
-      playerBuilder.addPositionComponent({5, 5});
+      Entity player; // Remove once vector has pre-set size
+      EntityBuilder playerBuilder(player); // Change to entities[0] when vector has pre-set size
+      playerBuilder.addPositionComponent({5, 5}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
 
+      // Create escape pod
+
+      // Assign types and coordinates to enemies
+
       // Add player to entities
-      entities.push_back(std::move(player));
+      entities.push_back(std::move(player)); // Remove once vector has pre-set size
     }
 
     void Logic::update(const sf::Time& delta)
