@@ -23,6 +23,7 @@ namespace dt
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
       resources.load(ResourceManager::Type::Texture, "TERRAIN", "terrain.png");
+      resources.load(ResourceManager::Type::Font, "METEORCOUNT_FONT", "Azonix.otf");
     }
 
     int Application::loop()
