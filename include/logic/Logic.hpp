@@ -39,7 +39,7 @@ namespace dt
         const sf::Vector2i& getPlayerPosition() const;
 
     private:
-        std::vector<Entity> entities;
+        std::vector< Entity > entities;
 
         // Systems
         MovementSystem movement;

@@ -8,17 +8,21 @@
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
 
+#include <iostream>
+
 namespace dt
 {
     Logic::Logic()
     {
       // Resize vector and assign Entity IDs based on position
-
+      entities.resize(1);
+      Entity player;
+      entities[0] = std::move(player);
       // Generate random coordinates
 
       // Create player
-      Entity player; // Remove once vector has pre-set size
-      EntityBuilder playerBuilder(player); // Change to entities[0] when vector has pre-set size
+      //Entity player;
+      EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
       playerBuilder.addPositionComponent({5, 5}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
 
@@ -27,7 +31,6 @@ namespace dt
       // Assign types and coordinates to enemies
 
       // Add player to entities
-      entities.push_back(std::move(player)); // Remove once vector has pre-set size
     }
 
     void Logic::update(const sf::Time& delta)
