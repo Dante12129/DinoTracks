@@ -21,6 +21,7 @@ namespace dt
     class Map
     {
     public:
+    
         void loadMapFromFile(int mapNumber);
         void draw(sf::RenderWindow & window);
         void updateFrom(const Logic& logic);
@@ -28,6 +29,7 @@ namespace dt
 
     private:
         std::vector<int> terrainMap;
+        sf::View mapView;
         int curX;
         int curY;
     };

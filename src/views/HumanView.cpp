@@ -89,7 +89,7 @@ namespace dt
       // Update player's position on screen
       //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
 
-		  map.updateFrom(logic);
+	  map.updateFrom(logic);
     }
 
     void HumanView::draw()

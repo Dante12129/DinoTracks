@@ -33,12 +33,17 @@ namespace dt
 		water.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
 		water.setTextureRect(sf::IntRect(96, 672, 32, 32));
 		
+		mapView.setCenter(sf::Vector2f(curX, curY));
+        mapView.setSize(sf::Vector2f(1366, 768));
+		
+		window.setView(mapView);
+		
 		int posX = 0;
 		int posY = 0;
 		
-		for (int r = curY; r < curY + 24; ++r)
+		for (int r = 0; r < 24; ++r)
 		{
-			for (int c = curX; c < curX + 43; ++c)
+			for (int c = 0; c < 48; ++c)
 			{
 				switch (terrainMap[c + (48 * r)])
 				{
@@ -59,12 +64,14 @@ namespace dt
 			posY += 32;
 		}
 		
+		window.setView(window.getDefaultView());
+		
 	}
 	
 	void Map::updateFrom(const Logic& logic)
 	{
-		curX = logic.getPlayerPosition().x - 20;
-		curY = logic.getPlayerPosition().y - 11;
+		curX = logic.getPlayerPosition().x * 32;
+		curY = logic.getPlayerPosition().y * 32;
 	}
    
 }
