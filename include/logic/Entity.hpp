@@ -11,6 +11,7 @@
 #include "components/Component.hpp"
 #include "components/Position.hpp"
 #include "components/Velocity.hpp"
+#include "components/Visual.hpp"
 
 namespace dt
 {

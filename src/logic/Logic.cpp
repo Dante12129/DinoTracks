@@ -22,6 +22,7 @@ namespace dt
       EntityBuilder playerBuilder(player); // Change to entities[0] when vector has pre-set size
       playerBuilder.addPositionComponent({50, 50}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
+      playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when types added
 
       // Create escape pod
 
@@ -90,5 +91,10 @@ namespace dt
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
       return entities[0].getComponent("Position").getData().asVec2i;
+    }
+
+    const std::string Logic::getPlayerVisual() const
+    {
+        return entities[0].getComponent("Visual").getData().asString;
     }
 }

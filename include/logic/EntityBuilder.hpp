@@ -18,6 +18,7 @@ namespace dt
         // Create components on entity
         void addPositionComponent(const sf::Vector2i& pos);
         void addVelocityComponent(const sf::Vector2i& vel);
+        void addVisualComponent(const std::string vis);
 
     private:
         Entity& entity;

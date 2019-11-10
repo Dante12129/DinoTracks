@@ -23,4 +23,11 @@ namespace dt
 
       entity.addComponent(component);
     }
+
+    void EntityBuilder::addVisualComponent(const std::string vis)
+    {
+        auto component = std::unique_ptr<Visual>(new Visual(vis));
+
+        entity.addComponent(component);
+    }
 }
