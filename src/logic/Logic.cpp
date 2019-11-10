@@ -7,6 +7,7 @@
 #include <Logic.hpp>
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
+#include <iostream>
 
 namespace dt
 {
@@ -48,6 +49,18 @@ namespace dt
 
       // Stop player
       movement.stop(entities[0]);
+
+      // Decrement turn count; end game if turn count is 0
+      turnCount -= 1;
+      if(turnCount = 0)
+      {
+          std::cout << "Game over" << std::endl;
+      }
+    }
+
+    int Logic::getTurn()
+    {
+        return turnCount;
     }
 
     void Logic::movePlayer(Direction dir)

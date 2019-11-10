@@ -33,6 +33,7 @@ namespace dt
         // Game Loop
         void update(const sf::Time& delta);
         void doTurn();
+        int getTurn();
 
         // View-Logic Communication
         void movePlayer(Direction dir);
@@ -46,6 +47,9 @@ namespace dt
 
         // State
         bool actionPerformed = false;
+
+        // Turns
+        int turnCount = 10;
     };
 }
 

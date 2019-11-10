@@ -29,6 +29,8 @@ namespace dt
 	    sf::RectangleShape uidivider;
 	    sf::RectangleShape healthbar;
 	    sf::RectangleShape energybar;
+
+	    sf::Text meteorcountdown;
     };
 }
 

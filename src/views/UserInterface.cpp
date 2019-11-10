@@ -3,6 +3,7 @@
 // Created by Ben on 10/18/2019.
 //
 
+#include <ResourceManager.hpp>
 #include "views/UserInterface.hpp"
 
 namespace dt
@@ -36,18 +37,25 @@ namespace dt
         energybar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
         energybar.setFillColor(sf::Color::Yellow);
         energybar.setPosition(10, 15);
-        
+
+        meteorcountdown.setString("METEOR HIT IN: ");
+        meteorcountdown.setCharacterSize(50);
+        meteorcountdown.setFillColor(sf::Color::Black);
+        meteorcountdown.setPosition(30,15);
 	}
 	
 	void UserInterface::draw(sf::RenderWindow & window)
 	{
 		window.setView(uiview);
-		
+
+        meteorcountdown.setFont(ResourceManager::currentManager->getFont("METEOR_FONT"));
+
 		window.draw(uibackground);
 		window.draw(uidivider);
 		window.draw(healthbar);
 		window.draw(energybar);
-		
+		window.draw(meteorcountdown);
+
 		window.setView(window.getDefaultView());
 	}
    
