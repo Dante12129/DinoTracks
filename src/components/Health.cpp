@@ -12,7 +12,7 @@ namespace dt
 
     std::string Health::getName() const
     {
-        return "Energy";
+        return "Health";
     }
 
     const ComponentData& Health::getData() const
