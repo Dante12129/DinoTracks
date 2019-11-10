@@ -23,4 +23,25 @@ namespace dt
 
       entity.addComponent(component);
     }
+
+    void EntityBuilder::addEnergyComponent(int ene)
+    {
+        auto component = std::unique_ptr<Energy>(new Energy(ene));
+
+        entity.addComponent(component);
+    }
+
+    void EntityBuilder::addHealthComponent(int hea)
+    {
+        auto component = std::unique_ptr<Health>(new Health(hea));
+
+        entity.addComponent(component);
+    }
+
+    void EntityBuilder::addFoodComponent(int food_ene)
+    {
+        auto component = std::unique_ptr<Food>(new Food(food_ene));
+
+        entity.addComponent(component);
+    }
 }
