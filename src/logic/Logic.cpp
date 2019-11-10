@@ -21,7 +21,6 @@ namespace dt
       // Generate random coordinates
 
       // Create player
-      //Entity player;
       EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
       playerBuilder.addPositionComponent({5, 5}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
