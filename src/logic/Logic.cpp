@@ -21,6 +21,7 @@ namespace dt
       entities[0].setID(0);
 
       // Generate random coordinates
+      //generateCoords(map, 10);
 
       // Create player
       EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
@@ -136,7 +137,6 @@ namespace dt
                 y = y_cord(mt);
                 sf::Vector2i coord(x, y);
             }
-
 
             // Vector of coordinates returned
             coordinates.push_back(coord);
