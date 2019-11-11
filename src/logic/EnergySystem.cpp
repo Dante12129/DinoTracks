@@ -17,7 +17,6 @@ namespace dt {
 
         // Get energy and food components
         Component &energyComponent = dino.getComponent(ene_str);
-        Component &foodComponent = dino.getComponent(food_str);
 
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(eneBuffer[id]));
