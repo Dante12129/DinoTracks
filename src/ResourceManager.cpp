@@ -31,7 +31,12 @@ namespace dt
         sf::SoundBuffer sbuf;
         fileResult = sbuf.loadFromFile("../resources/sounds/" + filename);
         insertResult = sounds.insert({id, sbuf}).second;
-      }
+      } else if (type == Type::DinosaurType)
+      {
+		DinosaurType dtype;
+		fileResult = dtype.loadFromFile("../resources/dinosaurs/" + filename);
+		insertResult = dinosaurs.insert({id, dtype}).second;
+	  }
 
       if (!fileResult)
       {

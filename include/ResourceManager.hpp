@@ -12,6 +12,8 @@
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+#include "logic/DinosaurType.hpp"
+
 namespace dt
 {
     class ResourceManager
@@ -21,7 +23,8 @@ namespace dt
         enum class Type {
             Texture,
             Font,
-            SoundBuffer
+            SoundBuffer,
+            DinosaurType
         };
 
         // The Global ResourceManager (will be initialized by application)
@@ -35,12 +38,14 @@ namespace dt
         sf::Texture& getTexture(const std::string& id);
         sf::Font& getFont(const std::string& id);
         sf::SoundBuffer& getSoundBuffer(const std::string& id);
+        DinosaurType& getDinosaurType(const std::string& id);
 
     private:
         // Maps of resource identifiers to actual resources
         std::unordered_map<std::string, sf::Texture> textures;
         std::unordered_map<std::string, sf::Font> fonts;
         std::unordered_map<std::string, sf::SoundBuffer> sounds;
+        std::unordered_map<std::string, DinosaurType> dinosaurs;
     };
 }
 
