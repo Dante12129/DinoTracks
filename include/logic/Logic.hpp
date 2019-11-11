@@ -9,6 +9,8 @@
 
 #include "logic/Entity.hpp"
 #include "MovementSystem.hpp"
+#include "EnergySystem.hpp"
+#include "HealthSystem.hpp"
 
 // Forward Declarations
 namespace sf { class Time; }
@@ -45,6 +47,8 @@ namespace dt
 
         // Systems
         MovementSystem movement;
+        EnergySystem energy;
+        HealthSystem health;
 
         // State
         bool actionPerformed = false;

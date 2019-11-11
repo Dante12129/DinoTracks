@@ -25,6 +25,9 @@ namespace dt
       EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
       playerBuilder.addPositionComponent({5, 5}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
+      playerBuilder.addEnergyComponent(100);
+      playerBuilder.addHealthComponent(100);
+      playerBuilder.addFoodComponent(10);
 
       // Create escape pod
 
@@ -46,7 +49,18 @@ namespace dt
       // Go through each entity and update it with systems
       for(Entity& entity : entities)
       {
-        movement.update(entity);
+          if(entity.hasComponent("Position")){
+              movement.update(entity);
+          }
+
+          if(entity.hasComponent("Energy")){
+              energy.update(entity);
+          }
+
+          if(entity.hasComponent("Health")){
+              health.update(entity);
+          }
+
       }
 
       // Stop player
