@@ -18,14 +18,13 @@ namespace dt
     {
       // Resize vector and assign Entity IDs based on position
       entities.resize(1);
-      Entity player;
-      entities[0] = std::move(player);
       entities[0].setID(0);
+
       // Generate random coordinates
 
       // Create player
       EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
-      playerBuilder.addPositionComponent({5, 5}); // Replace with random coordinates
+      playerBuilder.addPositionComponent({25, 15}); // Replace with random coordinates
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
       playerBuilder.addHealthComponent(100);
@@ -38,8 +37,6 @@ namespace dt
       escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
 
       // Assign types and coordinates to enemies
-
-      // Add player to entities
     }
 
     void Logic::update(const sf::Time& delta)
@@ -55,7 +52,7 @@ namespace dt
       // Go through each entity and update it with systems
       for(Entity& entity : entities)
       {
-          if(entity.hasComponent("Position")){
+          if(entity.hasComponent("Position") && entity.hasComponent("Velocity")){
               movement.update(entity);
           }
 
@@ -66,7 +63,6 @@ namespace dt
           if(entity.hasComponent("Health")){
               health.update(entity);
           }
-
       }
 
       // Stop player
@@ -80,7 +76,7 @@ namespace dt
       }
     }
 
-    int Logic::getTurn(const Logic& logic) const
+    int Logic::getTurn() const
     {
         return turnCount;
     }

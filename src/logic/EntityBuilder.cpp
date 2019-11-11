@@ -4,6 +4,13 @@
 
 #include "EntityBuilder.hpp"
 
+#include <components/Position.hpp>
+#include <components/Velocity.hpp>
+#include <components/Energy.hpp>
+#include <components/Health.hpp>
+#include <components/Food.hpp>
+#include <components/Visual.hpp>
+
 namespace dt
 {
 

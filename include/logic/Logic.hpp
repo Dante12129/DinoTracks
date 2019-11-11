@@ -17,6 +17,8 @@ namespace sf { class Time; }
 
 namespace dt
 {
+    class Map;
+
     enum class Direction
     {
         Up,
@@ -35,7 +37,7 @@ namespace dt
         // Game Loop
         void update(const sf::Time& delta);
         void doTurn();
-        int getTurn(const Logic& logic) const;
+        int getTurn() const;
 
         // View-Logic Communication
         void movePlayer(Direction dir);

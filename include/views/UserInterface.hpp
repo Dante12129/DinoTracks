@@ -18,9 +18,10 @@ namespace dt
 		//Constructors
 		UserInterface();
 		UserInterface(sf::Vector2u windowSize);
-        //Game Loop
-        void draw(sf::RenderWindow & window);
-        void setTurn(const Logic& logic);
+
+    //Game Loop
+    void draw(sf::RenderWindow & window);
+    void setTurn(const Logic& logic);
         
     private:
 	    sf::View uiview;

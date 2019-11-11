@@ -9,8 +9,6 @@
 #include <memory>
 
 #include "components/Component.hpp"
-#include "components/Position.hpp"
-#include "components/Velocity.hpp"
 
 namespace dt
 {
