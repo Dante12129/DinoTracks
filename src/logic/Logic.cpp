@@ -81,4 +81,12 @@ namespace dt
     {
       return entities[0].getComponent("Position").getData().asVec2i;
     }
+
+    int Logic::getPlayerEnergy() {
+        return entities[0].getComponent("Energy").getData().asInt;
+    }
+
+    int Logic::getPlayerHealth(){
+        return entities[0].getComponent("Health").getData().asInt;
+    }
 }

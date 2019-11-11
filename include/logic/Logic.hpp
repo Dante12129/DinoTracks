@@ -37,6 +37,8 @@ namespace dt
         // View-Logic Communication
         void movePlayer(Direction dir);
         const sf::Vector2i& getPlayerPosition() const;
+        int getPlayerEnergy();
+        int getPlayerHealth();
 
     private:
         std::vector< Entity > entities;
