@@ -9,8 +9,6 @@
 #include "Entity.hpp"
 
 
-
-
 namespace dt
 {
   const std::string MovementSystem::posi_str = "Position";

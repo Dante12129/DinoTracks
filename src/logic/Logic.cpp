@@ -18,6 +18,7 @@ namespace dt
       entities.resize(1);
       Entity player;
       entities[0] = std::move(player);
+      entities[0].setID(0);
       // Generate random coordinates
 
       // Create player

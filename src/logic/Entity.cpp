@@ -43,4 +43,12 @@ namespace dt
         getComponent(name).setData(data);
       }
     }
+
+    void Entity::setID(int x) {
+        id = x;
+    }
+
+    int Entity::getID() {
+        return id;
+    }
 }

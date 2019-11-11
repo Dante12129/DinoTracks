@@ -31,8 +31,12 @@ namespace dt
         const ComponentData& getData(const std::string& name) const;
         void setData(const std::string& name, const ComponentData& data);
 
+        void setID(int id);
+        int getID();
+
     private:
         std::unordered_map<std::string, std::unique_ptr<Component>> components; //map that stores the components of an entity
+        int id;
     };
 }
 
