@@ -27,20 +27,45 @@ namespace dt
 	{
 		sf::Sprite grass;
 		grass.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
-		grass.setTextureRect(sf::IntRect(32, 64, 32, 32));
+		grass.setTextureRect(sf::IntRect(0, 0, 32, 32));
 		
 		sf::Sprite water;
 		water.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
-		water.setTextureRect(sf::IntRect(96, 672, 32, 32));
+		water.setTextureRect(sf::IntRect(32, 0, 32, 32));
+		
+		sf::Sprite grassEdgeBottomLeft;
+		grassEdgeBottomLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+		grassEdgeBottomLeft.setTextureRect(sf::IntRect(64, 32, 32, 32));
+		
+		sf::Sprite grassEdgeBottomRight;
+		grassEdgeBottomRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+		grassEdgeBottomRight.setTextureRect(sf::IntRect(64, 0, 32, 32));
+		
+		sf::Sprite grassEdgeTopLeft;
+		grassEdgeTopLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+		grassEdgeTopLeft.setTextureRect(sf::IntRect(0, 32, 32, 32));
+		
+		sf::Sprite grassEdgeTopRight;
+		grassEdgeTopRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+		grassEdgeTopRight.setTextureRect(sf::IntRect(32, 32, 32, 32));
+		
+		sf::Sprite mountain;
+		mountain.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+		mountain.setTextureRect(sf::IntRect(0, 64, 32, 32));
+		
+		mapView.setCenter(sf::Vector2f(curX, curY));
+        mapView.setSize(sf::Vector2f(1366, 768));
+		
+		window.setView(mapView);
 		
 		int posX = 0;
 		int posY = 0;
 		
-		for (int r = curY; r < curY + 24; ++r)
+		for (int r = 0; r < 66; ++r)
 		{
-			for (int c = curX; c < curX + 43; ++c)
+			for (int c = 0; c < 96; ++c)
 			{
-				switch (terrainMap[c + (48 * r)])
+				switch (terrainMap[c + (96 * r)])
 				{
 					case 0:
 						water.setPosition(sf::Vector2f(posX, posY));
@@ -50,6 +75,25 @@ namespace dt
 						grass.setPosition(sf::Vector2f(posX, posY));
 						window.draw(grass);
 						break;
+					case 2:
+						grassEdgeBottomLeft.setPosition(sf::Vector2f(posX, posY));
+						window.draw(grassEdgeBottomLeft);
+						break;
+					case 3:
+						grassEdgeBottomRight.setPosition(sf::Vector2f(posX, posY));
+						window.draw(grassEdgeBottomRight);
+						break;
+					case 4:
+						grassEdgeTopRight.setPosition(sf::Vector2f(posX, posY));
+						window.draw(grassEdgeTopRight);
+						break;
+					case 5:
+						grassEdgeTopLeft.setPosition(sf::Vector2f(posX, posY));
+						window.draw(grassEdgeTopLeft);
+						break;
+					case 6:
+						mountain.setPosition(sf::Vector2f(posX, posY));
+						window.draw(mountain);
 				}
 				
 				posX += 32;
@@ -59,12 +103,18 @@ namespace dt
 			posY += 32;
 		}
 		
+		window.setView(window.getDefaultView());
+		
 	}
 	
 	void Map::updateFrom(const Logic& logic)
 	{
-		curX = 0;
-		curY = 1;
+		curX = logic.getPlayerPosition().x * 32 + 11;
+		curY = logic.getPlayerPosition().y * 32;
 	}
-   
+
+	int Map::getTile(int x, int y) const {
+	    int tileType = terrainMap[y + (96 * x)];
+	    return tileType;
+	}
 }

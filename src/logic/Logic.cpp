@@ -7,8 +7,10 @@
 #include <Logic.hpp>
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
-
+#include <Map.hpp>
 #include <iostream>
+#include <random>
+#include <algorithm>
 
 namespace dt
 {
@@ -27,9 +29,13 @@ namespace dt
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
       playerBuilder.addHealthComponent(100);
-      playerBuilder.addFoodComponent(10);
+      playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added
 
       // Create escape pod
+      Entity escapePod;
+      EntityBuilder escapePodBuilder(escapePod); // entities[1]
+      escapePodBuilder.addPositionComponent({40,50}); // Replace with random coordinates
+      escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
 
       // Assign types and coordinates to enemies
 
@@ -65,6 +71,18 @@ namespace dt
 
       // Stop player
       movement.stop(entities[0]);
+
+      // Decrement turn count; end game if turn count is 0
+      turnCount -= 1;
+      if(turnCount <= 0)
+      {
+          std::cout << "Game over." << std::endl;
+      }
+    }
+
+    int Logic::getTurn(const Logic& logic) const
+    {
+        return turnCount;
     }
 
     void Logic::movePlayer(Direction dir)
@@ -94,6 +112,44 @@ namespace dt
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
       return entities[0].getComponent("Position").getData().asVec2i;
+    }
+
+    const std::string Logic::getPlayerVisual() const
+    {
+        return entities[0].getComponent("Visual").getData().asString;
+    }
+
+    std::vector<sf::Vector2i> Logic::generateCoords(const Map& map, int numOfCoords)
+    {
+        std::random_device rd;
+        std::mt19937 mt(rd());
+        std::uniform_int_distribution<int> x_cord(1, 96);
+        std::uniform_int_distribution<int> y_cord(1, 66);
+
+        std::vector<sf::Vector2i> coordinates;
+
+        for (int num = 0; num < numOfCoords; num++)
+        {
+            int x = x_cord(mt);
+            int y = y_cord(mt);
+            sf::Vector2i coord(x, y);
+
+            while (map.getTile(x,y) != 1 && std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) != occupiedSpaces.end())
+            {
+                x = x_cord(mt);
+                y = y_cord(mt);
+                sf::Vector2i coord(x, y);
+            }
+
+
+            // Vector of coordinates returned
+            coordinates.push_back(coord);
+
+            //Vector of coordinates that holds all spaces that are occupied
+            occupiedSpaces.push_back(coord);
+        }
+
+        return coordinates;
     }
 
     int Logic::getPlayerEnergy() {

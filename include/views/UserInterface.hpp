@@ -19,8 +19,8 @@ namespace dt
 		UserInterface();
 		UserInterface(sf::Vector2u windowSize);
         //Game Loop
-        void updateFrom(const Logic& logic);
         void draw(sf::RenderWindow & window);
+        void setTurn(const Logic& logic);
         
     private:
 	    sf::View uiview;
@@ -29,6 +29,11 @@ namespace dt
 	    sf::RectangleShape uidivider;
 	    sf::RectangleShape healthbar;
 	    sf::RectangleShape energybar;
+
+	    sf::Text meteorcountdown;
+	    sf::Text turns;
+
+	    std::string remainingTurns;
     };
 }
 

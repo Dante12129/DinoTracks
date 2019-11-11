@@ -25,6 +25,7 @@ namespace dt
       resources.load(ResourceManager::Type::Texture, "TERRAIN", "terrain.png");
       resources.load(ResourceManager::Type::DinosaurType, "STEGOSAURUS", "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, "TYRANNOSAURUS", "Tyrannosaurus.txt");
+      resources.load(ResourceManager::Type::Font, "METEOR_FONT", "Azonix.otf");
     }
 
     int Application::loop()

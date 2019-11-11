@@ -11,9 +11,6 @@
 #include "components/Component.hpp"
 #include "components/Position.hpp"
 #include "components/Velocity.hpp"
-#include "components/Energy.hpp"
-#include "components/Health.hpp"
-#include "components/Food.hpp"
 
 namespace dt
 {

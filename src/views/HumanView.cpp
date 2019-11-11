@@ -30,6 +30,7 @@ namespace dt
       // Create player's visual representation
       player.setSize({32, 32});
       player.setFillColor(sf::Color::Red);
+      player.setPosition({player.getSize().x * 20, player.getSize().y * 11});
     }
 
     void HumanView::processEvents()
@@ -86,9 +87,10 @@ namespace dt
     void HumanView::updateFrom(const Logic& logic)
     {
       // Update player's position on screen
-      player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
+      //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
 
-		  map.updateFrom(logic);
+	  map.updateFrom(logic);
+	  ui.setTurn(logic);
     }
 
     void HumanView::draw()

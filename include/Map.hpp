@@ -11,6 +11,7 @@
 #include <string>
 
 #include "../ResourceManager.hpp"
+#include "logic/Logic.hpp"
 
 namespace dt
 {
@@ -20,13 +21,16 @@ namespace dt
     class Map
     {
     public:
+    
         void loadMapFromFile(int mapNumber);
         void draw(sf::RenderWindow & window);
         void updateFrom(const Logic& logic);
+        int getTile (int x, int y) const;
 
 
     private:
         std::vector<int> terrainMap;
+        sf::View mapView;
         int curX;
         int curY;
     };
