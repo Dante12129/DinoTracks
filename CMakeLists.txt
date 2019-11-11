@@ -32,4 +32,4 @@ file(GLOB COMPONENTS_SRC ${PROJECT_SOURCE_DIR}/src/components/*cpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Set target
-add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC} include/components/Visual.hpp src/components/Visual.cpp)
+add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC})

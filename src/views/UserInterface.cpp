@@ -11,39 +11,39 @@ namespace dt
 	UserInterface::UserInterface()
 	{
 	}
-	
+
 	UserInterface::UserInterface(sf::Vector2u windowSize)
 	{
-		uiview.reset(sf::FloatRect(0, 0, windowSize.x, windowSize.y/5));
+		uiview.reset(sf::FloatRect(0, 0, windowSize.x, windowSize.y));
         uiview.setViewport(sf::FloatRect(0.f, 0.85f, 1.f, 1.f));
-		
+
 		sf::Color background(160, 160, 160);
 		sf::Color border(96, 96, 96);
-		
+
         uibackground.setSize(uiview.getSize());
         uibackground.setFillColor(background);
         uibackground.setOutlineColor(border);
         uibackground.setOutlineThickness(2);
         uibackground.setPosition(0, 1);
-        
+
         uidivider.setSize(sf::Vector2f(7, uiview.getSize().y));
         uidivider.setFillColor(border);
         uidivider.setPosition(uiview.getSize().x/5, 0);
-        
+
         healthbar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
         healthbar.setFillColor(sf::Color::Red);
-        healthbar.setPosition(10, 5);
-        
+        healthbar.setPosition(10, healthbar.getSize().y);
+
         energybar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
         energybar.setFillColor(sf::Color::Yellow);
-        energybar.setPosition(10, 15);
+        energybar.setPosition(10,  3 * energybar.getSize().y);
 
         meteorcountdown.setString("METEOR HIT IN: ");
-        meteorcountdown.setCharacterSize(50);
+        meteorcountdown.setCharacterSize(25);
         meteorcountdown.setFillColor(sf::Color::Black);
-        meteorcountdown.setPosition(30,15);
+        meteorcountdown.setPosition(4 * uiview.getSize().x/5,0);
 	}
-	
+
 	void UserInterface::draw(sf::RenderWindow & window)
 	{
 		window.setView(uiview);
