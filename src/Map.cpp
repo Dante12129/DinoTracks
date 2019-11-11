@@ -112,5 +112,9 @@ namespace dt
 		curX = logic.getPlayerPosition().x * 32 + 11;
 		curY = logic.getPlayerPosition().y * 32;
 	}
-   
+
+	int Map::getTile(int x, int y) const {
+	    int tileType = terrainMap[y + (96 * x)];
+	    return tileType;
+	}
 }

@@ -90,6 +90,7 @@ namespace dt
       //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
 
 	  map.updateFrom(logic);
+	  ui.setTurn(logic);
     }
 
     void HumanView::draw()

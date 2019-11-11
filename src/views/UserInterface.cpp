@@ -5,6 +5,8 @@
 
 #include <ResourceManager.hpp>
 #include "views/UserInterface.hpp"
+#include <Logic.hpp>
+#include <string>
 
 namespace dt
 {
@@ -42,6 +44,11 @@ namespace dt
         meteorcountdown.setCharacterSize(25);
         meteorcountdown.setFillColor(sf::Color::Black);
         meteorcountdown.setPosition(4 * uiview.getSize().x/5,0);
+
+        turns.setString(remainingTurns);
+        turns.setCharacterSize(55);
+        turns.setFillColor(sf::Color::Black);
+        turns.setPosition(13 * uiview.getSize().x/15,35);
 	}
 
 	void UserInterface::draw(sf::RenderWindow & window)
@@ -49,14 +56,22 @@ namespace dt
 		window.setView(uiview);
 
         meteorcountdown.setFont(ResourceManager::currentManager->getFont("METEOR_FONT"));
+        turns.setFont(ResourceManager::currentManager->getFont("METEOR_FONT"));
 
 		window.draw(uibackground);
 		window.draw(uidivider);
 		window.draw(healthbar);
 		window.draw(energybar);
 		window.draw(meteorcountdown);
+		window.draw(turns);
 
 		window.setView(window.getDefaultView());
 	}
+
+    void UserInterface::setTurn(const Logic& logic)
+    {
+        int rem = logic.getTurn(logic);
+        remainingTurns = std::to_string(rem);
+    }
    
 }

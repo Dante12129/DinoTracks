@@ -6,6 +6,7 @@
 #define DINOTRACKS_LOGIC_HPP
 
 #include <vector>
+#include <Map.hpp>
 
 #include "logic/Entity.hpp"
 #include "MovementSystem.hpp"
@@ -33,7 +34,7 @@ namespace dt
         // Game Loop
         void update(const sf::Time& delta);
         void doTurn();
-        int getTurn();
+        int getTurn(const Logic& logic) const;
 
         // View-Logic Communication
         void movePlayer(Direction dir);
@@ -42,6 +43,7 @@ namespace dt
 
     private:
         std::vector<Entity> entities;
+        std::vector<sf::Vector2i> occupiedSpaces;
 
         // Systems
         MovementSystem movement;
@@ -51,6 +53,10 @@ namespace dt
 
         // Turns
         int turnCount = 10;
+
+        // Entity Coordinates
+        std::vector<sf::Vector2i> generateCoords(const Map& map, int numOfCoords);
+
     };
 }
 

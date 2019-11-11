@@ -25,6 +25,7 @@ namespace dt
         void loadMapFromFile(int mapNumber);
         void draw(sf::RenderWindow & window);
         void updateFrom(const Logic& logic);
+        int getTile (int x, int y) const;
 
 
     private:
