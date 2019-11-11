@@ -109,7 +109,7 @@ namespace dt
 	
 	void Map::updateFrom(const Logic& logic)
 	{
-		curX = logic.getPlayerPosition().x * 32;
+		curX = logic.getPlayerPosition().x * 32 + 11;
 		curY = logic.getPlayerPosition().y * 32;
 	}
    
