@@ -44,8 +44,7 @@ namespace dt
     meteorcountdown.setCharacterSize(25);
     meteorcountdown.setFillColor(sf::Color::Black);
     meteorcountdown.setPosition(4 * uiview.getSize().x/5,0);
-
-    turns.setString(remainingTurns);
+    
     turns.setCharacterSize(55);
     turns.setFillColor(sf::Color::Black);
     turns.setPosition(13 * uiview.getSize().x/15,35);
@@ -71,7 +70,7 @@ namespace dt
     void UserInterface::setTurn(const Logic& logic)
     {
         int rem = logic.getTurn();
-        remainingTurns = std::to_string(rem);
+        turns.setString(std::to_string(logic.getTurn()));
     }
    
 }

@@ -87,7 +87,7 @@ namespace dt
     void HumanView::updateFrom(const Logic& logic)
     {
       // Update player's position on screen
-      player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
+      //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
 
 	    map.updateFrom(logic);
 	    ui.setTurn(logic);

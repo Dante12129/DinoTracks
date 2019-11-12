@@ -33,8 +33,6 @@ namespace dt
 
 	    sf::Text meteorcountdown;
 	    sf::Text turns;
-
-	    std::string remainingTurns;
     };
 }
 
