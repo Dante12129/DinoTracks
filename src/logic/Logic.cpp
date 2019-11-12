@@ -33,7 +33,7 @@ namespace dt
         std::vector<sf::Vector2i> entityCoords = generateCoords(10);
 
         // Create player
-        EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
+        EntityBuilder playerBuilder(entities[0]);
         playerBuilder.addPositionComponent(entityCoords[0]);
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
@@ -159,11 +159,14 @@ namespace dt
             int y = y_cord(mt);
             sf::Vector2i coord(x, y);
 
-            while (map.getTile(x,y) != 1 && std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) != occupiedSpaces.end())
+            while (map.getTile(coord.x,coord.y) != 1 && (std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) == occupiedSpaces.end()))
             {
                 coord.x = x_cord(mt);
                 coord.y = y_cord(mt);
             }
+
+            std::cout << "Chosen coords for " << num << " are " << coord.x << ", " << coord.y << std::endl;
+            std::cout << "Type is " << map.getTile(coord.x, coord.y) << std::endl;
 
             // Vector of coordinates returned
             coordinates.push_back(coord);

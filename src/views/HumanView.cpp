@@ -153,7 +153,7 @@ namespace dt
       {
         for (int c = 0; c < 96; ++c)
         {
-          switch (map->getTile(r, c))
+          switch (map->getTile(c, r))
           {
             case 0:
               water.setPosition(sf::Vector2f(posX, posY));
