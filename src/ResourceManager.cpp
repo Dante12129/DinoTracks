@@ -62,4 +62,9 @@ namespace dt
     {
       return sounds.at(id);
     }
+    
+    DinosaurType& ResourceManager::getDinosaurType(const std::string& id)
+    {
+		return dinosaurs.at(id);
+	}
 }
