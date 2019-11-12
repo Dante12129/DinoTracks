@@ -2,15 +2,17 @@
 // Created by Dan on 10/13/2019.
 //
 
+#include <iostream>
+#include <random>
+#include <algorithm>
+#include <chrono>
+
 #include <SFML/System/Time.hpp>
 
 #include <Logic.hpp>
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
 #include <Map.hpp>
-#include <iostream>
-#include <random>
-#include <algorithm>
 
 namespace dt
 {
@@ -126,8 +128,7 @@ namespace dt
 
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)
     {
-        std::random_device rd;
-        std::mt19937 mt(rd());
+        std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
         std::uniform_int_distribution<int> x_cord(1, 96);
         std::uniform_int_distribution<int> y_cord(1, 66);
 
