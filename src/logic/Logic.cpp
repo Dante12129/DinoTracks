@@ -13,6 +13,8 @@
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
 #include <Map.hpp>
+#include <DinosaurType.hpp>
+
 
 namespace dt
 {
@@ -45,6 +47,23 @@ namespace dt
         escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
 
         // Assign types and coordinates to enemies
+      for (int i = 2; i < 10; ++i)
+      {
+		  EntityBuilder dinoBuilder(entities[i]);
+		  DinosaurType dino;
+
+		  if (i % 2 == 0)
+		  {
+			  dino = ResourceManager::currentManager->getDinosaurType("STEGOSAURUS");
+		  }
+		  else
+		  {
+			  dino = ResourceManager::currentManager->getDinosaurType("TYRANNOSAURUS");
+		  }
+
+		  dinoBuilder.addHealthComponent(dino.getHealth());
+	  }
+
     }
 
     void Logic::update(const sf::Time& delta)
