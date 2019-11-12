@@ -50,6 +50,10 @@ namespace dt
         // View-Logic Communication For Map
         const Map& getMap() const;
 
+        // View-Logic Communication For Enemies
+        std::vector<sf::Vector2i> getEnemyPositions() const;
+        std::vector<std::string> getEnemyVisuals() const;
+
     private:
         std::vector<Entity> entities;
         std::vector<sf::Vector2i> occupiedSpaces;

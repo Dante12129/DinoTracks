@@ -43,6 +43,7 @@ namespace dt
         // Drawn objects
         UserInterface ui;
         sf::Sprite player;
+        std::vector<sf::Sprite> enemies;
         
         //Map related
         const Map* map = nullptr;

@@ -36,11 +36,27 @@ namespace dt
       input.associate(sf::Keyboard::D, "MOVE_RIGHT");
       input.associate(sf::Keyboard::Enter, "NOTHING");
 
+      const int dinoWidth = 32;
+      const int dinoHeight = 32;
+
       // Create player's visual representation
-//      std::cout << "Player Visual Name:" << initial.getPlayerVisual() << std::endl;
       const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(visualToTex(initial.getPlayerVisual()));
       player.setTexture(playerTex);
-      player.setPosition({32 * 20, 32 * 11});
+      player.setPosition({dinoWidth * 20, dinoHeight * 11});
+
+      // Create visual representation of enemies
+      auto enemyPositions = initial.getEnemyPositions();
+      auto enemyVis = initial.getEnemyVisuals();
+      int i = 0;
+      enemies.resize(8);
+      for(sf::Sprite& sprite: enemies)
+      {
+//        std::cout << "Sprite visual: " << enemyVis.at(i) << std::endl;
+        const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(visualToTex(enemyVis.at(i)));
+        sprite.setTexture(dinoTexture);
+        sprite.setPosition({static_cast<float>(dinoWidth * enemyPositions.at(i).x), static_cast<float>(dinoHeight * enemyPositions.at(i).y)});
+        ++i;
+      }
     }
 
     void HumanView::processEvents()
@@ -111,9 +127,16 @@ namespace dt
 
       if(map && map->getSize() != 0)
         drawMap();
-      ui.draw(window);
 
       window.draw(player);
+      window.setView(mapView);
+      for(const sf::Sprite& sprite: enemies)
+      {
+        window.draw(sprite);
+      }
+      window.setView(window.getDefaultView());
+
+      ui.draw(window);
 
       window.display();
     }

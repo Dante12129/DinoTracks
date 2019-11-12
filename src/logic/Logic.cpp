@@ -52,17 +52,22 @@ namespace dt
       {
 		  EntityBuilder dinoBuilder(entities[i]);
 		  DinosaurType dino;
+		  std::string dinoString;
 
 		  if (i % 2 == 0)
 		  {
 			  dino = ResourceManager::currentManager->getDinosaurType("STEGOSAURUS");
+			  dinoString = "STEGOSAURUS";
 		  }
 		  else
 		  {
 			  dino = ResourceManager::currentManager->getDinosaurType("TYRANNOSAURUS");
+			  dinoString = "TYRANNOSAURUS";
 		  }
 
+		  dinoBuilder.addPositionComponent(entityCoords.at(i));
 		  dinoBuilder.addHealthComponent(dino.getHealth());
+		  dinoBuilder.addVisualComponent(dinoString);
 	  }
 
     }
@@ -146,6 +151,45 @@ namespace dt
         return dynamic_cast<const Visual&>(entities[0].getComponent("Visual")).getString();
     }
 
+    int Logic::getPlayerEnergy() {
+      return entities[0].getComponent("Energy").getData().asInt;
+    }
+
+    int Logic::getPlayerHealth(){
+      return entities[0].getComponent("Health").getData().asInt;
+    }
+
+    const Map& Logic::getMap() const
+    {
+      return map;
+    }
+
+    std::vector<sf::Vector2i> Logic::getEnemyPositions() const
+    {
+      std::vector<sf::Vector2i> coords;
+
+      for(int i = 2; i < 10; ++i)
+      {
+        coords.push_back(entities.at(i).getData("Position").asVec2i);
+      }
+
+      return coords;
+    }
+
+    std::vector<std::string> Logic::getEnemyVisuals() const
+    {
+      std::vector<std::string> visuals;
+
+      for(int i = 2; i < 10; ++i)
+      {
+        const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent("Visual"));
+        visuals.push_back(visComponent.getString());
+//        visuals.push_back("STEGOSAURUS");
+      }
+
+      return visuals;
+    }
+
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)
     {
         std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
@@ -177,19 +221,5 @@ namespace dt
         }
 
         return coordinates;
-    }
-
-
-    int Logic::getPlayerEnergy() {
-        return entities[0].getComponent("Energy").getData().asInt;
-    }
-
-    int Logic::getPlayerHealth(){
-        return entities[0].getComponent("Health").getData().asInt;
-    }
-
-    const Map& Logic::getMap() const
-    {
-        return map;
     }
 }
