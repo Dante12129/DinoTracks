@@ -17,30 +17,33 @@ namespace dt
 {
     Logic::Logic()
     {
-      // Resize vector and assign Entity IDs based on position
-      entities.resize(10);
-      for(int i=0; i<=9; i++){
-          entities[i].setID(i);
-      }
+	  // Load the default map
+        map.loadMapFromFile(1);
 
-      // Generate random coordinates
-      //generateCoords(map, 10);
+        // Resize vector and assign Entity IDs based on position
+        entities.resize(10);
+        for(int i=0; i<=9; i++){
+            entities[i].setID(i);
+        }
 
-      // Create player
-      EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
-      playerBuilder.addPositionComponent({25, 15}); // Replace with random coordinates
-      playerBuilder.addVelocityComponent({0, 0});
-      playerBuilder.addEnergyComponent(100);
-      playerBuilder.addHealthComponent(100);
-      playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added
+        // Generate random coordinates
+        std::vector<sf::Vector2i> entityCoords = generateCoords(10);
 
-      // Create escape pod
-      Entity escapePod;
-      EntityBuilder escapePodBuilder(escapePod); // entities[1]
-      escapePodBuilder.addPositionComponent({40,50}); // Replace with random coordinates
-      escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
+        // Create player
+        EntityBuilder playerBuilder(entities[0]); // Change to entities[0] when vector has pre-set size
+        playerBuilder.addPositionComponent(entityCoords[0]);
+        playerBuilder.addVelocityComponent({0, 0});
+        playerBuilder.addEnergyComponent(100);
+        playerBuilder.addHealthComponent(100);
+        playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added
 
-      // Assign types and coordinates to enemies
+        // Create escape pod
+        Entity escapePod;
+        EntityBuilder escapePodBuilder(escapePod); // entities[1]
+        escapePodBuilder.addPositionComponent(entityCoords[1]);
+        escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
+
+        // Assign types and coordinates to enemies
       for (int i = 2; i < 10; ++i)
       {
 		  EntityBuilder dinoBuilder(entities[i]);
@@ -58,48 +61,46 @@ namespace dt
 		  dinoBuilder.addHealthComponent(dino.getHealth());
 	  }
       
-      // Load the default map
-      map.loadMapFromFile(1);
     }
 
     void Logic::update(const sf::Time& delta)
     {
-      if(actionPerformed)
-      {
-        doTurn();
-        actionPerformed = false;
-      }
+        if(actionPerformed)
+        {
+            doTurn();
+            actionPerformed = false;
+        }
     }
 
     void Logic::doTurn() {
-      // Go through each entity and update it with systems
-      for(Entity& entity : entities)
-      {
-          if(entity.hasComponent("Position") && entity.hasComponent("Velocity")){
-              movement.update(entity);
-          }
+        // Go through each entity and update it with systems
+        for(Entity& entity : entities)
+        {
+            if(entity.hasComponent("Position") && entity.hasComponent("Velocity")){
+                movement.update(entity);
+            }
 
-          if(entity.hasComponent("Energy")){
-              energy.update(entity);
-          }
+            if(entity.hasComponent("Energy")){
+                energy.update(entity);
+            }
 
-          if(entity.hasComponent("Health")){
-              health.update(entity);
-          }
-      }
+            if(entity.hasComponent("Health")){
+                health.update(entity);
+            }
+        }
 
-      // Stop player
-      movement.stop(entities[0]);
-      
-      //update map
-      map.updateCenter(getPlayerPosition().x, getPlayerPosition().y);
+        // Stop player
+        movement.stop(entities[0]);
 
-      // Decrement turn count; end game if turn count is 0
-      turnCount -= 1;
-      if(turnCount <= 0)
-      {
-          std::cout << "Game over." << std::endl;
-      }
+        //update map
+        map.updateCenter(getPlayerPosition().x, getPlayerPosition().y);
+
+        // Decrement turn count; end game if turn count is 0
+        turnCount -= 1;
+        if(turnCount <= 0)
+        {
+            std::cout << "Game over." << std::endl;
+        }
     }
 
     int Logic::getTurn() const
@@ -109,39 +110,39 @@ namespace dt
 
     void Logic::movePlayer(Direction dir)
     {
-      switch (dir)
-      {
-        case Direction::Up:
-          movement.moveUp(entities[0]);
-          break;
-        case Direction::Down:
-          movement.moveDown(entities[0]);
-          break;
-        case Direction::Left:
-          movement.moveLeft(entities[0]);
-          break;
-        case Direction::Right:
-          movement.moveRight(entities[0]);
-          break;
-        case Direction::None:
-          movement.stop(entities[0]);
-          break;
-      }
+        switch (dir)
+        {
+            case Direction::Up:
+                movement.moveUp(entities[0]);
+                break;
+            case Direction::Down:
+                movement.moveDown(entities[0]);
+                break;
+            case Direction::Left:
+                movement.moveLeft(entities[0]);
+                break;
+            case Direction::Right:
+                movement.moveRight(entities[0]);
+                break;
+            case Direction::None:
+                movement.stop(entities[0]);
+                break;
+        }
 
-      actionPerformed = true;
+        actionPerformed = true;
     }
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
-      return entities[0].getComponent("Position").getData().asVec2i;
+        return entities[0].getComponent("Position").getData().asVec2i;
     }
 
     const std::string Logic::getPlayerVisual() const
     {
         return entities[0].getComponent("Visual").getData().asString;
     }
-	/**
-    std::vector<sf::Vector2i> Logic::generateCoords(const Map& map, int numOfCoords)
+
+    std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)
     {
         std::random_device rd;
         std::mt19937 mt(rd());
@@ -158,9 +159,8 @@ namespace dt
 
             while (map.getTile(x,y) != 1 && std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) != occupiedSpaces.end())
             {
-                x = x_cord(mt);
-                y = y_cord(mt);
-                sf::Vector2i coord(x, y);
+                coord.x = x_cord(mt);
+                coord.y = y_cord(mt);
             }
 
             // Vector of coordinates returned
@@ -172,7 +172,7 @@ namespace dt
 
         return coordinates;
     }
-    * */
+
 
     int Logic::getPlayerEnergy() {
         return entities[0].getComponent("Energy").getData().asInt;
@@ -184,6 +184,6 @@ namespace dt
 
     const Map& Logic::getMap() const
     {
-      return map;
+        return map;
     }
 }
