@@ -43,7 +43,6 @@ namespace dt
       
       // Load the default map
       map.loadMapFromFile(1);
-      mapVector = map.getMap();
     }
 
     void Logic::update(const sf::Time& delta)
@@ -165,9 +164,9 @@ namespace dt
     int Logic::getPlayerHealth(){
         return entities[0].getComponent("Health").getData().asInt;
     }
-    
-    const std::vector<int> & Logic::getMap() const
+
+    const Map& Logic::getMap() const
     {
-		return mapVector;
-	}
+      return map;
+    }
 }

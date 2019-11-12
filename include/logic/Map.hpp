@@ -22,11 +22,9 @@ namespace dt
     public:
     
         void loadMapFromFile(int mapNumber);
-        //void draw(sf::RenderWindow & window);
         void updateCenter(int x, int y);
         int getTile (int x, int y) const;
-        const std::vector<int> & getMap();
-
+        int getSize() const;
 
     private:
         std::vector<int> terrainMap;

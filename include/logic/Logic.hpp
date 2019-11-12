@@ -40,13 +40,15 @@ namespace dt
         void doTurn();
         int getTurn() const;
 
-        // View-Logic Communication
+        // View-Logic Communication For Player
         void movePlayer(Direction dir);
         const sf::Vector2i& getPlayerPosition() const;
         const std::string getPlayerVisual() const;
         int getPlayerEnergy();
         int getPlayerHealth();
-        const std::vector<int> & getMap() const;
+
+        // View-Logic Communication For Map
+        const Map& getMap() const;
 
     private:
         std::vector<Entity> entities;
@@ -58,18 +60,12 @@ namespace dt
         HealthSystem health;
 
         // State
+        Map map;
         bool actionPerformed = false;
-
-        // Turns
         int turnCount = 10;
 
         // Entity Coordinates
         //std::vector<sf::Vector2i> generateCoords(const Map& map, int numOfCoords);
-        
-        //Map
-        Map map;
-        std::vector<int> mapVector;
-
     };
 }
 

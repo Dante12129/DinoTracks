@@ -44,7 +44,7 @@ namespace dt
         sf::RectangleShape player;
         
         //Map related
-        std::vector<int> mapVector;
+        const Map* map = nullptr;
         int centerX;
         int centerY;
         sf::View mapView;
