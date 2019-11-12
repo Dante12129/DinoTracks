@@ -17,8 +17,10 @@ namespace dt
     Logic::Logic()
     {
       // Resize vector and assign Entity IDs based on position
-      entities.resize(1);
-      entities[0].setID(0);
+      entities.resize(10);
+      for(int i=0; i<=9; i++){
+          entities[i].setID(i);
+      }
 
       // Generate random coordinates
 
