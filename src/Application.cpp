@@ -11,11 +11,6 @@ namespace dt
 {
     Application::Application()
     {
-      // Let the HumanView Quit The App
-      playerView.setWindowClosedCallback([&] {
-          running = false;
-      });
-
       // Set the global ResourceManager
       ResourceManager::currentManager = &resources;
 
@@ -23,6 +18,8 @@ namespace dt
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
       resources.load(ResourceManager::Type::Texture, "TERRAIN", "terrain.png");
+      resources.load(ResourceManager::Type::Texture, "TREX_TEX", "Tyrannosaurus.png");
+      resources.load(ResourceManager::Type::Texture, "STEGO_TEX", "stegosaurus.png");
       resources.load(ResourceManager::Type::DinosaurType, "STEGOSAURUS", "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, "TYRANNOSAURUS", "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, "METEOR_FONT", "Azonix.otf");
@@ -30,6 +27,14 @@ namespace dt
 
       // Create the Logic
       gameLogic.reset(new Logic);
+
+      // Create the Views
+      playerView.reset(new HumanView);
+
+      // Let the HumanView Quit The App
+      playerView->setWindowClosedCallback([&] {
+          running = false;
+      });
     }
 
     int Application::loop()
@@ -44,15 +49,15 @@ namespace dt
         frameDelta = frameClock.restart();
 
         // Process inputs and send them to logic
-        playerView.processEvents();
-        playerView.sendCommands(*gameLogic);
+        playerView->processEvents();
+        playerView->sendCommands(*gameLogic);
 
         // Update the logical and visual state
         gameLogic->update(frameDelta);
-        playerView.updateFrom(*gameLogic);
+        playerView->updateFrom(*gameLogic);
 
         // Actual rendering of visual state
-        playerView.draw();
+        playerView->draw();
       }
 
       return 0;

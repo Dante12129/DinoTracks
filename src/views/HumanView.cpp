@@ -25,9 +25,8 @@ namespace dt
       input.associate(sf::Keyboard::Enter, "NOTHING");
 
       // Create player's visual representation
-      player.setSize({32, 32});
-      player.setFillColor(sf::Color::Red);
-      player.setPosition({player.getSize().x * 20, player.getSize().y * 11});
+      player.setTexture(ResourceManager::currentManager->getTexture("TREX_TEX"));
+      player.setPosition({32 * 20, 32 * 11});
     }
 
     void HumanView::processEvents()

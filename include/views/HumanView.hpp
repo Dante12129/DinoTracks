@@ -8,6 +8,7 @@
 #include <functional>
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 
 #include <InputManager.hpp>
 #include <UserInterface.hpp>
@@ -41,7 +42,7 @@ namespace dt
 
         // Drawn objects
         UserInterface ui;
-        sf::RectangleShape player;
+        sf::Sprite player;
         
         //Map related
         const Map* map = nullptr;

@@ -28,7 +28,7 @@ namespace dt
 
       // Main Objects
       std::unique_ptr<Logic> gameLogic;
-      HumanView playerView;
+      std::unique_ptr<HumanView> playerView;
 
       // Managers
       ResourceManager resources;
