@@ -10,9 +10,21 @@
 
 #include <Logic.hpp>
 
+namespace
+{
+    std::string visualToTex(const std::string& vis) {
+      if(vis == "TYRANNOSAURUS")
+        return "TREX_TEX";
+      else if(vis == "STEGOSAURUS")
+        return "STEGO_TEX";
+      else
+        return "";
+    }
+}
+
 namespace dt
 {
-    HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
+    HumanView::HumanView(const Logic& initial) : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
     ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
@@ -25,7 +37,9 @@ namespace dt
       input.associate(sf::Keyboard::Enter, "NOTHING");
 
       // Create player's visual representation
-      player.setTexture(ResourceManager::currentManager->getTexture("TREX_TEX"));
+//      std::cout << "Player Visual Name:" << initial.getPlayerVisual() << std::endl;
+      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(visualToTex(initial.getPlayerVisual()));
+      player.setTexture(playerTex);
       player.setPosition({32 * 20, 32 * 11});
     }
 

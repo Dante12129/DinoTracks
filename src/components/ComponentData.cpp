@@ -20,10 +20,10 @@ namespace dt
     ComponentData::ComponentData(int x, int y) : asVec2i(x, y)
     {}
 
-    ComponentData::ComponentData(std::string str)
-    {
-        asString = str;
-    }
+//    ComponentData::ComponentData(std::string str)
+//    {
+//        asString = str;
+//    }
 
     ComponentData::~ComponentData()
     {}

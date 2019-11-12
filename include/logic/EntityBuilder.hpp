@@ -21,7 +21,7 @@ namespace dt
         void addEnergyComponent(int ene);
         void addHealthComponent(int hea);
         void addFoodComponent(int food_ene);
-        void addVisualComponent(const std::string vis);
+        void addVisualComponent(const std::string& vis);
 
     private:
         Entity& entity;

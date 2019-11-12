@@ -16,12 +16,12 @@ namespace dt
         ComponentData(int val);
         ComponentData(sf::Vector2i vec);
         ComponentData(int x, int y);
-        ComponentData(std::string str);
+//        ComponentData(std::string str);
         ~ComponentData();
 
         int asInt;
         sf::Vector2i asVec2i;
-        std::string asString;
+//        std::string asString;
     };
 }
 

@@ -29,7 +29,7 @@ namespace dt
       gameLogic.reset(new Logic);
 
       // Create the Views
-      playerView.reset(new HumanView);
+      playerView.reset(new HumanView(*gameLogic));
 
       // Let the HumanView Quit The App
       playerView->setWindowClosedCallback([&] {

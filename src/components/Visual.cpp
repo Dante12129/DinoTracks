@@ -7,7 +7,7 @@
 
 namespace dt
 {
-    Visual::Visual(std::string str)
+    Visual::Visual(std::string str) : vis(str)
     {}
 
     std::string Visual::getName() const
@@ -17,11 +17,21 @@ namespace dt
 
     const ComponentData& Visual::getData() const
     {
-        return vis;
+        return dummy;
     }
 
     void Visual::setData(const ComponentData& data)
     {
-        vis.asString = data.asString;
+        dummy.asInt = data.asInt;
+    }
+
+    const std::string& Visual::getString() const
+    {
+      return vis;
+    }
+
+    void Visual::setString(const std::string& string)
+    {
+      vis = string;
     }
 }

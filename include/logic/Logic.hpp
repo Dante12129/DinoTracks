@@ -43,7 +43,7 @@ namespace dt
         // View-Logic Communication For Player
         void movePlayer(Direction dir);
         const sf::Vector2i& getPlayerPosition() const;
-        const std::string getPlayerVisual() const;
+        const std::string& getPlayerVisual() const;
         int getPlayerEnergy();
         int getPlayerHealth();
 

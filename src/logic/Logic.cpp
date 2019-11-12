@@ -14,6 +14,7 @@
 #include <EntityBuilder.hpp>
 #include <Map.hpp>
 #include <DinosaurType.hpp>
+#include <components/Visual.hpp>
 
 
 namespace dt
@@ -140,9 +141,9 @@ namespace dt
         return entities[0].getComponent("Position").getData().asVec2i;
     }
 
-    const std::string Logic::getPlayerVisual() const
+    const std::string& Logic::getPlayerVisual() const
     {
-        return entities[0].getComponent("Visual").getData().asString;
+        return dynamic_cast<const Visual&>(entities[0].getComponent("Visual")).getString();
     }
 
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)

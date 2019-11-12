@@ -23,7 +23,7 @@ namespace dt
     {
     public:
         // Constructors
-        HumanView();
+        HumanView(const Logic& initial);
 
         // Game Loop
         void processEvents();

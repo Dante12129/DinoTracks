@@ -19,8 +19,12 @@ namespace dt
         const ComponentData& getData() const override;
         void setData(const ComponentData& data) override;
 
+        const std::string& getString() const;
+        void setString(const std::string& string);
+
     private:
-        ComponentData vis;
+        ComponentData dummy;
+        std::string vis;
     };
 }
 
