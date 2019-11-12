@@ -21,21 +21,24 @@ namespace dt
         sf::Texture tex;
         fileResult = tex.loadFromFile("../resources/textures/" + filename);
         insertResult = textures.insert({id, tex}).second;
-      } else if (type == Type::Font)
+      }
+      else if (type == Type::Font)
       {
         sf::Font font;
         fileResult = font.loadFromFile("../resources/fonts/" + filename);
         insertResult = fonts.insert({id, font}).second;
-      } else if (type == Type::SoundBuffer)
+      }
+      else if (type == Type::SoundBuffer)
       {
         sf::SoundBuffer sbuf;
         fileResult = sbuf.loadFromFile("../resources/sounds/" + filename);
         insertResult = sounds.insert({id, sbuf}).second;
-      } else if (type == Type::DinosaurType)
+      }
+      else if (type == Type::DinosaurType)
       {
-		DinosaurType dtype;
-		fileResult = dtype.loadFromFile("../resources/dinosaurs/" + filename);
-		insertResult = dinosaurs.insert({id, dtype}).second;
+        DinosaurType dtype;
+        fileResult = dtype.loadFromFile("../resources/dinosaurs/" + filename);
+        insertResult = dinosaurs.insert({id, dtype}).second;
 	  }
 
       if (!fileResult)
@@ -65,6 +68,6 @@ namespace dt
     
     DinosaurType& ResourceManager::getDinosaurType(const std::string& id)
     {
-		return dinosaurs.at(id);
-	}
+		  return dinosaurs.at(id);
+	  }
 }

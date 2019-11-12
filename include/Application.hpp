@@ -5,6 +5,8 @@
 #ifndef DINOTRACKS_APPLICATION_HPP
 #define DINOTRACKS_APPLICATION_HPP
 
+#include <memory>
+
 #include <ResourceManager.hpp>
 #include <logic/Logic.hpp>
 #include <views/HumanView.hpp>
@@ -25,7 +27,7 @@ namespace dt
       bool running = true;
 
       // Main Objects
-      Logic gameLogic;
+      std::unique_ptr<Logic> gameLogic;
       HumanView playerView;
 
       // Managers

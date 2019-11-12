@@ -26,6 +26,10 @@ namespace dt
       resources.load(ResourceManager::Type::DinosaurType, "STEGOSAURUS", "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, "TYRANNOSAURUS", "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, "METEOR_FONT", "Azonix.otf");
+
+
+      // Create the Logic
+      gameLogic.reset(new Logic);
     }
 
     int Application::loop()
@@ -41,11 +45,11 @@ namespace dt
 
         // Process inputs and send them to logic
         playerView.processEvents();
-        playerView.sendCommands(gameLogic);
+        playerView.sendCommands(*gameLogic);
 
         // Update the logical and visual state
-        gameLogic.update(frameDelta);
-        playerView.updateFrom(gameLogic);
+        gameLogic->update(frameDelta);
+        playerView.updateFrom(*gameLogic);
 
         // Actual rendering of visual state
         playerView.draw();
