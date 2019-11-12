@@ -65,7 +65,7 @@ namespace dt
         int turnCount = 10;
 
         // Entity Coordinates
-        //std::vector<sf::Vector2i> generateCoords(const Map& map, int numOfCoords);
+        std::vector<sf::Vector2i> generateCoords(int numOfCoords);
     };
 }
 
