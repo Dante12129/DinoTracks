@@ -11,13 +11,14 @@
 #include "MovementSystem.hpp"
 #include "EnergySystem.hpp"
 #include "HealthSystem.hpp"
+#include "Map.hpp"
 
 // Forward Declarations
 namespace sf { class Time; }
 
 namespace dt
 {
-    class Map;
+    //class Map;
 
     enum class Direction
     {
@@ -45,6 +46,7 @@ namespace dt
         const std::string getPlayerVisual() const;
         int getPlayerEnergy();
         int getPlayerHealth();
+        const std::vector<int> & getMap() const;
 
     private:
         std::vector<Entity> entities;
@@ -62,7 +64,11 @@ namespace dt
         int turnCount = 10;
 
         // Entity Coordinates
-        std::vector<sf::Vector2i> generateCoords(const Map& map, int numOfCoords);
+        //std::vector<sf::Vector2i> generateCoords(const Map& map, int numOfCoords);
+        
+        //Map
+        Map map;
+        std::vector<int> mapVector;
 
     };
 }

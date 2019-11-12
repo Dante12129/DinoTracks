@@ -40,6 +40,10 @@ namespace dt
       escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
 
       // Assign types and coordinates to enemies
+      
+      // Load the default map
+      map.loadMapFromFile(1);
+      mapVector = map.getMap();
     }
 
     void Logic::update(const sf::Time& delta)
@@ -70,6 +74,9 @@ namespace dt
 
       // Stop player
       movement.stop(entities[0]);
+      
+      //update map
+      map.updateCenter(getPlayerPosition().x, getPlayerPosition().y);
 
       // Decrement turn count; end game if turn count is 0
       turnCount -= 1;
@@ -117,7 +124,7 @@ namespace dt
     {
         return entities[0].getComponent("Visual").getData().asString;
     }
-
+	/**
     std::vector<sf::Vector2i> Logic::generateCoords(const Map& map, int numOfCoords)
     {
         std::random_device rd;
@@ -149,6 +156,7 @@ namespace dt
 
         return coordinates;
     }
+    * */
 
     int Logic::getPlayerEnergy() {
         return entities[0].getComponent("Energy").getData().asInt;
@@ -157,4 +165,9 @@ namespace dt
     int Logic::getPlayerHealth(){
         return entities[0].getComponent("Health").getData().asInt;
     }
+    
+    const std::vector<int> & Logic::getMap() const
+    {
+		return mapVector;
+	}
 }

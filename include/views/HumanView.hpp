@@ -29,6 +29,7 @@ namespace dt
         void sendCommands(Logic& logic) const;
         void updateFrom(const Logic& logic);
         void draw();
+        void drawMap();
 
         // Signals
         void setWindowClosedCallback(std::function<void()> callback);
@@ -40,8 +41,13 @@ namespace dt
 
         // Drawn objects
         UserInterface ui;
-        Map map;
         sf::RectangleShape player;
+        
+        //Map related
+        std::vector<int> mapVector;
+        int centerX;
+        int centerY;
+        sf::View mapView;
 
         // Input-Related
         InputManager input;

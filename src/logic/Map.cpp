@@ -11,7 +11,7 @@ namespace dt
 	void Map::loadMapFromFile(int mapNumber)
 	{
 		std::ifstream mapFile;
-		std::string filePath = "../resources/maps/" + std::to_string(mapNumber) + ".map";
+		std::string filePath = "../../resources/maps/" + std::to_string(mapNumber) + ".map";
 		mapFile.open(filePath);
 		
 		int tile;
@@ -22,7 +22,7 @@ namespace dt
 		
 		mapFile.close();
 	}
-	
+	/**
 	void Map::draw(sf::RenderWindow & window)
 	{
 		sf::Sprite grass;
@@ -106,15 +106,22 @@ namespace dt
 		window.setView(window.getDefaultView());
 		
 	}
+	* */
 	
-	void Map::updateFrom(const Logic& logic)
+	void Map::updateCenter(int x, int y)
 	{
-		curX = logic.getPlayerPosition().x * 32 + 11;
-		curY = logic.getPlayerPosition().y * 32;
+		curX = x * 32 + 11;
+		curY = y * 32;
 	}
 
-	int Map::getTile(int x, int y) const {
+	int Map::getTile(int x, int y) const 
+	{
 	    int tileType = terrainMap[y + (96 * x)];
 	    return tileType;
+	}
+	
+	const std::vector<int> & Map::getMap()
+	{
+		return terrainMap;
 	}
 }
