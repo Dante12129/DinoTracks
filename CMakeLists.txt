@@ -12,7 +12,10 @@ if(NOT SFML_FOUND)
     message(FATAL_ERROR "Could not find SFML")
 endif()
 
-# Find other libraries (as needed)
+# Use Thor files
+include_directories(${PROJECT_SOURCE_DIR}/include/Aurora)
+include_directories(${PROJECT_SOURCE_DIR}/include/Thor)
+file(GLOB THOR_SRC ${PROJECT_SOURCE_DIR}/src/Thor/*cpp)
 
 # Add libraries
 include_directories(${SFML_INCLUDE_DIR})
@@ -28,8 +31,9 @@ file(GLOB LOGIC_SRC ${PROJECT_SOURCE_DIR}/src/logic/*cpp)
 file(GLOB VIEW_SRC ${PROJECT_SOURCE_DIR}/src/views/*cpp)
 file(GLOB COMPONENTS_SRC ${PROJECT_SOURCE_DIR}/src/components/*cpp)
 
+
 # Compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Set target
-add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC} src/components/Energy.cpp include/components/Energy.hpp src/components/Health.cpp include/components/Health.hpp src/components/Food.cpp include/components/Food.hpp src/logic/EnergySystem.cpp include/logic/EnergySystem.hpp src/logic/HealthSystem.cpp include/logic/HealthSystem.hpp)
+add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC} ${THOR_SRC})
