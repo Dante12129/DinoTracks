@@ -38,7 +38,6 @@ namespace dt
     private:
         // Window-Related
         sf::RenderWindow window;
-        std::function<void()> windowClosedCallback;
 
         // Drawn objects
         UserInterface ui;

@@ -30,11 +30,10 @@ namespace dt
       window.setKeyRepeatEnabled(false);
 
       // Create default key associations
-      input.associate(sf::Keyboard::W, "MOVE_UP");
-      input.associate(sf::Keyboard::S, "MOVE_DOWN");
-      input.associate(sf::Keyboard::A, "MOVE_LEFT");
-      input.associate(sf::Keyboard::D, "MOVE_RIGHT");
-      input.associate(sf::Keyboard::Enter, "NOTHING");
+      input.associate(thor::Action(sf::Keyboard::W, thor::Action::ReleaseOnce), "MOVE_UP");
+      input.associate(thor::Action(sf::Keyboard::S, thor::Action::ReleaseOnce), "MOVE_DOWN");
+      input.associate(thor::Action(sf::Keyboard::A, thor::Action::ReleaseOnce), "MOVE_LEFT");
+      input.associate(thor::Action(sf::Keyboard::D, thor::Action::ReleaseOnce), "MOVE_RIGHT");
 
       const int dinoWidth = 32;
       const int dinoHeight = 32;
@@ -61,51 +60,30 @@ namespace dt
 
     void HumanView::processEvents()
     {
-      try
-      {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-          switch (event.type)
-          {
-            case sf::Event::Closed:
-              windowClosedCallback();
-              break;
-            case sf::Event::KeyPressed:
-              input.activate(event.key.code);
-              break;
-            case sf::Event::KeyReleased:
-              input.deactivate(event.key.code);
-              break;
-          }
-        }
-      }
-      catch(std::exception& e)
-      {
-        std::cout << e.what() << std::endl;
-      }
+      sf::Event event;
+      input.updateAll(window);
     }
 
     void HumanView::sendCommands(Logic& logic) const
     {
-      if(input.isActiveOnce("MOVE_UP"))
+      if(input.isActive("MOVE_UP"))
       {
-        std::cout << "MOVE_UP" << std::endl;
+//        std::cout << "MOVE_UP" << std::endl;
         logic.movePlayer(Direction::Up);
       }
-      if(input.isActiveOnce("MOVE_DOWN"))
+      if(input.isActive("MOVE_DOWN"))
       {
-        std::cout << "MOVE_DOWN" << std::endl;
+//        std::cout << "MOVE_DOWN" << std::endl;
         logic.movePlayer(Direction::Down);
       }
-      if(input.isActiveOnce("MOVE_LEFT"))
+      if(input.isActive("MOVE_LEFT"))
       {
-        std::cout << "MOVE_LEFT" << std::endl;
+//        std::cout << "MOVE_LEFT" << std::endl;
         logic.movePlayer(Direction::Left);
       }
-      if(input.isActiveOnce("MOVE_RIGHT"))
+      if(input.isActive("MOVE_RIGHT"))
       {
-        std::cout << "MOVE_RIGHT" << std::endl;
+//        std::cout << "MOVE_RIGHT" << std::endl;
         logic.movePlayer(Direction::Right);
       }
     }
@@ -143,7 +121,7 @@ namespace dt
 
     void HumanView::setWindowClosedCallback(std::function<void()> callback)
     {
-      windowClosedCallback = callback;
+      input.setWindowCloseCallback(callback);
     }
     
     void HumanView::drawMap()

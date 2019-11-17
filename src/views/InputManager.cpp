@@ -8,69 +8,35 @@
 
 namespace dt
 {
-    void InputManager::associate(sf::Keyboard::Key key, const std::string& action)
+    InputManager::InputManager()
     {
-      keys.insert({key, action});
-      state.insert({action, false});
+      map["EXIT"] = thor::Action(sf::Event::Closed);
     }
 
-    void InputManager::activate(sf::Keyboard::Key key)
+    void InputManager::associate(const thor::Action& action, const std::string& tag)
     {
-        // Get action associated with key
-        auto keyIterator = keys.find(key);
-        if(keyIterator == keys.end()) // Key not found (no associated action)
-        {
-          throw std::runtime_error("No action found for key");
-        }
-        else // Key is found
-        {
-          // Set state for action
-          state[keyIterator->second] = true;
-        }
+      map[tag] = action;
     }
 
-    void InputManager::deactivate(sf::Keyboard::Key key)
+    void InputManager::setWindowCloseCallback(std::function<void()> callback)
     {
-      // Get action associated with key
-      auto keyIterator = keys.find(key);
-      if(keyIterator == keys.end()) // Key not found (no associated action)
-      {
-        throw std::runtime_error("No action found for key");
-      }
-      else // Key is found
-      {
-        // Set state for action
-        state[keyIterator->second] = false;
-      }
+      callbacks.connect0("EXIT", callback);
     }
 
-    bool InputManager::isActive(const std::string& action) const
+    void InputManager::clearEvents()
     {
-      // Get action
-      auto actionIterator = state.find(action);
-      if(actionIterator == state.end()) // Action not found
-      {
-        throw std::runtime_error("Action not found: " + action);
-      }
-      else // Action found
-      {
-        return actionIterator->second;
-      }
+      map.clearEvents();
     }
 
-    bool InputManager::isActiveOnce(const std::string& action) const
+    void InputManager::updateAll(sf::Window& window)
     {
-      // Get action
-      auto actionIterator = state.find(action);
-      if(actionIterator == state.end()) // Action not found
-      {
-        throw std::runtime_error("Action not found: " + action);
-      }
-      else // Action found
-      {
-        bool result = actionIterator->second; // Save action state to return
-        actionIterator->second = false; // Reset state
-        return result;
-      }
+      map.update(window);
+      map.invokeCallbacks(callbacks, &window);
+    }
+
+    bool InputManager::isActive(const std::string& tag) const
+    {
+      bool result = map.isActive(tag);
+      return result;
     }
 }

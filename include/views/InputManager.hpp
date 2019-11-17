@@ -9,24 +9,32 @@
 #include <unordered_map>
 
 #include <SFML/Window/Keyboard.hpp>
+#include <Thor/Input/Action.hpp>
+#include <Thor/Input/ActionMap.hpp>
+#include <Input/EventSystem.hpp>
 
 namespace dt
 {
     class InputManager
     {
     public:
+        // Constructors
+        InputManager();
+
         // Action Creation
-        void associate(sf::Keyboard::Key key, const std::string& action);
+        void associate(const thor::Action& action, const std::string& tag);
+        void setWindowCloseCallback(std::function<void()> callback);
+
+        // Game Loop
+        void clearEvents();
+        void updateAll(sf::Window& window);
 
         // Action State
-        void activate(sf::Keyboard::Key key);
-        void deactivate(sf::Keyboard::Key key);
-        bool isActive(const std::string& action) const;
-        bool isActiveOnce(const std::string& action) const;
+        bool isActive(const std::string& tag) const;
 
     private:
-        std::unordered_map<sf::Keyboard::Key, std::string> keys; // Map actions to keys
-        mutable std::unordered_map<std::string, bool> state;
+        mutable thor::ActionMap<std::string> map;
+        thor::ActionMap<std::string>::CallbackSystem callbacks;
     };
 }
 
