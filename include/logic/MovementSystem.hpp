@@ -13,6 +13,7 @@
 #include "Entity.hpp"
 #include "System.hpp"
 #include "EnergySystem.hpp"
+#include "Map.hpp"
 
 namespace dt
 {
@@ -33,6 +34,7 @@ namespace dt
       static const std::string posi_str;
       static const std::string velo_str;
       EnergySystem& enesys;
+      Map map;
 
   };
 }

@@ -121,6 +121,8 @@ namespace dt
             std::cout << "Game over because of low health." << std::endl;
         }
 
+
+
         std::cout <<"current health"<< entities[0].getComponent("Health").getData().asInt<<"\n";
         std::cout <<"current energy"<< entities[0].getComponent("Energy").getData().asInt<<"\n";
 
