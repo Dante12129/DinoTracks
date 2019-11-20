@@ -28,6 +28,12 @@ namespace dt
         Right,
         None
     };
+    
+    enum class Speed
+    {
+		Slow,
+		Fast
+	};
 
     class Logic
     {
@@ -41,7 +47,7 @@ namespace dt
         int getTurn() const;
 
         // View-Logic Communication For Player
-        void movePlayer(Direction dir);
+        void movePlayer(Direction dir, Speed spd);
         const sf::Vector2i& getPlayerPosition() const;
         const std::string& getPlayerVisual() const;
         int getPlayerEnergy();

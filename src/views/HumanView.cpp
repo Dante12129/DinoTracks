@@ -30,11 +30,21 @@ namespace dt
       window.setKeyRepeatEnabled(false);
 
       // Create default key associations
-      input.associate(thor::Action(sf::Keyboard::W, thor::Action::ReleaseOnce), "MOVE_UP");
-      input.associate(thor::Action(sf::Keyboard::S, thor::Action::ReleaseOnce), "MOVE_DOWN");
-      input.associate(thor::Action(sf::Keyboard::A, thor::Action::ReleaseOnce), "MOVE_LEFT");
-      input.associate(thor::Action(sf::Keyboard::D, thor::Action::ReleaseOnce), "MOVE_RIGHT");
-
+      thor::Action up (sf::Keyboard::W, thor::Action::ReleaseOnce);
+      thor::Action down (sf::Keyboard::S, thor::Action::ReleaseOnce);
+      thor::Action left (sf::Keyboard::A, thor::Action::ReleaseOnce);
+      thor::Action right (sf::Keyboard::D, thor::Action::ReleaseOnce);
+      thor::Action slow (sf::Keyboard::LControl, thor::Action::Hold);
+      
+      input.associate(up, "RUN_UP");
+      input.associate(down, "RUN_DOWN");
+      input.associate(left, "RUN_LEFT");
+      input.associate(right, "RUN_RIGHT");
+      input.associate(slow && up, "WALK_UP");
+      input.associate(slow && down, "WALK_DOWN");
+      input.associate(slow && left, "WALK_LEFT");
+      input.associate(slow && right, "WALK_RIGHT");
+      
       const int dinoWidth = 32;
       const int dinoHeight = 32;
 
@@ -66,25 +76,45 @@ namespace dt
 
     void HumanView::sendCommands(Logic& logic) const
     {
-      if(input.isActive("MOVE_UP"))
+      if(input.isActive("RUN_UP"))
       {
 //        std::cout << "MOVE_UP" << std::endl;
-        logic.movePlayer(Direction::Up);
+        logic.movePlayer(Direction::Up, Speed::Fast);
       }
-      if(input.isActive("MOVE_DOWN"))
+      if(input.isActive("RUN_DOWN"))
       {
 //        std::cout << "MOVE_DOWN" << std::endl;
-        logic.movePlayer(Direction::Down);
+        logic.movePlayer(Direction::Down, Speed::Fast);
       }
-      if(input.isActive("MOVE_LEFT"))
+      if(input.isActive("RUN_LEFT"))
       {
 //        std::cout << "MOVE_LEFT" << std::endl;
-        logic.movePlayer(Direction::Left);
+        logic.movePlayer(Direction::Left, Speed::Fast);
       }
-      if(input.isActive("MOVE_RIGHT"))
+      if(input.isActive("RUN_RIGHT"))
       {
 //        std::cout << "MOVE_RIGHT" << std::endl;
-        logic.movePlayer(Direction::Right);
+        logic.movePlayer(Direction::Right, Speed::Fast);
+      }
+      if(input.isActive("WALK_UP"))
+      {
+//        std::cout << "WALK_UP" << std::endl;
+        logic.movePlayer(Direction::Up, Speed::Slow);
+      }
+      if(input.isActive("WALK_DOWN"))
+      {
+//        std::cout << "WALK_DOWN" << std::endl;
+        logic.movePlayer(Direction::Down, Speed::Slow);
+      }
+      if(input.isActive("WALK_LEFT"))
+      {
+//        std::cout << "WALK_LEFT" << std::endl;
+        logic.movePlayer(Direction::Left, Speed::Slow);
+      }
+      if(input.isActive("WALK_RIGHT"))
+      {
+//        std::cout << "WALK_RIGHT" << std::endl;
+        logic.movePlayer(Direction::Right, Speed::Slow);
       }
     }
 

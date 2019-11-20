@@ -117,25 +117,49 @@ namespace dt
         return turnCount;
     }
 
-    void Logic::movePlayer(Direction dir)
+    void Logic::movePlayer(Direction dir, Speed spd)
     {
-        switch (dir)
+        if (spd == Speed::Fast)
         {
-            case Direction::Up:
-                movement.moveUp(entities[0]);
-                break;
-            case Direction::Down:
-                movement.moveDown(entities[0]);
-                break;
-            case Direction::Left:
-                movement.moveLeft(entities[0]);
-                break;
-            case Direction::Right:
-                movement.moveRight(entities[0]);
-                break;
-            case Direction::None:
-                movement.stop(entities[0]);
-                break;
+            switch (dir)
+            {
+                case Direction::Up:
+                    movement.moveUp(entities[0]);
+                    break;
+                case Direction::Down:
+                    movement.moveDown(entities[0]);
+                    break;
+                case Direction::Left:
+                    movement.moveLeft(entities[0]);
+                    break;
+                case Direction::Right:
+                    movement.moveRight(entities[0]);
+                    break;
+                case Direction::None:
+                    movement.stop(entities[0]);
+                    break;
+            }
+        }
+        else
+        {
+            switch (dir)
+            {
+                case Direction::Up:
+                    movement.moveUp(entities[0]);
+                    break;
+                case Direction::Down:
+                    movement.moveDown(entities[0]);
+                    break;
+                case Direction::Left:
+                    movement.moveLeft(entities[0]);
+                    break;
+                case Direction::Right:
+                    movement.moveRight(entities[0]);
+                    break;
+                case Direction::None:
+                    movement.stop(entities[0]);
+                    break;
+            }
         }
 
         actionPerformed = true;
