@@ -119,49 +119,34 @@ namespace dt
 
     void Logic::movePlayer(Direction dir, Speed spd)
     {
+        int velocity;
+        
         if (spd == Speed::Fast)
         {
-            int spd = 3;
-            switch (dir)
-            {
-                case Direction::Up:
-                    movement.moveUp(entities[0], spd);
-                    break;
-                case Direction::Down:
-                    movement.moveDown(entities[0], spd);
-                    break;
-                case Direction::Left:
-                    movement.moveLeft(entities[0], spd);
-                    break;
-                case Direction::Right:
-                    movement.moveRight(entities[0], spd);
-                    break;
-                case Direction::None:
-                    movement.stop(entities[0]);
-                    break;
-            }
+            velocity = 3;
         }
         else
         {
-            int spd = 1;
-            switch (dir)
-            {
-                case Direction::Up:
-                    movement.moveUp(entities[0], spd);
-                    break;
-                case Direction::Down:
-                    movement.moveDown(entities[0], spd);
-                    break;
-                case Direction::Left:
-                    movement.moveLeft(entities[0], spd);
-                    break;
-                case Direction::Right:
-                    movement.moveRight(entities[0], spd);
-                    break;
-                case Direction::None:
-                    movement.stop(entities[0]);
-                    break;
-            }
+            velocity = 1;
+        }
+        
+        switch (dir)
+        {
+            case Direction::Up:
+                movement.moveUp(entities[0], velocity);
+                break;
+            case Direction::Down:
+                movement.moveDown(entities[0], velocity);
+                break;
+            case Direction::Left:
+                movement.moveLeft(entities[0], velocity);
+                break;
+            case Direction::Right:
+                movement.moveRight(entities[0], velocity);
+                break;
+            case Direction::None:
+                movement.stop(entities[0]);
+                break;
         }
 
         actionPerformed = true;

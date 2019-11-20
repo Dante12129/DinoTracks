@@ -20,10 +20,10 @@ namespace dt
   public:
     virtual void update(Entity& entity) override;
 
-    void moveUp(dt::Entity& dino, int spd);
-    void moveDown(dt::Entity& dino, int spd);
-    void moveLeft(dt::Entity& dino, int spd);
-    void moveRight(dt::Entity& dino, int spd);
+    void moveUp(dt::Entity& dino, int velocity);
+    void moveDown(dt::Entity& dino, int velocity);
+    void moveLeft(dt::Entity& dino, int velocity);
+    void moveRight(dt::Entity& dino, int velocity);
     void stop(dt::Entity& dino);
 
   private:
