@@ -21,6 +21,7 @@ namespace dt
 {
     Logic::Logic()
     {
+
         // Load the default map
         map.loadMapFromFile(1);
 
@@ -39,7 +40,11 @@ namespace dt
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
         playerBuilder.addHealthComponent(100);
+        //movement.setEnergySystem(energy);
+        std::cout << entities[0].getComponent("Energy").getData().asInt << "\n";
+        std::cout << entities[0].getComponent("Health").getData().asInt << "\n";
         playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added
+
 
         // Create escape pod
         Entity escapePod;
@@ -110,6 +115,14 @@ namespace dt
         {
             std::cout << "Game over." << std::endl;
         }
+
+        if(entities[0].getComponent("Health").getData().asInt<=0){
+            std::cout << "Game over because of low health." << std::endl;
+        }
+
+        //energy.adjust(entities[0],-20);
+
+
     }
 
     int Logic::getTurn() const
@@ -151,11 +164,11 @@ namespace dt
         return dynamic_cast<const Visual&>(entities[0].getComponent("Visual")).getString();
     }
 
-    int Logic::getPlayerEnergy() {
+    int Logic::getPlayerEnergy() const{
       return entities[0].getComponent("Energy").getData().asInt;
     }
 
-    int Logic::getPlayerHealth(){
+    int Logic::getPlayerHealth() const{
       return entities[0].getComponent("Health").getData().asInt;
     }
 

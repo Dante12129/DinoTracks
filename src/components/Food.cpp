@@ -7,7 +7,7 @@
 
 namespace dt
 {
-    Food::Food(int x)
+    Food::Food(int x) : food_ene(x)
     {}
 
     std::string Food::getName() const

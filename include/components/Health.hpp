@@ -21,6 +21,7 @@ namespace dt
 
     private:
         ComponentData hea;
+        ComponentData Max_hea;
     };
 }
 

@@ -44,8 +44,8 @@ namespace dt
         void movePlayer(Direction dir);
         const sf::Vector2i& getPlayerPosition() const;
         const std::string& getPlayerVisual() const;
-        int getPlayerEnergy();
-        int getPlayerHealth();
+        int getPlayerEnergy() const;
+        int getPlayerHealth() const;
 
         // View-Logic Communication For Map
         const Map& getMap() const;
@@ -59,10 +59,10 @@ namespace dt
         std::vector<sf::Vector2i> occupiedSpaces;
 
         // Systems
-        MovementSystem movement;
+
         EnergySystem energy;
         HealthSystem health;
-
+        MovementSystem movement = MovementSystem(energy);
         // State
         Map map;
         bool actionPerformed = false;

@@ -7,6 +7,7 @@
 #include "views/UserInterface.hpp"
 #include <Logic.hpp>
 #include <string>
+#include <iostream>
 
 namespace dt
 {
@@ -32,10 +33,12 @@ namespace dt
     uidivider.setFillColor(border);
     uidivider.setPosition(uiview.getSize().x/5, 0);
 
+    // set size according to health percentage
     healthbar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
     healthbar.setFillColor(sf::Color::Red);
     healthbar.setPosition(10, healthbar.getSize().y);
 
+    // set size according to energy percentage
     energybar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
     energybar.setFillColor(sf::Color::Yellow);
     energybar.setPosition(10,  3 * energybar.getSize().y);
@@ -72,5 +75,20 @@ namespace dt
         int rem = logic.getTurn();
         turns.setString(std::to_string(logic.getTurn()));
     }
-   
+
+    // This method adjust energy bar according energy percentage get from logic
+    // Currently using 100 as maximum energy
+    void UserInterface::setEnergy(const dt::Logic &logic) {
+	    int cur_ene = logic.getPlayerEnergy();
+	    //std::cout<<cur_ene;
+        energybar.setSize(sf::Vector2f((uidivider.getPosition().x - 20)*cur_ene/100, uiview.getSize().y/35));
+	}
+
+    // This method adjust health bar according energy percentage get from logic
+    // Currently using 100 as maximum health
+	void UserInterface::setHealth(const dt::Logic &logic) {
+        int cur_hea = logic.getPlayerHealth();
+        //std::cout<<cur_hea;
+        healthbar.setSize(sf::Vector2f((uidivider.getPosition().x - 20)*cur_hea/100, uiview.getSize().y/35));
+	}
 }

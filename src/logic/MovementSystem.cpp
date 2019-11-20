@@ -7,12 +7,15 @@
 #include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 #include "Entity.hpp"
+#include "EnergySystem.hpp"
 
 
 namespace dt
 {
   const std::string MovementSystem::posi_str = "Position";
   const std::string MovementSystem::velo_str = "Velocity";
+
+  MovementSystem::MovementSystem(EnergySystem& enesys):enesys(enesys){}
 
   void MovementSystem::update(Entity& entity)
   {
@@ -33,6 +36,9 @@ namespace dt
       // Set velocity
       velo.setData({velo.getData().asVec2i.x, -1});
 
+      // Adjust energy
+      enesys.adjust(dino, -5);
+
   }
   void MovementSystem::moveDown(dt::Entity& dino)
   {
@@ -42,6 +48,9 @@ namespace dt
 
     // Set velocity
     velo.setData({velo.getData().asVec2i.x, 1});
+
+      // Adjust energy
+      enesys.adjust(dino, -5);
 
   }
   void MovementSystem::moveLeft(dt::Entity& dino)
@@ -53,6 +62,9 @@ namespace dt
     // Set velocity
     velo.setData({-1, velo.getData().asVec2i.y});
 
+      // Adjust energy
+      enesys.adjust(dino, -5);
+
   }
   void MovementSystem::moveRight(dt::Entity& dino)
   {
@@ -62,6 +74,9 @@ namespace dt
 
     // Set velocity
     velo.setData({1, velo.getData().asVec2i.y});
+
+      // Adjust energy
+      enesys.adjust(dino, -5);
   }
   void MovementSystem::stop(dt::Entity& dino)
   {
@@ -71,4 +86,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
+
+
+
 }

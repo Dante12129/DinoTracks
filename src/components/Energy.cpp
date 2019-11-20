@@ -7,7 +7,7 @@
 
 namespace dt
 {
-    Energy::Energy(int x)
+    Energy::Energy(int x) : ene(x)
     {}
 
     std::string Energy::getName() const

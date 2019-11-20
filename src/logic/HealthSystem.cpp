@@ -3,12 +3,17 @@
 //
 
 #include "HealthSystem.hpp"
-
 #include "components/Component.hpp"
 #include "Entity.hpp"
 
 namespace dt {
     const std::string HealthSystem::hea_str = "Health";
+
+    HealthSystem::HealthSystem(){
+        for (int i=0; i<=40; i++){
+            heaBuffer.insert({i,100});
+        }
+    }
 
     void HealthSystem::update(Entity &dino) {
         // Get id
