@@ -25,43 +25,43 @@ namespace dt
     positionComponent.setData(ComponentData(newPosition));
   }
 
-  void MovementSystem::moveUp(dt::Entity& dino)
+  void MovementSystem::moveUp(dt::Entity& dino, int spd)
   {
-      //get position and velocity from component
-      Component& velo = dino.getComponent(velo_str);
-
-      // Set velocity
-      velo.setData({velo.getData().asVec2i.x, -1});
-
-  }
-  void MovementSystem::moveDown(dt::Entity& dino)
-  {
-      //get position and velocity from component
-      Component& posi = dino.getComponent(posi_str);
-      Component& velo = dino.getComponent(velo_str);
+    //get position and velocity from component
+    Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({velo.getData().asVec2i.x, 1});
+    velo.setData({velo.getData().asVec2i.x, -1*spd});
 
   }
-  void MovementSystem::moveLeft(dt::Entity& dino)
-  {
-      //get position and velocity from component
-      Component& posi = dino.getComponent(posi_str);
-      Component& velo = dino.getComponent(velo_str);
-
-    // Set velocity
-    velo.setData({-1, velo.getData().asVec2i.y});
-
-  }
-  void MovementSystem::moveRight(dt::Entity& dino)
+  void MovementSystem::moveDown(dt::Entity& dino, int spd)
   {
     //get position and velocity from component
     Component& posi = dino.getComponent(posi_str);
     Component& velo = dino.getComponent(velo_str);
 
     // Set velocity
-    velo.setData({1, velo.getData().asVec2i.y});
+    velo.setData({velo.getData().asVec2i.x, spd});
+
+  }
+  void MovementSystem::moveLeft(dt::Entity& dino, int spd)
+  {
+    //get position and velocity from component
+    Component& posi = dino.getComponent(posi_str);
+    Component& velo = dino.getComponent(velo_str);
+
+    // Set velocity
+    velo.setData({-1*spd, velo.getData().asVec2i.y});
+
+  }
+  void MovementSystem::moveRight(dt::Entity& dino, int spd)
+  {
+    //get position and velocity from component
+    Component& posi = dino.getComponent(posi_str);
+    Component& velo = dino.getComponent(velo_str);
+
+    // Set velocity
+    velo.setData({spd, velo.getData().asVec2i.y});
   }
   void MovementSystem::stop(dt::Entity& dino)
   {
