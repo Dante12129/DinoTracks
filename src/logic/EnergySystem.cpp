@@ -24,11 +24,8 @@ namespace dt {
         // Get energy and food components
         Component& energyComponent = dino.getComponent(ene_str);
 
-        //eneBuffer[id] = energyComponent.getData().asInt;
-
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(eneBuffer[0]));
-        std::cout<<"update"<<eneBuffer[0]<<"\n";
     }
 
     //This method add input val to the original energy value
@@ -40,9 +37,7 @@ namespace dt {
         Component& ene = dino.getComponent(ene_str);
 
         // Set value in buffer change
-        //eneBuffer.at(0) = ene.getData().asInt+val;
         eneBuffer[0] = ene.getData().asInt+val;
-        std::cout<<"adjust"<<eneBuffer[0]<<"\n";
     }
 
     //This method set input val as the energy value

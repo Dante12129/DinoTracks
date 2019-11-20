@@ -27,7 +27,6 @@ namespace dt
     void moveLeft(dt::Entity& dino);
     void moveRight(dt::Entity& dino);
     void stop(dt::Entity& dino);
-    //void setEnergySystem(dt::EnergySystem& ene);
 
   private:
       // Component Identifiers

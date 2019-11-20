@@ -37,7 +37,7 @@ namespace dt
       velo.setData({velo.getData().asVec2i.x, -1});
 
       // Adjust energy
-      enesys.adjust(dino, -5);
+      enesys.adjust(dino, -1);
 
   }
   void MovementSystem::moveDown(dt::Entity& dino)
@@ -50,7 +50,7 @@ namespace dt
     velo.setData({velo.getData().asVec2i.x, 1});
 
       // Adjust energy
-      enesys.adjust(dino, -5);
+      enesys.adjust(dino, -1);
 
   }
   void MovementSystem::moveLeft(dt::Entity& dino)
@@ -63,7 +63,7 @@ namespace dt
     velo.setData({-1, velo.getData().asVec2i.y});
 
       // Adjust energy
-      enesys.adjust(dino, -5);
+      enesys.adjust(dino, -1);
 
   }
   void MovementSystem::moveRight(dt::Entity& dino)
@@ -76,7 +76,7 @@ namespace dt
     velo.setData({1, velo.getData().asVec2i.y});
 
       // Adjust energy
-      enesys.adjust(dino, -5);
+      enesys.adjust(dino, -1);
   }
   void MovementSystem::stop(dt::Entity& dino)
   {
