@@ -10,6 +10,8 @@
 
 #include <Logic.hpp>
 
+#include <Tags.hpp>
+
 namespace
 {
     std::string visualToTex(const std::string& vis) {
@@ -30,11 +32,11 @@ namespace dt
       window.setKeyRepeatEnabled(false);
 
       // Create default key associations
-      input.associate(sf::Keyboard::W, "MOVE_UP");
-      input.associate(sf::Keyboard::S, "MOVE_DOWN");
-      input.associate(sf::Keyboard::A, "MOVE_LEFT");
-      input.associate(sf::Keyboard::D, "MOVE_RIGHT");
-      input.associate(sf::Keyboard::Enter, "NOTHING");
+      input.associate(sf::Keyboard::W, MOVE_UP);
+      input.associate(sf::Keyboard::S, MOVE_DOWN);
+      input.associate(sf::Keyboard::A, MOVE_LEFT);
+      input.associate(sf::Keyboard::D, MOVE_RIGHT);
+      input.associate(sf::Keyboard::Enter, NOTHING);
 
       const int dinoWidth = 32;
       const int dinoHeight = 32;
