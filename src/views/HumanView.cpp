@@ -15,10 +15,10 @@
 namespace
 {
     std::string visualToTex(const std::string& vis) {
-      if(vis == "TYRANNOSAURUS")
-        return "TREX_TEX";
-      else if(vis == "STEGOSAURUS")
-        return "STEGO_TEX";
+      if(vis == dt::TYRANNOSAURUS)
+        return dt::TREX_TEX;
+      else if(vis == dt::STEGOSAURUS)
+        return dt::STEGO_TEX;
       else
         return "";
     }
@@ -90,22 +90,22 @@ namespace dt
 
     void HumanView::sendCommands(Logic& logic) const
     {
-      if(input.isActiveOnce("MOVE_UP"))
+      if(input.isActiveOnce(MOVE_UP))
       {
         std::cout << "MOVE_UP" << std::endl;
         logic.movePlayer(Direction::Up);
       }
-      if(input.isActiveOnce("MOVE_DOWN"))
+      if(input.isActiveOnce(MOVE_DOWN))
       {
         std::cout << "MOVE_DOWN" << std::endl;
         logic.movePlayer(Direction::Down);
       }
-      if(input.isActiveOnce("MOVE_LEFT"))
+      if(input.isActiveOnce(MOVE_LEFT))
       {
         std::cout << "MOVE_LEFT" << std::endl;
         logic.movePlayer(Direction::Left);
       }
-      if(input.isActiveOnce("MOVE_RIGHT"))
+      if(input.isActiveOnce(MOVE_RIGHT))
       {
         std::cout << "MOVE_RIGHT" << std::endl;
         logic.movePlayer(Direction::Right);
@@ -151,31 +151,31 @@ namespace dt
     void HumanView::drawMap()
     {
       sf::Sprite grass;
-      grass.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grass.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grass.setTextureRect(sf::IntRect(0, 0, 32, 32));
 
       sf::Sprite water;
-      water.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      water.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       water.setTextureRect(sf::IntRect(32, 0, 32, 32));
 
       sf::Sprite grassEdgeBottomLeft;
-      grassEdgeBottomLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeBottomLeft.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeBottomLeft.setTextureRect(sf::IntRect(64, 32, 32, 32));
 
       sf::Sprite grassEdgeBottomRight;
-      grassEdgeBottomRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeBottomRight.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeBottomRight.setTextureRect(sf::IntRect(64, 0, 32, 32));
 
       sf::Sprite grassEdgeTopLeft;
-      grassEdgeTopLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeTopLeft.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeTopLeft.setTextureRect(sf::IntRect(0, 32, 32, 32));
 
       sf::Sprite grassEdgeTopRight;
-      grassEdgeTopRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeTopRight.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeTopRight.setTextureRect(sf::IntRect(32, 32, 32, 32));
 
       sf::Sprite mountain;
-      mountain.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      mountain.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       mountain.setTextureRect(sf::IntRect(0, 64, 32, 32));
 
       mapView.setCenter(sf::Vector2f(centerX, centerY));

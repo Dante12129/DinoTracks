@@ -3,6 +3,7 @@
 //
 
 #include "Application.hpp"
+#include "Tags.hpp"
 
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Time.hpp>
@@ -17,12 +18,12 @@ namespace dt
       // Load global resources here
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
-      resources.load(ResourceManager::Type::Texture, "TERRAIN", "terrain.png");
-      resources.load(ResourceManager::Type::Texture, "TREX_TEX", "Tyrannosaurus.png");
-      resources.load(ResourceManager::Type::Texture, "STEGO_TEX", "stegosaurus.png");
-      resources.load(ResourceManager::Type::DinosaurType, "STEGOSAURUS", "Stegosaurus.txt");
-      resources.load(ResourceManager::Type::DinosaurType, "TYRANNOSAURUS", "Tyrannosaurus.txt");
-      resources.load(ResourceManager::Type::Font, "METEOR_FONT", "Azonix.otf");
+      resources.load(ResourceManager::Type::Texture, TERRAIN, "terrain.png");
+      resources.load(ResourceManager::Type::Texture, TREX_TEX, "Tyrannosaurus.png");
+      resources.load(ResourceManager::Type::Texture, STEGO_TEX, "stegosaurus.png");
+      resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
+      resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
 
 
       // Create the Logic

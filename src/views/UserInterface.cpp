@@ -6,6 +6,7 @@
 #include <ResourceManager.hpp>
 #include "views/UserInterface.hpp"
 #include <Logic.hpp>
+#include <Tags.hpp>
 #include <string>
 
 namespace dt
@@ -54,8 +55,8 @@ namespace dt
 	{
 		window.setView(uiview);
 
-    meteorcountdown.setFont(ResourceManager::currentManager->getFont("METEOR_FONT"));
-    turns.setFont(ResourceManager::currentManager->getFont("METEOR_FONT"));
+    meteorcountdown.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
+    turns.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
 
 		window.draw(uibackground);
 		window.draw(uidivider);

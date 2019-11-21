@@ -15,7 +15,7 @@
 #include <Map.hpp>
 #include <DinosaurType.hpp>
 #include <components/Visual.hpp>
-
+#include <Tags.hpp>
 
 namespace dt
 {
@@ -39,7 +39,7 @@ namespace dt
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
         playerBuilder.addHealthComponent(100);
-        playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added
+        playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
 
         // Create escape pod
         Entity escapePod;
@@ -56,12 +56,12 @@ namespace dt
 
 		  if (i % 2 == 0)
 		  {
-			  dino = ResourceManager::currentManager->getDinosaurType("STEGOSAURUS");
+			  dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
 			  dinoString = "STEGOSAURUS";
 		  }
 		  else
 		  {
-			  dino = ResourceManager::currentManager->getDinosaurType("TYRANNOSAURUS");
+			  dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
 			  dinoString = "TYRANNOSAURUS";
 		  }
 
