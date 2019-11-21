@@ -13,9 +13,8 @@ namespace dt
   const std::string MovementSystem::posi_str = "Position";
   const std::string MovementSystem::velo_str = "Velocity";
 
-  MovementSystem::MovementSystem(EnergySystem& enesys):enesys(enesys){
-      map.loadMapFromFile(1);
-  }
+  MovementSystem::MovementSystem(EnergySystem& enesys, Map& map):enesys(enesys), map(map)
+  {}
 
   void MovementSystem::update(Entity& entity)
   {

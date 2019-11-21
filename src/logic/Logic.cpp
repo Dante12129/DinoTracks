@@ -40,7 +40,6 @@ namespace dt
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
         playerBuilder.addHealthComponent(100);
-        //movement.setEnergySystem(energy);
         std::cout << entities[0].getComponent("Energy").getData().asInt << "\n";
         std::cout << entities[0].getComponent("Health").getData().asInt << "\n";
         playerBuilder.addVisualComponent("TYRANNOSAURUS"); // To be changed when textures added

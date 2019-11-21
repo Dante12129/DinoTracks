@@ -58,15 +58,15 @@ namespace dt
         std::vector<Entity> entities;
         std::vector<sf::Vector2i> occupiedSpaces;
 
-        // Systems
-
-        EnergySystem energy;
-        HealthSystem health;
-        MovementSystem movement = MovementSystem(energy);
         // State
         Map map;
         bool actionPerformed = false;
         int turnCount = 10;
+
+        // Systems
+        EnergySystem energy;
+        HealthSystem health;
+        MovementSystem movement = MovementSystem(energy, map);
 
         // Entity Coordinates
         std::vector<sf::Vector2i> generateCoords(int numOfCoords);
