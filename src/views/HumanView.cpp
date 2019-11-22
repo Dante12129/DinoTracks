@@ -10,7 +10,7 @@
 
 #include <Logic.hpp>
 
-#include <Tags.hpp>
+#include "Tags.hpp"
 
 namespace
 {

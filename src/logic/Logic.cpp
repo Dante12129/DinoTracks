@@ -15,7 +15,7 @@
 #include <Map.hpp>
 #include <DinosaurType.hpp>
 #include <components/Visual.hpp>
-#include <Tags.hpp>
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -85,15 +85,15 @@ namespace dt
         // Go through each entity and update it with systems
         for(Entity& entity : entities)
         {
-            if(entity.hasComponent("Position") && entity.hasComponent("Velocity")){
+            if(entity.hasComponent(POSITION) && entity.hasComponent(VELOCITY)){
                 movement.update(entity);
             }
 
-            if(entity.hasComponent("Energy")){
+            if(entity.hasComponent(ENERGY)){
                 energy.update(entity);
             }
 
-            if(entity.hasComponent("Health")){
+            if(entity.hasComponent(HEALTH)){
                 health.update(entity);
             }
         }
@@ -143,20 +143,20 @@ namespace dt
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
-        return entities[0].getComponent("Position").getData().asVec2i;
+        return entities[0].getComponent(POSITION).getData().asVec2i;
     }
 
     const std::string& Logic::getPlayerVisual() const
     {
-        return dynamic_cast<const Visual&>(entities[0].getComponent("Visual")).getString();
+        return dynamic_cast<const Visual&>(entities[0].getComponent(VISUAL)).getString();
     }
 
     int Logic::getPlayerEnergy() {
-      return entities[0].getComponent("Energy").getData().asInt;
+      return entities[0].getComponent(ENERGY).getData().asInt;
     }
 
     int Logic::getPlayerHealth(){
-      return entities[0].getComponent("Health").getData().asInt;
+      return entities[0].getComponent(HEALTH).getData().asInt;
     }
 
     const Map& Logic::getMap() const
@@ -170,7 +170,7 @@ namespace dt
 
       for(int i = 2; i < 10; ++i)
       {
-        coords.push_back(entities.at(i).getData("Position").asVec2i);
+        coords.push_back(entities.at(i).getData(POSITION).asVec2i);
       }
 
       return coords;
@@ -182,7 +182,7 @@ namespace dt
 
       for(int i = 2; i < 10; ++i)
       {
-        const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent("Visual"));
+        const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent(VISUAL));
         visuals.push_back(visComponent.getString());
 //        visuals.push_back("STEGOSAURUS");
       }

@@ -4,6 +4,7 @@
 
 #include "components/Component.hpp"
 #include "components/Visual.hpp"
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -12,7 +13,7 @@ namespace dt
 
     std::string Visual::getName() const
     {
-        return "Visual";
+        return VISUAL;
     }
 
     const ComponentData& Visual::getData() const

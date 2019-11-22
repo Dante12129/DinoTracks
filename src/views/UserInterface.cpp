@@ -6,7 +6,7 @@
 #include <ResourceManager.hpp>
 #include "views/UserInterface.hpp"
 #include <Logic.hpp>
-#include <Tags.hpp>
+#include "Tags.hpp"
 #include <string>
 
 namespace dt

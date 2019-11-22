@@ -4,6 +4,7 @@
 
 #include "components/Component.hpp"
 #include "components/Energy.hpp"
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -12,7 +13,7 @@ namespace dt
 
     std::string Energy::getName() const
     {
-        return "Energy";
+        return ENERGY;
     }
 
     const ComponentData& Energy::getData() const

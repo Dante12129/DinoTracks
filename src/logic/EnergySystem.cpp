@@ -6,10 +6,11 @@
 
 #include "components/Component.hpp"
 #include "Entity.hpp"
+#include "Tags.hpp"
 
 namespace dt {
-    const std::string EnergySystem::ene_str = "Energy";
-    const std::string EnergySystem::food_str = "Food";
+    const std::string EnergySystem::ene_str = ENERGY;
+    const std::string EnergySystem::food_str = FOOD;
 
     void EnergySystem::update(Entity &dino) {
         // Get id
