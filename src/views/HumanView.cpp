@@ -10,6 +10,8 @@
 
 #include <Logic.hpp>
 
+#include <Thor/Input/InputNames.hpp>
+
 namespace
 {
     std::string visualToTex(const std::string& vis) {
@@ -28,13 +30,28 @@ namespace dt
     ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
+      
+      //Get keys from file
+      std::ifstream keyFile;
+	  std::string filePath = "../resources/keys/KeyConfig.txt";
+	  keyFile.open(filePath);
+		
+	  std::string keyUp;
+	  std::string keyDown;
+	  std::string keyLeft;
+	  std::string keyRight;
+	  std::string keySlow;
+	  
+	  keyFile >> keyUp >> keyUp >> keyDown >> keyDown >> keyLeft >> keyLeft >> keyRight >> keyRight >> keySlow >> keySlow;
+		
+	  keyFile.close();
 
       // Create default key associations
-      thor::Action up (sf::Keyboard::W, thor::Action::ReleaseOnce);
-      thor::Action down (sf::Keyboard::S, thor::Action::ReleaseOnce);
-      thor::Action left (sf::Keyboard::A, thor::Action::ReleaseOnce);
-      thor::Action right (sf::Keyboard::D, thor::Action::ReleaseOnce);
-      thor::Action slow (sf::Keyboard::LControl, thor::Action::Hold);
+      thor::Action up (thor::toKeyboardKey(keyUp), thor::Action::ReleaseOnce);
+      thor::Action down (thor::toKeyboardKey(keyDown), thor::Action::ReleaseOnce);
+      thor::Action left (thor::toKeyboardKey(keyLeft), thor::Action::ReleaseOnce);
+      thor::Action right (thor::toKeyboardKey(keyRight), thor::Action::ReleaseOnce);
+      thor::Action slow (thor::toKeyboardKey(keySlow), thor::Action::Hold);
       
       input.associate(up, "RUN_UP");
       input.associate(down, "RUN_DOWN");
