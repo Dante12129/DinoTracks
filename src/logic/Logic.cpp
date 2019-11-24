@@ -111,17 +111,13 @@ namespace dt
             std::cout << "Game over." << std::endl;
         }
 
-        //End game if no health
+        // End game if no health
         if(entities[0].getComponent("Health").getData().asInt<=0){
             std::cout << "Game over because of low health." << std::endl;
         }
 
-
-
-        std::cout <<"current health"<< entities[0].getComponent("Health").getData().asInt<<"\n";
-        std::cout <<"current energy"<< entities[0].getComponent("Energy").getData().asInt<<"\n";
-
-
+        std::cout << "current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
+        std::cout << "current energy: " << entities[0].getComponent("Energy").getData().asInt << "\n";
     }
 
     int Logic::getTurn() const
