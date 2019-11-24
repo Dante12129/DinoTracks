@@ -10,11 +10,14 @@
 namespace dt
 {
 //    Key input
-    const std::string MOVE_UP = "MOVE_UP";
-    const std::string MOVE_DOWN = "MOVE_DOWN";
-    const std::string MOVE_LEFT = "MOVE_LEFT";
-    const std::string MOVE_RIGHT = "MOVE_RIGHT";
-    const std::string NOTHING = "NOTHING";
+    const std::string RUN_UP = "RUN_UP";
+    const std::string RUN_DOWN = "RUN_DOWN";
+    const std::string RUN_LEFT = "RUN_LEFT";
+    const std::string RUN_RIGHT = "RUN_RIGHT";
+    const std::string WALK_UP = "WALK_UP";
+    const std::string WALK_DOWN = "WALK_DOWN";
+    const std::string WALK_LEFT = "WALK_LEFT";
+    const std::string WALK_RIGHT = "WALK_RIGHT";
 
 //    Resources
     const std::string TERRAIN = "TERRAIN";

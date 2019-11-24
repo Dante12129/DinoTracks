@@ -53,14 +53,14 @@ namespace dt
       thor::Action right (thor::toKeyboardKey(keyRight), thor::Action::ReleaseOnce);
       thor::Action slow (thor::toKeyboardKey(keySlow), thor::Action::Hold);
 
-      input.associate(up, "RUN_UP");
-      input.associate(down, "RUN_DOWN");
-      input.associate(left, "RUN_LEFT");
-      input.associate(right, "RUN_RIGHT");
-      input.associate(slow && up, "WALK_UP");
-      input.associate(slow && down, "WALK_DOWN");
-      input.associate(slow && left, "WALK_LEFT");
-      input.associate(slow && right, "WALK_RIGHT");
+      input.associate(up, RUN_UP);
+      input.associate(down, RUN_DOWN);
+      input.associate(left, RUN_LEFT);
+      input.associate(right, RUN_RIGHT);
+      input.associate(slow && up, WALK_UP);
+      input.associate(slow && down, WALK_DOWN);
+      input.associate(slow && left, WALK_LEFT);
+      input.associate(slow && right, WALK_RIGHT);
 
       const int dinoWidth = 32;
       const int dinoHeight = 32;
@@ -93,42 +93,42 @@ namespace dt
 
     void HumanView::sendCommands(Logic& logic) const
     {
-      if(input.isActive("RUN_UP"))
+      if(input.isActive(RUN_UP))
       {
 //        std::cout << "MOVE_UP" << std::endl;
         logic.movePlayer(Direction::Up, Speed::Fast);
       }
-      if(input.isActive("RUN_DOWN"))
+      if(input.isActive(RUN_DOWN))
       {
 //        std::cout << "MOVE_DOWN" << std::endl;
         logic.movePlayer(Direction::Down, Speed::Fast);
       }
-      if(input.isActive("RUN_LEFT"))
+      if(input.isActive(RUN_LEFT))
       {
 //        std::cout << "MOVE_LEFT" << std::endl;
         logic.movePlayer(Direction::Left, Speed::Fast);
       }
-      if(input.isActive("RUN_RIGHT"))
+      if(input.isActive(RUN_RIGHT))
       {
 //        std::cout << "MOVE_RIGHT" << std::endl;
         logic.movePlayer(Direction::Right, Speed::Fast);
       }
-      if(input.isActive("WALK_UP"))
+      if(input.isActive(WALK_UP))
       {
 //        std::cout << "WALK_UP" << std::endl;
         logic.movePlayer(Direction::Up, Speed::Slow);
       }
-      if(input.isActive("WALK_DOWN"))
+      if(input.isActive(WALK_DOWN))
       {
 //        std::cout << "WALK_DOWN" << std::endl;
         logic.movePlayer(Direction::Down, Speed::Slow);
       }
-      if(input.isActive("WALK_LEFT"))
+      if(input.isActive(WALK_LEFT))
       {
 //        std::cout << "WALK_LEFT" << std::endl;
         logic.movePlayer(Direction::Left, Speed::Slow);
       }
-      if(input.isActive("WALK_RIGHT"))
+      if(input.isActive(WALK_RIGHT))
       {
 //        std::cout << "WALK_RIGHT" << std::endl;
         logic.movePlayer(Direction::Right, Speed::Slow);
