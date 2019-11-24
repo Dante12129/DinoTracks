@@ -31,7 +31,6 @@ file(GLOB LOGIC_SRC ${PROJECT_SOURCE_DIR}/src/logic/*cpp)
 file(GLOB VIEW_SRC ${PROJECT_SOURCE_DIR}/src/views/*cpp)
 file(GLOB COMPONENTS_SRC ${PROJECT_SOURCE_DIR}/src/components/*cpp)
 
-
 # Compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 

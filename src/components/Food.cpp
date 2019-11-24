@@ -4,6 +4,7 @@
 
 #include "components/Component.hpp"
 #include "components/Food.hpp"
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -12,7 +13,7 @@ namespace dt
 
     std::string Food::getName() const
     {
-        return "Food";
+        return FOOD;
     }
 
     const ComponentData& Food::getData() const

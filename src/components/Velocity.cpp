@@ -5,6 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 #include "components/Velocity.hpp"
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -16,7 +17,7 @@ namespace dt
 
     std::string Velocity::getName() const
     {
-      return "Velocity";
+      return VELOCITY;
     }
 
     const ComponentData& Velocity::getData() const

@@ -7,12 +7,13 @@
 #include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 #include "Entity.hpp"
+#include "Tags.hpp"
 
 
 namespace dt
 {
-  const std::string MovementSystem::posi_str = "Position";
-  const std::string MovementSystem::velo_str = "Velocity";
+  const std::string MovementSystem::posi_str = POSITION;
+  const std::string MovementSystem::velo_str = VELOCITY;
 
   void MovementSystem::update(Entity& entity)
   {

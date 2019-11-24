@@ -7,18 +7,18 @@
 #include <iostream>
 
 #include <SFML/Window/Event.hpp>
+#include <Thor/Input/InputNames.hpp>
 
 #include <Logic.hpp>
-
-#include <Thor/Input/InputNames.hpp>
+#include <Tags.hpp>
 
 namespace
 {
     std::string visualToTex(const std::string& vis) {
-      if(vis == "TYRANNOSAURUS")
-        return "TREX_TEX";
-      else if(vis == "STEGOSAURUS")
-        return "STEGO_TEX";
+      if(vis == dt::TYRANNOSAURUS)
+        return dt::TREX_TEX;
+      else if(vis == dt::STEGOSAURUS)
+        return dt::STEGO_TEX;
       else
         return "";
     }
@@ -30,20 +30,20 @@ namespace dt
     ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
-      
+
       //Get keys from file
       std::ifstream keyFile;
 	  std::string filePath = "../resources/keys/KeyConfig.txt";
 	  keyFile.open(filePath);
-		
+
 	  std::string keyUp;
 	  std::string keyDown;
 	  std::string keyLeft;
 	  std::string keyRight;
 	  std::string keySlow;
-	  
+
 	  keyFile >> keyUp >> keyUp >> keyDown >> keyDown >> keyLeft >> keyLeft >> keyRight >> keyRight >> keySlow >> keySlow;
-		
+
 	  keyFile.close();
 
       // Create default key associations
@@ -52,7 +52,7 @@ namespace dt
       thor::Action left (thor::toKeyboardKey(keyLeft), thor::Action::ReleaseOnce);
       thor::Action right (thor::toKeyboardKey(keyRight), thor::Action::ReleaseOnce);
       thor::Action slow (thor::toKeyboardKey(keySlow), thor::Action::Hold);
-      
+
       input.associate(up, "RUN_UP");
       input.associate(down, "RUN_DOWN");
       input.associate(left, "RUN_LEFT");
@@ -61,7 +61,7 @@ namespace dt
       input.associate(slow && down, "WALK_DOWN");
       input.associate(slow && left, "WALK_LEFT");
       input.associate(slow && right, "WALK_RIGHT");
-      
+
       const int dinoWidth = 32;
       const int dinoHeight = 32;
 
@@ -174,31 +174,31 @@ namespace dt
     void HumanView::drawMap()
     {
       sf::Sprite grass;
-      grass.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grass.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grass.setTextureRect(sf::IntRect(0, 0, 32, 32));
 
       sf::Sprite water;
-      water.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      water.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       water.setTextureRect(sf::IntRect(32, 0, 32, 32));
 
       sf::Sprite grassEdgeBottomLeft;
-      grassEdgeBottomLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeBottomLeft.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeBottomLeft.setTextureRect(sf::IntRect(64, 32, 32, 32));
 
       sf::Sprite grassEdgeBottomRight;
-      grassEdgeBottomRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeBottomRight.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeBottomRight.setTextureRect(sf::IntRect(64, 0, 32, 32));
 
       sf::Sprite grassEdgeTopLeft;
-      grassEdgeTopLeft.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeTopLeft.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeTopLeft.setTextureRect(sf::IntRect(0, 32, 32, 32));
 
       sf::Sprite grassEdgeTopRight;
-      grassEdgeTopRight.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      grassEdgeTopRight.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       grassEdgeTopRight.setTextureRect(sf::IntRect(32, 32, 32, 32));
 
       sf::Sprite mountain;
-      mountain.setTexture(ResourceManager::currentManager->getTexture("TERRAIN"));
+      mountain.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       mountain.setTextureRect(sf::IntRect(0, 64, 32, 32));
 
       mapView.setCenter(sf::Vector2f(centerX, centerY));

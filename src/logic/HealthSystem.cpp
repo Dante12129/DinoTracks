@@ -6,9 +6,10 @@
 
 #include "components/Component.hpp"
 #include "Entity.hpp"
+#include "Tags.hpp"
 
 namespace dt {
-    const std::string HealthSystem::hea_str = "Health";
+    const std::string HealthSystem::hea_str = HEALTH;
 
     void HealthSystem::update(Entity &dino) {
         // Get id

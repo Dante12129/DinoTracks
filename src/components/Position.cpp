@@ -5,6 +5,7 @@
 #include <SFML/System/Vector2.hpp>
 #include "components/Component.hpp"
 #include "components/Position.hpp"
+#include "Tags.hpp"
 
 namespace dt
 {
@@ -16,7 +17,7 @@ namespace dt
 
     std::string Position::getName() const
     {
-      return "Position";
+      return POSITION;
     }
 
     const ComponentData& Position::getData() const
