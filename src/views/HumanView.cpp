@@ -68,6 +68,7 @@ namespace dt
       // Create player's visual representation
       const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(visualToTex(initial.getPlayerVisual()));
       player.setTexture(playerTex);
+      player.setColor(sf::Color::Blue);
       player.setPosition({dinoWidth * 20, dinoHeight * 11});
 
       // Create visual representation of enemies
