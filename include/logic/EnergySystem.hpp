@@ -26,10 +26,6 @@ namespace dt
         void eat(Entity& dino, const Entity& food);
 
     private:
-        // Component Identifiers
-        static const std::string ene_str;
-        static const std::string food_str;
-
         // Unordered map for buffering changes
         std::unordered_map<int, int> eneBuffer;
     };

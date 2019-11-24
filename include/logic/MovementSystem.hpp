@@ -30,9 +30,6 @@ namespace dt
     void stop(dt::Entity& dino);
 
   private:
-      // Component Identifiers
-      static const std::string posi_str;
-      static const std::string velo_str;
       EnergySystem& enesys;
       Map& map;
 

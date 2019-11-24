@@ -8,8 +8,6 @@
 #include "Tags.hpp"
 
 namespace dt {
-    const std::string HealthSystem::hea_str = HEALTH;
-
     HealthSystem::HealthSystem(){
         for (int i=0; i<=40; i++){
             heaBuffer.insert({i,100});
@@ -21,7 +19,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy and food components
-        Component &energyComponent = dino.getComponent(hea_str);
+        Component &energyComponent = dino.getComponent(HEALTH);
 
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(heaBuffer[id]));
@@ -33,7 +31,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy
-        Component &ene = dino.getComponent(hea_str);
+        Component &ene = dino.getComponent(HEALTH);
 
         // Set value in buffer change
         heaBuffer[id] = ene.getData().asInt + val;
@@ -45,7 +43,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy
-        Component &ene = dino.getComponent(hea_str);
+        Component &ene = dino.getComponent(HEALTH);
 
         // Set value in buffer change
         heaBuffer[id] = val;

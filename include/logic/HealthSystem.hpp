@@ -24,9 +24,6 @@ namespace dt
         void set(Entity& dino, int val);
 
     private:
-        // Component Identifiers
-        static const std::string hea_str;
-
         // Unordered map for buffering changes
         std::unordered_map<int, int> heaBuffer;
     };

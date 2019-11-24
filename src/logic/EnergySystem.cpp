@@ -9,9 +9,6 @@
 #include "Tags.hpp"
 
 namespace dt {
-    const std::string EnergySystem::ene_str = ENERGY;
-    const std::string EnergySystem::food_str = FOOD;
-
     EnergySystem::EnergySystem(){
         for (int i=0; i<=40; i++){
             eneBuffer.insert({i,100});
@@ -23,7 +20,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy and food components
-        Component& energyComponent = dino.getComponent(ene_str);
+        Component& energyComponent = dino.getComponent(ENERGY);
 
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(eneBuffer[0]));
@@ -35,7 +32,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy
-        Component& ene = dino.getComponent(ene_str);
+        Component& ene = dino.getComponent(ENERGY);
 
         // Set value in buffer change
         eneBuffer[0] = ene.getData().asInt+val;
@@ -47,7 +44,7 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy
-        Component& ene = dino.getComponent(ene_str);
+        Component& ene = dino.getComponent(ENERGY);
 
         // Set value in buffer change
         eneBuffer[id] = val;
@@ -58,10 +55,10 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy
-        Component& ene = dino.getComponent(ene_str);
+        Component& ene = dino.getComponent(ENERGY);
 
         // Get food
-        Component& food_ene = dino.getComponent(food_str);
+        Component& food_ene = dino.getComponent(ENERGY);
 
         // Set value in buffer change
         eneBuffer[id] = ene.getData().asInt + food_ene.getData().asInt;
