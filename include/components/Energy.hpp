@@ -21,6 +21,7 @@ namespace dt
 
     private:
         ComponentData ene;
+        ComponentData Max_ene;
     };
 }
 

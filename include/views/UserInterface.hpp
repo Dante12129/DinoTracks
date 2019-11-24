@@ -22,6 +22,8 @@ namespace dt
     //Game Loop
     void draw(sf::RenderWindow & window);
     void setTurn(const Logic& logic);
+    void setEnergy(const Logic& logic);
+    void setHealth(const Logic& logic);
         
     private:
 	    sf::View uiview;

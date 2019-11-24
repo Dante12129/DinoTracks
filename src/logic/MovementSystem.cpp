@@ -15,6 +15,9 @@ namespace dt
   const std::string MovementSystem::posi_str = POSITION;
   const std::string MovementSystem::velo_str = VELOCITY;
 
+  MovementSystem::MovementSystem(EnergySystem& enesys, Map& map):enesys(enesys), map(map)
+  {}
+
   void MovementSystem::update(Entity& entity)
   {
     // Get position and velocity components
@@ -24,6 +27,16 @@ namespace dt
     // Calculate new position based on velocity
     sf::Vector2i newPosition = positionComponent.getData().asVec2i + velocityComponent.getData().asVec2i;
     positionComponent.setData(ComponentData(newPosition));
+
+    // Deduct energy based on terrain
+    int terrain = map.getTile(newPosition.x-1, newPosition.y-1);
+    if(terrain == 0){
+        enesys.adjust(entity, -20);
+    }
+    else if(terrain == 1){
+        enesys.adjust(entity, -1);
+    }
+
   }
 
   void MovementSystem::moveUp(dt::Entity& dino, int vel)
@@ -33,6 +46,9 @@ namespace dt
 
     // Set velocity
     velo.setData({velo.getData().asVec2i.x, -1*vel});
+
+      // Adjust energy
+      //enesys.adjust(dino, -1);
 
   }
   void MovementSystem::moveDown(dt::Entity& dino, int vel)
@@ -44,6 +60,9 @@ namespace dt
     // Set velocity
     velo.setData({velo.getData().asVec2i.x, vel});
 
+      // Adjust energy
+      //enesys.adjust(dino, -1);
+
   }
   void MovementSystem::moveLeft(dt::Entity& dino, int vel)
   {
@@ -54,6 +73,9 @@ namespace dt
     // Set velocity
     velo.setData({-1*vel, velo.getData().asVec2i.y});
 
+      // Adjust energy
+      //enesys.adjust(dino, -1);
+
   }
   void MovementSystem::moveRight(dt::Entity& dino, int vel)
   {
@@ -63,6 +85,9 @@ namespace dt
 
     // Set velocity
     velo.setData({vel, velo.getData().asVec2i.y});
+
+    // Adjust energy
+    //enesys.adjust(dino, -1);
   }
   void MovementSystem::stop(dt::Entity& dino)
   {

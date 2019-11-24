@@ -110,6 +110,18 @@ namespace dt
         {
             std::cout << "Game over." << std::endl;
         }
+
+        //End game if no health
+        if(entities[0].getComponent("Health").getData().asInt<=0){
+            std::cout << "Game over because of low health." << std::endl;
+        }
+
+
+
+        std::cout <<"current health"<< entities[0].getComponent("Health").getData().asInt<<"\n";
+        std::cout <<"current energy"<< entities[0].getComponent("Energy").getData().asInt<<"\n";
+
+
     }
 
     int Logic::getTurn() const
@@ -120,7 +132,7 @@ namespace dt
     void Logic::movePlayer(Direction dir, Speed spd)
     {
         int velocity;
-        
+
         if (spd == Speed::Fast)
         {
             velocity = 3;
@@ -129,7 +141,7 @@ namespace dt
         {
             velocity = 1;
         }
-        
+
         switch (dir)
         {
             case Direction::Up:
@@ -162,11 +174,11 @@ namespace dt
         return dynamic_cast<const Visual&>(entities[0].getComponent(VISUAL)).getString();
     }
 
-    int Logic::getPlayerEnergy() {
+    int Logic::getPlayerEnergy() const {
       return entities[0].getComponent(ENERGY).getData().asInt;
     }
 
-    int Logic::getPlayerHealth(){
+    int Logic::getPlayerHealth() const {
       return entities[0].getComponent(HEALTH).getData().asInt;
     }
 

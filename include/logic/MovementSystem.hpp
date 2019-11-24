@@ -12,12 +12,15 @@
 #include "components/Velocity.hpp"
 #include "Entity.hpp"
 #include "System.hpp"
+#include "EnergySystem.hpp"
+#include "Map.hpp"
 
 namespace dt
 {
   class MovementSystem : public System //This system deals with functionality of movement
   {
   public:
+    MovementSystem(EnergySystem& enesys, Map& map);
     virtual void update(Entity& entity) override;
 
     void moveUp(dt::Entity& dino, int velocity);
@@ -30,6 +33,9 @@ namespace dt
       // Component Identifiers
       static const std::string posi_str;
       static const std::string velo_str;
+      EnergySystem& enesys;
+      Map& map;
+
   };
 }
 

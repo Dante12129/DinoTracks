@@ -144,7 +144,13 @@ namespace dt
       map = &logic.getMap();
       centerX = logic.getPlayerPosition().x * 32 + 11;
       centerY = logic.getPlayerPosition().y * 32;
-	    ui.setTurn(logic);
+
+      // Update turn number
+      ui.setTurn(logic);
+
+      // Update Health and Energy Bar
+      ui.setHealth(logic);
+      ui.setEnergy(logic);
     }
 
     void HumanView::draw()

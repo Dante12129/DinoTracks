@@ -8,7 +8,7 @@
 
 namespace dt
 {
-    Health::Health(int x)
+    Health::Health(int x) : hea(x)
     {}
 
     std::string Health::getName() const
