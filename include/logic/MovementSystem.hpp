@@ -20,7 +20,7 @@ namespace dt
   class MovementSystem : public System //This system deals with functionality of movement
   {
   public:
-    MovementSystem(EnergySystem& enesys, Map& map);
+    MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map);
     virtual void update(Entity& entity) override;
 
     void moveUp(dt::Entity& dino, int velocity);
@@ -30,6 +30,7 @@ namespace dt
     void stop(dt::Entity& dino);
 
   private:
+      const std::vector<Entity>& entities;
       EnergySystem& enesys;
       Map& map;
 

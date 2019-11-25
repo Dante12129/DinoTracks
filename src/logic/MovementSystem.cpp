@@ -7,6 +7,8 @@
 #include <iostream>
 
 #include <SFML/System/Vector2.hpp>
+#include <Thor/Graphics/ToString.hpp>
+
 #include "components/Component.hpp"
 #include "Entity.hpp"
 #include "Tags.hpp"
@@ -14,7 +16,8 @@
 
 namespace dt
 {
-  MovementSystem::MovementSystem(EnergySystem& enesys, Map& map):enesys(enesys), map(map)
+  MovementSystem::MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map)
+      : entities(entities), enesys(enesys), map(map)
   {}
 
   void MovementSystem::update(Entity& entity)
@@ -29,15 +32,31 @@ namespace dt
     sf::Vector2i finalVelocity = velocity;
 
     // Test collision in all four directions
-    for(int i = 0; abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
+    for(int i = 0; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
     {
-      if(map.getTile(position.x + i, position.y) != 1)
+      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      {
+        return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
+      });
+      if(it != entities.cend())
+      {
+        break;
+      }
+      else if(map.getTile(position.x + i, position.y) != 1)
         break;
       else
         finalVelocity.x = i;
     }
     for(int i = 0; abs(i) <= abs(velocity.y); i += velocity.y > 0 ? 1 : -1)
     {
+      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      {
+          return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
+      });
+      if(it != entities.cend())
+      {
+        break;
+      }
       if(map.getTile(position.x, position.y + i) != 1)
         break;
       else

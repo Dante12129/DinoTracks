@@ -8,6 +8,7 @@
 #include <chrono>
 
 #include <SFML/System/Time.hpp>
+#include <Thor/Graphics/ToString.hpp>
 
 #include <Logic.hpp>
 #include <Entity.hpp>
@@ -116,8 +117,8 @@ namespace dt
             std::cout << "Game over because of low health." << std::endl;
         }
 
-        std::cout << "current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
-        std::cout << "current energy: " << entities[0].getComponent("Energy").getData().asInt << "\n";
+//        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
+//        std::cout << "Current energy: " << entities[0].getComponent("Energy").getData().asInt << "\n";
     }
 
     int Logic::getTurn() const
@@ -229,8 +230,8 @@ namespace dt
                 coord.y = y_cord(mt);
             }
 
-            std::cout << "Chosen coords for " << num << " are " << coord.x << ", " << coord.y << std::endl;
-            std::cout << "Type is " << map.getTile(coord.x, coord.y) << std::endl;
+//            std::cout << "Chosen coords for " << num << " are " << coord.x << ", " << coord.y << std::endl;
+//            std::cout << "Type is " << map.getTile(coord.x, coord.y) << std::endl;
 
             // Vector of coordinates returned
             coordinates.push_back(coord);
