@@ -142,8 +142,8 @@ namespace dt
       //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
         
       map = &logic.getMap();
-      centerX = logic.getPlayerPosition().x * 32 + 11;
-      centerY = logic.getPlayerPosition().y * 32;
+      centerX = (logic.getPlayerPosition().x + 1) * 32 + 11;
+      centerY = (logic.getPlayerPosition().y + 1) * 32;
 
       // Update turn number
       ui.setTurn(logic);
@@ -215,7 +215,6 @@ namespace dt
 
       int posX = 0;
       int posY = 0;
-      map->getTile(0, 0);
 
       for (int r = 0; r < 66; ++r)
       {
