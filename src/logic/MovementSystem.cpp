@@ -31,6 +31,9 @@ namespace dt
     sf::Vector2i velocity = velocityComponent.getData().asVec2i;
     sf::Vector2i finalVelocity = velocity;
 
+    // Variables for responding to collision
+    int collidedEntity = -1;
+
     // Test collision in all four directions
     for(int i = 0; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
     {
@@ -40,6 +43,7 @@ namespace dt
       });
       if(it != entities.cend())
       {
+        collidedEntity = it->getID();
         break;
       }
       else if(map.getTile(position.x + i, position.y) != 1)
@@ -55,6 +59,7 @@ namespace dt
       });
       if(it != entities.cend())
       {
+        collidedEntity = it->getID();
         break;
       }
       if(map.getTile(position.x, position.y + i) != 1)
@@ -76,6 +81,8 @@ namespace dt
       if(finalVelocity.y != 0)
         enesys.adjust(entity, -1 * abs(finalVelocity.y));
     }
+
+    // Perform actions on entities based on collision
   }
 
   void MovementSystem::moveUp(dt::Entity& dino, int vel)

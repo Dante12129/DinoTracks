@@ -48,7 +48,8 @@ namespace dt
         id = x;
     }
 
-    int Entity::getID() {
+    int Entity::getID() const
+    {
         return id;
     }
 }
