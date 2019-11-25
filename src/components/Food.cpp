@@ -8,8 +8,10 @@
 
 namespace dt
 {
-    Food::Food(int x) : food_ene(x)
-    {}
+    Food::Food(int x, int y){
+        food_enehea.asVec2i.x = x;
+        food_enehea.asVec2i.y = y;
+    }
 
     std::string Food::getName() const
     {
@@ -18,11 +20,11 @@ namespace dt
 
     const ComponentData& Food::getData() const
     {
-        return food_ene;
+        return food_enehea;
     }
 
     void Food::setData(const ComponentData& data)
     {
-        food_ene.asInt = data.asInt;
+        food_enehea.asVec2i = data.asVec2i;
     }
 }

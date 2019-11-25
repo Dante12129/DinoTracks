@@ -49,6 +49,20 @@ namespace dt {
         heaBuffer[id] = val;
     }
 
+    void HealthSystem::eat(dt::Entity &dino, const dt::Entity &food) {
+        // Get id
+        int id = dino.getID();
+
+        // Get energy
+        Component& ene = dino.getComponent(HEALTH);
+
+        // Get food
+        Component& food_ene = dino.getComponent(HEALTH);
+
+        // Set value in buffer change
+        heaBuffer[id] = ene.getData().asInt + food_ene.getData().asVec2i.y;
+    }
+
 
 
 }

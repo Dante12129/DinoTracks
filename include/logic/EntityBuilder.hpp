@@ -20,7 +20,7 @@ namespace dt
         void addVelocityComponent(const sf::Vector2i& vel);
         void addEnergyComponent(int ene);
         void addHealthComponent(int hea);
-        void addFoodComponent(int food_ene);
+        void addFoodComponent(int food_ene, int food_hea);
         void addVisualComponent(const std::string& vis);
 
     private:
