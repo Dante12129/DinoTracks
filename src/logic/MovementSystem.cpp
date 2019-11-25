@@ -48,17 +48,15 @@ namespace dt
     sf::Vector2i newPosition = position + finalVelocity;
     positionComponent.setData(ComponentData(newPosition));
 
-    // Deduct energy based on terrain
-    int terrain = map.getTile(newPosition.x-1, newPosition.y-1);
-    if(terrain == 0)
+    // Deduct energy based on spaces moved
+    if(entity.hasComponent(ENERGY))
     {
-        enesys.adjust(entity, -20);
+      int terrain = map.getTile(newPosition.x, newPosition.y);
+      if(finalVelocity.x != 0)
+        enesys.adjust(entity, -1 * abs(finalVelocity.x));
+      if(finalVelocity.y != 0)
+        enesys.adjust(entity, -1 * abs(finalVelocity.y));
     }
-    else if(terrain == 1)
-    {
-        enesys.adjust(entity, -1);
-    }
-
   }
 
   void MovementSystem::moveUp(dt::Entity& dino, int vel)
