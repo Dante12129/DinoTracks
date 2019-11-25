@@ -35,6 +35,14 @@ namespace dt
     const std::string FOOD = "Food";
     const std::string VISUAL = "Visual";
 
+//    Tiles
+    const int WATER = 0;
+    const int GRASS = 1;
+    const int GRASS_BOTTOM_LEFT = 2;
+    const int GRASS_BOTTOM_RIGHT = 3;
+    const int GRASS_TOP_RIGHT = 4;
+    const int GRASS_TOP_LEFT = 5;
+    const int MOUNTAIN = 6;
 }
 
 

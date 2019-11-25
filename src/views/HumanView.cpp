@@ -222,31 +222,31 @@ namespace dt
         {
           switch (map->getTile(c, r))
           {
-            case 0:
+            case WATER:
               water.setPosition(sf::Vector2f(posX, posY));
               window.draw(water);
               break;
-            case 1:
+            case GRASS:
               grass.setPosition(sf::Vector2f(posX, posY));
               window.draw(grass);
               break;
-            case 2:
+            case GRASS_BOTTOM_LEFT:
               grassEdgeBottomLeft.setPosition(sf::Vector2f(posX, posY));
               window.draw(grassEdgeBottomLeft);
               break;
-            case 3:
+            case GRASS_BOTTOM_RIGHT:
               grassEdgeBottomRight.setPosition(sf::Vector2f(posX, posY));
               window.draw(grassEdgeBottomRight);
               break;
-            case 4:
+            case GRASS_TOP_RIGHT:
               grassEdgeTopRight.setPosition(sf::Vector2f(posX, posY));
               window.draw(grassEdgeTopRight);
               break;
-            case 5:
+            case GRASS_TOP_LEFT:
               grassEdgeTopLeft.setPosition(sf::Vector2f(posX, posY));
               window.draw(grassEdgeTopLeft);
               break;
-            case 6:
+            case MOUNTAIN:
               mountain.setPosition(sf::Vector2f(posX, posY));
               window.draw(mountain);
           }
