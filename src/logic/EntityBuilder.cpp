@@ -10,6 +10,7 @@
 #include <components/Health.hpp>
 #include <components/Food.hpp>
 #include <components/Visual.hpp>
+#include <components/Score.hpp>
 
 namespace dt
 {
@@ -55,6 +56,13 @@ namespace dt
     void EntityBuilder::addVisualComponent(const std::string& vis)
     {
         auto component = std::unique_ptr<Visual>(new Visual(vis));
+
+        entity.addComponent(component);
+    }
+
+    void EntityBuilder::addScoreComponent(int sc)
+    {
+        auto component = std::unique_ptr<Score>(new Score(sc));
 
         entity.addComponent(component);
     }

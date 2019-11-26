@@ -26,13 +26,13 @@ namespace dt
         map.loadMapFromFile(1);
 
         // Resize vector and assign Entity IDs based on position
-        entities.resize(10);
-        for(int i=0; i<=9; i++){
+        entities.resize(35);
+        for(int i=0; i<=34; i++){
             entities[i].setID(i);
         }
 
         // Generate random coordinates
-        std::vector<sf::Vector2i> entityCoords = generateCoords(10);
+        std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
         // Create player
         EntityBuilder playerBuilder(entities[0]);
@@ -46,7 +46,7 @@ namespace dt
         Entity escapePod;
         EntityBuilder escapePodBuilder(escapePod); // entities[1]
         escapePodBuilder.addPositionComponent(entityCoords[1]);
-        escapePodBuilder.addVisualComponent("ESCAPEPOD"); //To be changed when textures added
+        escapePodBuilder.addVisualComponent(ESCAPE_POD); //To be changed when textures added
 
         // Assign types and coordinates to enemies
       for (int i = 2; i < 10; ++i)
@@ -58,18 +58,28 @@ namespace dt
 		  if (i % 2 == 0)
 		  {
 			  dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
-			  dinoString = "STEGOSAURUS";
+			  dinoString = STEGOSAURUS;
 		  }
 		  else
 		  {
 			  dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-			  dinoString = "TYRANNOSAURUS";
+			  dinoString = TYRANNOSAURUS;
 		  }
 
 		  dinoBuilder.addPositionComponent(entityCoords.at(i));
 		  dinoBuilder.addHealthComponent(dino.getHealth());
 		  dinoBuilder.addVisualComponent(dinoString);
 	  }
+
+      // Create eggs
+        for (int i = 25; i < 35; ++i)
+        {
+            EntityBuilder eggBuilder(entities[i]);
+
+            eggBuilder.addPositionComponent(entityCoords.at(i));
+            eggBuilder.addVisualComponent(EGG);
+            eggBuilder.addScoreComponent(1);
+        }
 
     }
 
@@ -208,6 +218,17 @@ namespace dt
       }
 
       return visuals;
+    }
+
+    std::vector<sf::Vector2i> Logic::getEggPositions() const
+    {
+        std::vector<sf::Vector2i> eggCoords;
+        for (int i = 25; i < 35; ++i)
+        {
+            eggCoords.push_back(entities.at(i).getData(POSITION).asVec2i);
+        }
+
+        return eggCoords;
     }
 
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)

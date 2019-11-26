@@ -84,6 +84,22 @@ namespace dt
         sprite.setPosition({static_cast<float>(dinoWidth * enemyPositions.at(i).x), static_cast<float>(dinoHeight * enemyPositions.at(i).y)});
         ++i;
       }
+
+      // Create visual representation of eggs
+      auto eggPositions = initial.getEggPositions();
+      auto eggVisuals = ResourceManager::currentManager->getTexture(EGG);
+
+      eggs.resize(10);
+      int j = 0;
+      for(sf::Sprite& sprite: eggs)
+      {
+          sprite.setTexture(eggVisuals);
+          sprite.setPosition({static_cast<float>(eggPositions.at(j).x), static_cast<float>(eggPositions.at(j).y)});
+          std::cout << eggPositions.at(j).x << ", " << eggPositions.at(j).y << std::endl;
+
+          ++j;
+      }
+
     }
 
     void HumanView::processEvents()
@@ -165,6 +181,10 @@ namespace dt
       for(const sf::Sprite& sprite: enemies)
       {
         window.draw(sprite);
+      }
+      for(const sf::Sprite& sprite: eggs)
+      {
+          window.draw(sprite);
       }
       window.setView(window.getDefaultView());
 

@@ -43,6 +43,7 @@ namespace dt
         UserInterface ui;
         sf::Sprite player;
         std::vector<sf::Sprite> enemies;
+        std::vector<sf::Sprite> eggs;
         
         //Map related
         const Map* map = nullptr;

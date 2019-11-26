@@ -22,6 +22,7 @@ namespace dt
         void addHealthComponent(int hea);
         void addFoodComponent(int food_ene);
         void addVisualComponent(const std::string& vis);
+        void addScoreComponent(int sc);
 
     private:
         Entity& entity;

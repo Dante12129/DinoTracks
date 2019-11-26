@@ -60,6 +60,9 @@ namespace dt
         std::vector<sf::Vector2i> getEnemyPositions() const;
         std::vector<std::string> getEnemyVisuals() const;
 
+        //View-Logic Communication for Eggs
+        std::vector<sf::Vector2i> getEggPositions() const;
+
     private:
         std::vector<Entity> entities;
         std::vector<sf::Vector2i> occupiedSpaces;
@@ -68,6 +71,7 @@ namespace dt
         Map map;
         bool actionPerformed = false;
         int turnCount = 10;
+        //int scoreCount;
 
         // Systems
         EnergySystem energy;

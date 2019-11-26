@@ -17,13 +17,16 @@ namespace dt
 
       // Load global resources here
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
-      // Resource must be in the texures, fonts, or sounds subdirectories of the resources directory
+      // Resource must be in the textures, fonts, or sounds subdirectories of the resources directory
       resources.load(ResourceManager::Type::Texture, TERRAIN, "terrain.png");
       resources.load(ResourceManager::Type::Texture, TREX_TEX, "Tyrannosaurus.png");
       resources.load(ResourceManager::Type::Texture, STEGO_TEX, "stegosaurus.png");
+      resources.load(ResourceManager::Type::Texture, EGG, "egg.png");
+      resources.load(ResourceManager::Type::Texture, ESCAPE_POD, "escape_pod.png");
       resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
+
 
 
       // Create the Logic

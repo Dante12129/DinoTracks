@@ -26,6 +26,8 @@ namespace dt
     const std::string METEOR_FONT = "METEOR_FONT";
     const std::string STEGOSAURUS = "STEGOSAURUS";
     const std::string TYRANNOSAURUS = "TYRANNOSAURUS";
+    const std::string EGG = "EGG";
+    const std::string ESCAPE_POD = "ESCAPE_POD";
 
 //    Components
     const std::string POSITION = "Position";
@@ -34,6 +36,7 @@ namespace dt
     const std::string ENERGY = "Energy";
     const std::string FOOD = "Food";
     const std::string VISUAL = "Visual";
+    const std::string SCORE = "Score";
 
 //    Tiles
     const int WATER = 0;
