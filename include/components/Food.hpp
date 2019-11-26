@@ -12,7 +12,7 @@ namespace dt
     class Food : public Component
     {
     public:
-        Food(int x);
+        Food(int x, int y);
 
         std::string getName() const override;
 
@@ -20,7 +20,7 @@ namespace dt
         void setData(const ComponentData& data) override;
 
     private:
-        ComponentData food_ene;
+        ComponentData food_enehea;
     };
 }
 

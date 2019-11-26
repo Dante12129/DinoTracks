@@ -3,7 +3,6 @@
 //
 
 #include "EnergySystem.hpp"
-
 #include "components/Component.hpp"
 #include "Entity.hpp"
 #include "Tags.hpp"
@@ -23,7 +22,7 @@ namespace dt {
         Component& energyComponent = dino.getComponent(ENERGY);
 
         // Use buffer change map to update energy
-        energyComponent.setData(ComponentData(eneBuffer[0]));
+        energyComponent.setData(ComponentData(eneBuffer[id]));
     }
 
     //This method add input val to the original energy value
@@ -35,7 +34,7 @@ namespace dt {
         Component& ene = dino.getComponent(ENERGY);
 
         // Set value in buffer change
-        eneBuffer[0] = ene.getData().asInt+val;
+        eneBuffer[id] = ene.getData().asInt+val;
     }
 
     //This method set input val as the energy value
@@ -61,7 +60,7 @@ namespace dt {
         Component& food_ene = dino.getComponent(ENERGY);
 
         // Set value in buffer change
-        eneBuffer[id] = ene.getData().asInt + food_ene.getData().asInt;
+        eneBuffer[id] = ene.getData().asInt + food_ene.getData().asVec2i.x;
     }
 
 

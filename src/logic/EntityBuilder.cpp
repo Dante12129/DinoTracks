@@ -46,9 +46,9 @@ namespace dt
         entity.addComponent(component);
     }
 
-    void EntityBuilder::addFoodComponent(int food_ene)
+    void EntityBuilder::addFoodComponent(int food_ene, int food_hea)
     {
-        auto component = std::unique_ptr<Food>(new Food(food_ene));
+        auto component = std::unique_ptr<Food>(new Food(food_ene, food_hea));
 
         entity.addComponent(component);
     }
