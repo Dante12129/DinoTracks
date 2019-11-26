@@ -87,14 +87,14 @@ namespace dt
 
       // Create visual representation of eggs
       auto eggPositions = initial.getEggPositions();
-      auto eggVisuals = ResourceManager::currentManager->getTexture(EGG);
+      auto& eggVisuals = ResourceManager::currentManager->getTexture(EGG);
 
       eggs.resize(10);
       int j = 0;
       for(sf::Sprite& sprite: eggs)
       {
           sprite.setTexture(eggVisuals);
-          sprite.setPosition({static_cast<float>(eggPositions.at(j).x), static_cast<float>(eggPositions.at(j).y)});
+          sprite.setPosition({static_cast<float>(dinoWidth * eggPositions.at(j).x), static_cast<float>(dinoHeight * eggPositions.at(j).y)});
           std::cout << eggPositions.at(j).x << ", " << eggPositions.at(j).y << std::endl;
 
           ++j;

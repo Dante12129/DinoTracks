@@ -68,6 +68,8 @@ namespace dt
         finalVelocity.y = i;
     }
 
+    // Perform actions on entities based on collision
+
     // Calculate new position based on velocity
     sf::Vector2i newPosition = position + finalVelocity;
     positionComponent.setData(ComponentData(newPosition));
@@ -81,8 +83,6 @@ namespace dt
       if(finalVelocity.y != 0)
         enesys.adjust(entity, -1 * abs(finalVelocity.y));
     }
-
-    // Perform actions on entities based on collision
   }
 
   void MovementSystem::moveUp(dt::Entity& dino, int vel)
