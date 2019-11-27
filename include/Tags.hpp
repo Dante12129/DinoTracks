@@ -24,10 +24,19 @@ namespace dt
     const std::string TREX_TEX = "TREX_TEX";
     const std::string STEGO_TEX = "STEGO_TEX";
     const std::string METEOR_FONT = "METEOR_FONT";
-    const std::string STEGOSAURUS = "STEGOSAURUS";
-    const std::string TYRANNOSAURUS = "TYRANNOSAURUS";
     const std::string EGG = "EGG";
     const std::string ESCAPE_TEX = "ESCAPE_TEX";
+
+//    Dinosaurs
+    const std::string STEGOSAURUS = "STEGOSAURUS";
+    const std::string TYRANNOSAURUS = "TYRANNOSAURUS";
+    const std::string VELOCIRAPTOR = "VELOCIRAPTOR";
+    const std::string SPINOSAURUS = "SPINOSAURUS";
+    const std::string ALLOSAURUS = "ALLOSAURUS";
+    const std::string PACHYCEPHALOSAURUS = "PACHYCEPHALOSAURUS";
+    const std::string PROTOCERATOPS = "PROTOCERATOPS";
+    const std::string PARASAUROLOPHUS = "PARASAUROLOPHUS";
+
 
 //    Components
     const std::string POSITION = "Position";
