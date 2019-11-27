@@ -45,6 +45,7 @@ namespace dt
         void update(const sf::Time& delta);
         void doTurn();
         int getTurn() const;
+        int getScore() const;
 
         // View-Logic Communication For Player
         void movePlayer(Direction dir, Speed spd);
@@ -70,7 +71,8 @@ namespace dt
         Map map;
         bool actionPerformed = false;
         int turnCount = 10;
-        //int scoreCount;
+        int scoreCount;
+
 
         // Systems
         EnergySystem energy;

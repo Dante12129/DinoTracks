@@ -160,6 +160,9 @@ namespace dt
       // Update turn number
       ui.setTurn(logic);
 
+      // Update score
+      ui.setScore(logic);
+
       // Update Health and Energy Bar
       ui.setHealth(logic);
       ui.setEnergy(logic);

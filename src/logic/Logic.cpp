@@ -154,6 +154,12 @@ namespace dt
         return turnCount;
     }
 
+    int Logic::getScore() const
+    {
+        int scoreCount = movement.getScoreCount();
+        return scoreCount;
+    }
+
     void Logic::movePlayer(Direction dir, Speed spd)
     {
         int velocity;

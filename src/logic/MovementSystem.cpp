@@ -69,6 +69,7 @@ namespace dt
     }
 
     // Perform actions on entities based on collision
+    entityCollision(entity, collidedEntity);
 
     // Calculate new position based on velocity
     sf::Vector2i newPosition = position + finalVelocity;
@@ -142,5 +143,41 @@ namespace dt
 
     //set velocity as 0
     velo.setData({0, 0});
+  }
+  void MovementSystem::entityCollision(dt::Entity &entity, dt::Entity *collidedEntity)
+  {
+      if (collidedEntity != nullptr)
+      {
+          if (entity.getID() == 0) // Player initiates collision
+          {
+//            std::cout << "Initiator: " << entity.getID() << std::endl;
+              int id = collidedEntity->getID();
+              std::cout << "Entity Collision: " << id << std::endl;
+
+              if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
+              {
+//                std::cout << "Collision with enemy." << std::endl;
+//                 CombatSystem
+              }
+              else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
+              {
+//                std::cout << "Collision with food." << std::endl;
+//                 Eat
+              }
+              else if (id >= EGG_START && id <= EGG_END) // Collision with egg
+              {
+                  std::cout << "Collision with egg." << std::endl;
+                  Component& scoreComponent = collidedEntity->getComponent(SCORE);
+                  int eggScore = scoreComponent.getData().asInt;
+                  score += eggScore;
+                  std::cout << "Score: " << score << std::endl;
+              }
+
+          }
+      }
+  }
+  int MovementSystem::getScoreCount() const
+  {
+      return score;
   }
 }

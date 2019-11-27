@@ -24,7 +24,8 @@ namespace dt
     void setTurn(const Logic& logic);
     void setEnergy(const Logic& logic);
     void setHealth(const Logic& logic);
-        
+    void setScore(const Logic& logic);
+
     private:
 	    sf::View uiview;
 	    
@@ -35,6 +36,8 @@ namespace dt
 
 	    sf::Text meteorcountdown;
 	    sf::Text turns;
+	    sf::Text scorecount;
+	    sf::Text score;
     };
 }
 
