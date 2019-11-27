@@ -14,13 +14,14 @@
 #include "System.hpp"
 #include "EnergySystem.hpp"
 #include "Map.hpp"
+#include "HealthSystem.hpp"
 
 namespace dt
 {
   class MovementSystem : public System //This system deals with functionality of movement
   {
   public:
-      MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map);
+      MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys);
       virtual void update(Entity& entity) override;
 
       void moveUp(dt::Entity& dino, int velocity);
@@ -35,6 +36,7 @@ namespace dt
   private:
       const std::vector<Entity>& entities;
       EnergySystem& enesys;
+      HealthSystem& heasys;
       Map& map;
       int score = 0;
   };

@@ -16,8 +16,8 @@
 
 namespace dt
 {
-  MovementSystem::MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map)
-      : entities(entities), enesys(enesys), map(map)
+  MovementSystem::MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys)
+      : entities(entities), enesys(enesys), map(map), heasys(heasys)
   {}
 
   void MovementSystem::update(Entity& entity)
@@ -168,8 +168,11 @@ namespace dt
                   if (velocity.y > 0) { position.y += 1; }
                   else if (velocity.y < 0) { position.y += -1; }
 
-//                std::cout << "Collision with food." << std::endl;
-//                 Eat
+//                  std::cout << "Collision with food." << std::endl;
+
+//                  HealthSystem and EnergySystem eat
+                  heasys.eat(entity, *collidedEntity);
+                  enesys.eat(entity, *collidedEntity);
               }
               else if (id >= EGG_START && id <= EGG_END) // Collision with egg
               {
