@@ -12,18 +12,6 @@
 #include <Logic.hpp>
 #include <Tags.hpp>
 
-namespace
-{
-    std::string visualToTex(const std::string& vis) {
-      if(vis == dt::TYRANNOSAURUS)
-        return dt::TREX_TEX;
-      else if(vis == dt::STEGOSAURUS)
-        return dt::STEGO_TEX;
-      else
-        return "";
-    }
-}
-
 namespace dt
 {
     HumanView::HumanView(const Logic& initial) : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
@@ -66,38 +54,46 @@ namespace dt
       const int dinoHeight = 32;
 
       // Create player's visual representation
-      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(visualToTex(initial.getPlayerVisual()));
+      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(initial.getPlayerVisual());
       player.setTexture(playerTex);
       player.setColor(sf::Color::Blue);
       player.setPosition({dinoWidth * 20, dinoHeight * 11});
 
-      // Create visual representation of enemies
-      auto enemyPositions = initial.getEnemyPositions();
-      auto enemyVis = initial.getEnemyVisuals();
-      int i = 0;
-      enemies.resize(8);
-      for(sf::Sprite& sprite: enemies)
-      {
-//        std::cout << "Sprite visual: " << enemyVis.at(i) << std::endl;
-        const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(visualToTex(enemyVis.at(i)));
-        sprite.setTexture(dinoTexture);
-        sprite.setPosition({static_cast<float>(dinoWidth * enemyPositions.at(i).x), static_cast<float>(dinoHeight * enemyPositions.at(i).y)});
-        ++i;
-      }
+      // Create visual representation of enemies, food, and eggs
+      auto entPositions = initial.getEntPositions();
 
-      // Create visual representation of eggs
-      auto eggPositions = initial.getEggPositions();
+      auto enemyVis = initial.getEnemyVisuals();
+      auto& herbVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
+      auto& carnVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
       auto& eggVisuals = ResourceManager::currentManager->getTexture(EGG);
 
-      eggs.resize(10);
-      int j = 0;
-      for(sf::Sprite& sprite: eggs)
+      ents.resize(33);
+      int i = 0;
+      for(sf::Sprite& sprite: ents)
       {
-          sprite.setTexture(eggVisuals);
-          sprite.setPosition({static_cast<float>(dinoWidth * eggPositions.at(j).x), static_cast<float>(dinoHeight * eggPositions.at(j).y)});
-          std::cout << eggPositions.at(j).x << ", " << eggPositions.at(j).y << std::endl;
+              if (i >= 0 && i <= 7) //enemies
+              {
+                  const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(enemyVis.at(i));
+                  sprite.setTexture(dinoTexture);
+                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
+              }
+              else if (i >= 8 && i <= 17) //herb food
+              {
+                  sprite.setTexture(herbVis); //change when texture loaded
+                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
+              }
 
-          ++j;
+              else if (i >= 18 && i <= 22) // carn food
+              {
+                  sprite.setTexture(carnVis); // change when texture loaded
+                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
+              }
+              else if (i >= 23 && i<= 32) //eggs
+              {
+                  sprite.setTexture(eggVisuals);
+                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
+              }
+          ++i;
       }
 
     }
@@ -178,14 +174,12 @@ namespace dt
 
       window.draw(player);
       window.setView(mapView);
-      for(const sf::Sprite& sprite: enemies)
-      {
-        window.draw(sprite);
-      }
-      for(const sf::Sprite& sprite: eggs)
+
+      for(const sf::Sprite& sprite: ents)
       {
           window.draw(sprite);
       }
+
       window.setView(window.getDefaultView());
 
       ui.draw(window);

@@ -57,11 +57,10 @@ namespace dt
         const Map& getMap() const;
 
         // View-Logic Communication For Enemies
-        std::vector<sf::Vector2i> getEnemyPositions() const;
         std::vector<std::string> getEnemyVisuals() const;
 
-        //View-Logic Communication for Eggs
-        std::vector<sf::Vector2i> getEggPositions() const;
+        //View-Logic Communication for Enemies, Food, and Eggs
+        std::vector<sf::Vector2i> getEntPositions() const;
 
     private:
         std::vector<Entity> entities;

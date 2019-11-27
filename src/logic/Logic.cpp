@@ -71,6 +71,24 @@ namespace dt
 		  dinoBuilder.addVisualComponent(dinoString);
 	  }
 
+      // Create herb food
+      for(int i = FOOD_HERB_START; i <= FOOD_HERB_END; ++i)
+      {
+          EntityBuilder herbBuilder(entities[i]);
+
+          herbBuilder.addPositionComponent(entityCoords.at(i));
+          herbBuilder.addVisualComponent(EGG);
+      }
+
+      // Create carn food
+      for(int i = FOOD_CARN_START; i <= FOOD_CARN_END; ++i)
+      {
+          EntityBuilder carnBuilder(entities[i]);
+
+          carnBuilder.addPositionComponent(entityCoords.at(i));
+          carnBuilder.addVisualComponent(EGG);
+      }
+
       // Create eggs
         for (int i = EGG_START; i <= EGG_END; ++i)
         {
@@ -194,16 +212,15 @@ namespace dt
       return map;
     }
 
-    std::vector<sf::Vector2i> Logic::getEnemyPositions() const
+    std::vector<sf::Vector2i> Logic::getEntPositions() const
     {
-      std::vector<sf::Vector2i> coords;
+        std::vector<sf::Vector2i> coords;
+        for(int i = ENEMY_START; i <= EGG_END; ++i)
+        {
+            coords.push_back(entities.at(i).getData(POSITION).asVec2i);
+        }
 
-      for(int i = ENEMY_START; i <= ENEMY_END; ++i)
-      {
-        coords.push_back(entities.at(i).getData(POSITION).asVec2i);
-      }
-
-      return coords;
+        return coords;
     }
 
     std::vector<std::string> Logic::getEnemyVisuals() const
@@ -218,17 +235,6 @@ namespace dt
       }
 
       return visuals;
-    }
-
-    std::vector<sf::Vector2i> Logic::getEggPositions() const
-    {
-        std::vector<sf::Vector2i> eggCoords;
-        for (int i = EGG_START; i <= EGG_END; ++i)
-        {
-            eggCoords.push_back(entities.at(i).getData(POSITION).asVec2i);
-        }
-
-        return eggCoords;
     }
 
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)

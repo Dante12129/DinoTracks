@@ -44,6 +44,8 @@ namespace dt
         sf::Sprite player;
         std::vector<sf::Sprite> enemies;
         std::vector<sf::Sprite> eggs;
+
+        std::vector<sf::Sprite> ents; // enemies, food, and eggs
         
         //Map related
         const Map* map = nullptr;
