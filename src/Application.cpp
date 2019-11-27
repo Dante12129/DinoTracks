@@ -22,6 +22,8 @@ namespace dt
       resources.load(ResourceManager::Type::Texture, TYRANNOSAURUS, "Tyrannosaurus.png");
       resources.load(ResourceManager::Type::Texture, STEGOSAURUS, "stegosaurus.png");
       resources.load(ResourceManager::Type::Texture, EGG, "egg.png");
+      resources.load(ResourceManager::Type::Texture, MEAT, "meat.png");
+      resources.load(ResourceManager::Type::Texture, TREE, "tree.png");
       resources.load(ResourceManager::Type::Texture, ESCAPE_TEX, "escape_pod.png");
       resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");

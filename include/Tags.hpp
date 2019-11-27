@@ -26,6 +26,8 @@ namespace dt
     const std::string METEOR_FONT = "METEOR_FONT";
     const std::string EGG = "EGG";
     const std::string ESCAPE_TEX = "ESCAPE_TEX";
+    const std::string MEAT = "MEAT";
+    const std::string TREE = "TREE";
 
 //    Dinosaurs
     const std::string STEGOSAURUS = "STEGOSAURUS";

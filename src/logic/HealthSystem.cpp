@@ -33,6 +33,15 @@ namespace dt {
         // Get energy
         Component &ene = dino.getComponent(HEALTH);
 
+        int newhea = ene.getData().asInt + val;
+        // Check value of energy
+        if (newhea>=100){
+            newhea = 100;
+        }
+        else if(newhea<=0){
+            newhea = 0;
+        }
+
         // Set value in buffer change
         heaBuffer[id] = ene.getData().asInt + val;
     }
@@ -59,8 +68,17 @@ namespace dt {
         // Get food
         Component& food_ene = dino.getComponent(HEALTH);
 
+        int newhea = ene.getData().asInt + food_ene.getData().asVec2i.y;
+        // Check value of energy
+        if (newhea>=100){
+            newhea = 100;
+        }
+        else if(newhea<=0){
+            newhea = 0;
+        }
+
         // Set value in buffer change
-        heaBuffer[id] = ene.getData().asInt + food_ene.getData().asVec2i.y;
+        heaBuffer[id] = newhea;
     }
 
 
