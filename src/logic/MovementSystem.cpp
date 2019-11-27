@@ -69,7 +69,7 @@ namespace dt
     }
 
     // Perform actions on entities based on collision
-    entityCollision(entity, collidedEntity);
+    entityCollision(entity, collidedEntity, velocity, position);
 
     // Calculate new position based on velocity
     sf::Vector2i newPosition = position + finalVelocity;
@@ -144,7 +144,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
-  void MovementSystem::entityCollision(dt::Entity &entity, dt::Entity *collidedEntity)
+  void MovementSystem::entityCollision(dt::Entity &entity, dt::Entity *collidedEntity, sf::Vector2i velocity, sf::Vector2i& position)
   {
       if (collidedEntity != nullptr)
       {
@@ -161,11 +161,25 @@ namespace dt
               }
               else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
               {
+                  // Check velocity and move player over food
+                  if (velocity.x > 0) { position.x += 1; }
+                  else if (velocity.x < 0) { position.x += -1; }
+
+                  if (velocity.y > 0) { position.y += 1; }
+                  else if (velocity.y < 0) { position.y += -1; }
+
 //                std::cout << "Collision with food." << std::endl;
 //                 Eat
               }
               else if (id >= EGG_START && id <= EGG_END) // Collision with egg
               {
+                  // Check velocity and move player over egg
+                  if (velocity.x > 0) { position.x += 1; }
+                  else if (velocity.x < 0) { position.x += -1; }
+
+                  if (velocity.y > 0) { position.y += 1; }
+                  else if (velocity.y < 0) { position.y += -1; }
+
                   std::cout << "Collision with egg." << std::endl;
                   Component& scoreComponent = collidedEntity->getComponent(SCORE);
                   int eggScore = scoreComponent.getData().asInt;

@@ -63,8 +63,8 @@ namespace dt
       auto entPositions = initial.getEntPositions();
 
       auto enemyVis = initial.getEnemyVisuals();
-      auto& herbVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
-      auto& carnVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
+      auto herbVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
+      auto carnVis = ResourceManager::currentManager->getTexture(EGG); // change when texture loaded
       auto& eggVisuals = ResourceManager::currentManager->getTexture(EGG);
 
       ents.resize(33);
