@@ -35,8 +35,8 @@ namespace dt
         std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
         // Create player
-        EntityBuilder playerBuilder(entities[0]);
-        playerBuilder.addPositionComponent(entityCoords[0]);
+        EntityBuilder playerBuilder(entities[PLAYER]);
+        playerBuilder.addPositionComponent(entityCoords[PLAYER]);
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
         playerBuilder.addHealthComponent(100);
@@ -44,12 +44,12 @@ namespace dt
 
         // Create escape pod
         Entity escapePod;
-        EntityBuilder escapePodBuilder(escapePod); // entities[1]
-        escapePodBuilder.addPositionComponent(entityCoords[1]);
-        escapePodBuilder.addVisualComponent(ESCAPE_POD); //To be changed when textures added
+        EntityBuilder escapePodBuilder(entities[ESCAPE_POD]); // entities[1]
+        escapePodBuilder.addPositionComponent(entityCoords[ESCAPE_POD]);
+        escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
 
         // Assign types and coordinates to enemies
-      for (int i = 2; i < 10; ++i)
+      for (int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
 		  EntityBuilder dinoBuilder(entities[i]);
 		  DinosaurType dino;
@@ -72,7 +72,7 @@ namespace dt
 	  }
 
       // Create eggs
-        for (int i = 25; i < 35; ++i)
+        for (int i = EGG_START; i <= EGG_END; ++i)
         {
             EntityBuilder eggBuilder(entities[i]);
 
@@ -110,7 +110,7 @@ namespace dt
         }
 
         // Stop player
-        movement.stop(entities[0]);
+        movement.stop(entities[PLAYER]);
 
         //update map
         map.updateCenter(getPlayerPosition().x, getPlayerPosition().y);
@@ -123,7 +123,7 @@ namespace dt
         }
 
         // End game if no health
-        if(entities[0].getComponent("Health").getData().asInt<=0){
+        if(entities[PLAYER].getComponent("Health").getData().asInt<=0){
             std::cout << "Game over because of low health." << std::endl;
         }
 
@@ -152,19 +152,19 @@ namespace dt
         switch (dir)
         {
             case Direction::Up:
-                movement.moveUp(entities[0], velocity);
+                movement.moveUp(entities[PLAYER], velocity);
                 break;
             case Direction::Down:
-                movement.moveDown(entities[0], velocity);
+                movement.moveDown(entities[PLAYER], velocity);
                 break;
             case Direction::Left:
-                movement.moveLeft(entities[0], velocity);
+                movement.moveLeft(entities[PLAYER], velocity);
                 break;
             case Direction::Right:
-                movement.moveRight(entities[0], velocity);
+                movement.moveRight(entities[PLAYER], velocity);
                 break;
             case Direction::None:
-                movement.stop(entities[0]);
+                movement.stop(entities[PLAYER]);
                 break;
         }
 
@@ -173,20 +173,20 @@ namespace dt
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
-        return entities[0].getComponent(POSITION).getData().asVec2i;
+        return entities[PLAYER].getComponent(POSITION).getData().asVec2i;
     }
 
     const std::string& Logic::getPlayerVisual() const
     {
-        return dynamic_cast<const Visual&>(entities[0].getComponent(VISUAL)).getString();
+        return dynamic_cast<const Visual&>(entities[PLAYER].getComponent(VISUAL)).getString();
     }
 
     int Logic::getPlayerEnergy() const {
-      return entities[0].getComponent(ENERGY).getData().asInt;
+      return entities[PLAYER].getComponent(ENERGY).getData().asInt;
     }
 
     int Logic::getPlayerHealth() const {
-      return entities[0].getComponent(HEALTH).getData().asInt;
+      return entities[PLAYER].getComponent(HEALTH).getData().asInt;
     }
 
     const Map& Logic::getMap() const
@@ -198,7 +198,7 @@ namespace dt
     {
       std::vector<sf::Vector2i> coords;
 
-      for(int i = 2; i < 10; ++i)
+      for(int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
         coords.push_back(entities.at(i).getData(POSITION).asVec2i);
       }
@@ -210,7 +210,7 @@ namespace dt
     {
       std::vector<std::string> visuals;
 
-      for(int i = 2; i < 10; ++i)
+      for(int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
         const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent(VISUAL));
         visuals.push_back(visComponent.getString());
@@ -223,7 +223,7 @@ namespace dt
     std::vector<sf::Vector2i> Logic::getEggPositions() const
     {
         std::vector<sf::Vector2i> eggCoords;
-        for (int i = 25; i < 35; ++i)
+        for (int i = EGG_START; i <= EGG_END; ++i)
         {
             eggCoords.push_back(entities.at(i).getData(POSITION).asVec2i);
         }

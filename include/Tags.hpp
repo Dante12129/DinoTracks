@@ -27,7 +27,7 @@ namespace dt
     const std::string STEGOSAURUS = "STEGOSAURUS";
     const std::string TYRANNOSAURUS = "TYRANNOSAURUS";
     const std::string EGG = "EGG";
-    const std::string ESCAPE_POD = "ESCAPE_POD";
+    const std::string ESCAPE_TEX = "ESCAPE_TEX";
 
 //    Components
     const std::string POSITION = "Position";
@@ -46,6 +46,22 @@ namespace dt
     const int GRASS_TOP_RIGHT = 4;
     const int GRASS_TOP_LEFT = 5;
     const int MOUNTAIN = 6;
+
+//    Entity ranges
+
+    const int PLAYER = 0;
+    const int ESCAPE_POD = 1;
+    const int ENEMY_START = 2;
+    const int ENEMY_END = 9;
+    const int FOOD_HERB_START = 10;
+    const int FOOD_HERB_END = 19;
+    const int FOOD_CARN_START = 20;
+    const int FOOD_CARN_END = 24;
+    const int EGG_START = 25;
+    const int EGG_END = 34;
+
+//    Sounds and music
+
 }
 
 
