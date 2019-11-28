@@ -8,7 +8,6 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <Thor/Graphics/ToString.hpp>
-#include <components/Visual.hpp>
 
 #include "components/Component.hpp"
 #include "Entity.hpp"
@@ -184,11 +183,11 @@ namespace dt
                   if (velocity.y > 0) { position.y += 1; }
                   else if (velocity.y < 0) { position.y += -1; }
 
-                  std::cout << "Collision with egg." << std::endl;
+//                  std::cout << "Collision with egg." << std::endl;
                   const Component& scoreComponent = collidedEntity->getComponent(SCORE);
                   int eggScore = scoreComponent.getData().asInt;
                   score += eggScore;
-                  std::cout << "Score: " << score << std::endl;
+//                  std::cout << "Score: " << score << std::endl;
               }
 
           }
