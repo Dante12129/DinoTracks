@@ -45,7 +45,7 @@ namespace dt
         std::vector<sf::Sprite> enemies;
         std::vector<sf::Sprite> eggs;
 
-        std::vector<sf::Sprite> ents; // enemies, food, and eggs
+        std::vector<sf::Sprite> entities; // enemies, food, and eggs
         
         //Map related
         const Map* map = nullptr;

@@ -58,10 +58,10 @@ namespace dt
         const Map& getMap() const;
 
         // View-Logic Communication For Enemies
-        std::vector<std::string> getEnemyVisuals() const;
+        std::vector<std::string> getEntityVisuals() const;
 
         //View-Logic Communication for Enemies, Food, and Eggs
-        std::vector<sf::Vector2i> getEntPositions() const;
+        std::vector<sf::Vector2i> getEntityPositions() const;
 
     private:
         std::vector<Entity> entities;
@@ -70,9 +70,7 @@ namespace dt
         // State
         Map map;
         bool actionPerformed = false;
-        int turnCount = 10;
-        int scoreCount;
-
+        int turnCount = 100;
 
         // Systems
         EnergySystem energy;

@@ -77,7 +77,7 @@ namespace dt
           EntityBuilder herbBuilder(entities[i]);
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
-          herbBuilder.addVisualComponent(EGG);
+          herbBuilder.addVisualComponent(TREE);
       }
 
       // Create carn food
@@ -86,7 +86,7 @@ namespace dt
           EntityBuilder carnBuilder(entities[i]);
 
           carnBuilder.addPositionComponent(entityCoords.at(i));
-          carnBuilder.addVisualComponent(EGG);
+          carnBuilder.addVisualComponent(MEAT);
       }
 
       // Create eggs
@@ -156,8 +156,7 @@ namespace dt
 
     int Logic::getScore() const
     {
-        int scoreCount = movement.getScoreCount();
-        return scoreCount;
+        return movement.getScoreCount();
     }
 
     void Logic::movePlayer(Direction dir, Speed spd)
@@ -218,7 +217,7 @@ namespace dt
       return map;
     }
 
-    std::vector<sf::Vector2i> Logic::getEntPositions() const
+    std::vector<sf::Vector2i> Logic::getEntityPositions() const
     {
         std::vector<sf::Vector2i> coords;
         for(int i = ESCAPE_POD; i <= EGG_END; ++i)
@@ -229,11 +228,11 @@ namespace dt
         return coords;
     }
 
-    std::vector<std::string> Logic::getEnemyVisuals() const
+    std::vector<std::string> Logic::getEntityVisuals() const
     {
       std::vector<std::string> visuals;
 
-      for(int i = ESCAPE_POD; i <= ENEMY_END; ++i)
+      for(int i = ESCAPE_POD; i <= EGG_END; ++i)
       {
         const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent(VISUAL));
         visuals.push_back(visComponent.getString());

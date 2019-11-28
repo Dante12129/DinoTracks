@@ -8,6 +8,7 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <Thor/Graphics/ToString.hpp>
+#include <components/Visual.hpp>
 
 #include "components/Component.hpp"
 #include "Entity.hpp"
@@ -29,13 +30,13 @@ namespace dt
     // Variables for calculating collision
     sf::Vector2i position = positionComponent.getData().asVec2i;
     sf::Vector2i velocity = velocityComponent.getData().asVec2i;
-    sf::Vector2i finalVelocity = velocity;
+    sf::Vector2i finalVelocity;
 
     // Variables for responding to collision
     Entity* collidedEntity = nullptr;
 
     // Test collision in all four directions
-    for(int i = 0; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
+    for(int i = velocity.x > 0 ? 1 : -1; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
     {
       auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
       {
@@ -51,7 +52,7 @@ namespace dt
       else
         finalVelocity.x = i;
     }
-    for(int i = 0; abs(i) <= abs(velocity.y); i += velocity.y > 0 ? 1 : -1)
+    for(int i = velocity.y > 0 ? 1 : -1; velocity.y != 0 && abs(i) <= abs(velocity.y); i += velocity.y > 0 ? 1 : -1)
     {
       auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
       {
@@ -144,7 +145,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
-  void MovementSystem::entityCollision(dt::Entity &entity, dt::Entity *collidedEntity, sf::Vector2i velocity, sf::Vector2i& position)
+  void MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
   {
       if (collidedEntity != nullptr)
       {
@@ -184,7 +185,7 @@ namespace dt
                   else if (velocity.y < 0) { position.y += -1; }
 
                   std::cout << "Collision with egg." << std::endl;
-                  Component& scoreComponent = collidedEntity->getComponent(SCORE);
+                  const Component& scoreComponent = collidedEntity->getComponent(SCORE);
                   int eggScore = scoreComponent.getData().asInt;
                   score += eggScore;
                   std::cout << "Score: " << score << std::endl;

@@ -60,39 +60,17 @@ namespace dt
       player.setPosition({dinoWidth * 20, dinoHeight * 11});
 
       // Create visual representation of enemies, food, and eggs
-      auto entPositions = initial.getEntPositions();
+      auto entPositions = initial.getEntityPositions();
 
-      auto enemyVis = initial.getEnemyVisuals();
-      auto& herbVis = ResourceManager::currentManager->getTexture(TREE); // change when texture loaded
-      auto& carnVis = ResourceManager::currentManager->getTexture(MEAT); // change when texture loaded
-      auto& eggVisuals = ResourceManager::currentManager->getTexture(EGG);
+      auto enemyVis = initial.getEntityVisuals();
 
-      ents.resize(33);
+      entities.resize(33);
       int i = 0;
-      for(sf::Sprite& sprite: ents)
+      for(sf::Sprite& sprite: entities)
       {
-              if (i >= 0 && i <= 7) //enemies
-              {
-                  const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(enemyVis.at(i));
-                  sprite.setTexture(dinoTexture);
-                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
-              }
-              else if (i >= 8 && i <= 17) //herb food
-              {
-                  sprite.setTexture(herbVis); //change when texture loaded
-                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
-              }
-
-              else if (i >= 18 && i <= 22) // carn food
-              {
-                  sprite.setTexture(carnVis); // change when texture loaded
-                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
-              }
-              else if (i >= 23 && i<= 32) //eggs
-              {
-                  sprite.setTexture(eggVisuals);
-                  sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
-              }
+          const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(enemyVis.at(i));
+          sprite.setTexture(dinoTexture);
+          sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
           ++i;
       }
 
@@ -178,7 +156,7 @@ namespace dt
       window.draw(player);
       window.setView(mapView);
 
-      for(const sf::Sprite& sprite: ents)
+      for(const sf::Sprite& sprite: entities)
       {
           window.draw(sprite);
       }
