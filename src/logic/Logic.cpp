@@ -221,7 +221,7 @@ namespace dt
     std::vector<sf::Vector2i> Logic::getEntPositions() const
     {
         std::vector<sf::Vector2i> coords;
-        for(int i = ENEMY_START; i <= EGG_END; ++i)
+        for(int i = ESCAPE_POD; i <= EGG_END; ++i)
         {
             coords.push_back(entities.at(i).getData(POSITION).asVec2i);
         }
@@ -233,7 +233,7 @@ namespace dt
     {
       std::vector<std::string> visuals;
 
-      for(int i = ENEMY_START; i <= ENEMY_END; ++i)
+      for(int i = ESCAPE_POD; i <= ENEMY_END; ++i)
       {
         const Visual& visComponent = dynamic_cast<const Visual&>(entities.at(i).getComponent(VISUAL));
         visuals.push_back(visComponent.getString());
