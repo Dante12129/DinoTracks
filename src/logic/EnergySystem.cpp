@@ -2,6 +2,8 @@
 // Created by ywzKe on 2019/11/10.
 //
 
+#include <iostream>
+
 #include "EnergySystem.hpp"
 #include "components/Component.hpp"
 #include "Entity.hpp"
@@ -66,24 +68,9 @@ namespace dt {
         Component& ene = dino.getComponent(ENERGY);
 
         // Get food
-        Component& food_ene = dino.getComponent(ENERGY);
+        const Component& food_ene = food.getComponent(FOOD);
 
-        int newene = ene.getData().asInt + food_ene.getData().asVec2i.x;
-        // Check value of energy
-        if (newene>=100){
-            newene = 100;
-        }
-        else if(newene<=0){
-            newene = 0;
-        }
-
-        // Set value in buffer change
-        eneBuffer[id] = newene;
+        adjust(dino, food_ene.getData().asVec2i.x);
     }
-
-
-
-
-
 }
 

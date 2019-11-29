@@ -51,25 +51,25 @@ namespace dt
         // Assign types and coordinates to enemies
       for (int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
-		  EntityBuilder dinoBuilder(entities[i]);
-		  DinosaurType dino;
-		  std::string dinoString;
+        EntityBuilder dinoBuilder(entities[i]);
+        DinosaurType dino;
+        std::string dinoString;
 
-		  if (i % 2 == 0)
-		  {
-			  dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
-			  dinoString = STEGOSAURUS;
-		  }
-		  else
-		  {
-			  dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-			  dinoString = TYRANNOSAURUS;
-		  }
+        if (i % 2 == 0)
+        {
+          dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
+          dinoString = STEGOSAURUS;
+        }
+        else
+        {
+          dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+          dinoString = TYRANNOSAURUS;
+        }
 
-		  dinoBuilder.addPositionComponent(entityCoords.at(i));
-		  dinoBuilder.addHealthComponent(dino.getHealth());
-		  dinoBuilder.addVisualComponent(dinoString);
-	  }
+        dinoBuilder.addPositionComponent(entityCoords.at(i));
+        dinoBuilder.addHealthComponent(dino.getHealth());
+        dinoBuilder.addVisualComponent(dinoString);
+	    }
 
       // Create herb food
       for(int i = FOOD_HERB_START; i <= FOOD_HERB_END; ++i)
@@ -78,6 +78,7 @@ namespace dt
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
           herbBuilder.addVisualComponent(TREE);
+          herbBuilder.addFoodComponent(10, 10);
       }
 
       // Create carn food
@@ -87,6 +88,7 @@ namespace dt
 
           carnBuilder.addPositionComponent(entityCoords.at(i));
           carnBuilder.addVisualComponent(MEAT);
+          carnBuilder.addFoodComponent(10, 10);
       }
 
       // Create eggs
@@ -110,7 +112,10 @@ namespace dt
         }
     }
 
-    void Logic::doTurn() {
+    void Logic::doTurn()
+    {
+      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+
         // Go through each entity and update it with systems
         for(Entity& entity : entities)
         {
@@ -126,6 +131,8 @@ namespace dt
                 health.update(entity);
             }
         }
+
+      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
 
         // Stop player
         movement.stop(entities[PLAYER]);

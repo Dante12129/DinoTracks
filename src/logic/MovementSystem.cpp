@@ -168,7 +168,8 @@ namespace dt
                   if (velocity.y > 0) { position.y += 1; }
                   else if (velocity.y < 0) { position.y += -1; }
 
-//                  std::cout << "Collision with food." << std::endl;
+                  std::cout << "Collision with food." << std::endl;
+                  std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
 
 //                  HealthSystem and EnergySystem eat
                   heasys.eat(entity, *collidedEntity);

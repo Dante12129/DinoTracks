@@ -66,19 +66,9 @@ namespace dt {
         Component& ene = dino.getComponent(HEALTH);
 
         // Get food
-        Component& food_ene = dino.getComponent(HEALTH);
+        const Component& health = food.getComponent(FOOD);
 
-        int newhea = ene.getData().asInt + food_ene.getData().asVec2i.y;
-        // Check value of energy
-        if (newhea>=100){
-            newhea = 100;
-        }
-        else if(newhea<=0){
-            newhea = 0;
-        }
-
-        // Set value in buffer change
-        heaBuffer[id] = newhea;
+        heal(dino, health.getData().asVec2i.y);
     }
 
 
