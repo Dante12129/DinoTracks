@@ -60,7 +60,6 @@ namespace dt
         playerView->sendCommands(*gameLogic);
         
         // Check enemy positions and send commands to logic
-        aiView->processEvents(*gameLogic);
         aiView->sendCommands(*gameLogic);
 
         // Update the logical and visual state

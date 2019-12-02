@@ -22,7 +22,7 @@ namespace dt
 		}
 	}
 	
-	void AIView::processEvents(Logic& logic)
+	void AIView::updateFrom(const Logic& logic)
 	{
 		std::vector<sf::Vector2i> entities;
 		sf::Vector2i player;
@@ -56,9 +56,5 @@ namespace dt
 	{
 		
 	}
-	
-	void AIView::updateFrom(const Logic& logic)
-	{
-		
-	}
+
 }

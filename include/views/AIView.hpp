@@ -21,7 +21,6 @@ namespace dt
         AIView();
         
         //Game Loop
-        void processEvents(Logic& logic);
         void sendCommands(Logic& logic) const;
         void updateFrom(const Logic& logic);
 
