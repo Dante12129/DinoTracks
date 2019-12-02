@@ -9,6 +9,7 @@
 #include <SFML/Window/Event.hpp>
 #include <Thor/Input/InputNames.hpp>
 
+#include <EndMenu.hpp>
 #include <Logic.hpp>
 #include <Tags.hpp>
 
@@ -150,20 +151,27 @@ namespace dt
     {
       window.clear();
 
-      if(map && map->getSize() != 0)
-        drawMap();
-
-      window.draw(player);
-      window.setView(mapView);
-
-      for(const sf::Sprite& sprite: entities)
+      if (currentState == State::Playing)
       {
+        if (map && map->getSize() != 0)
+          drawMap();
+
+        window.draw(player);
+        window.setView(mapView);
+
+        for (const sf::Sprite& sprite: entities)
+        {
           window.draw(sprite);
+        }
+
+        window.setView(window.getDefaultView());
+
+        ui.draw(window);
       }
-
-      window.setView(window.getDefaultView());
-
-      ui.draw(window);
+      else if(currentState == State::End)
+      {
+        window.draw(EndMenu());
+      }
 
       window.display();
     }

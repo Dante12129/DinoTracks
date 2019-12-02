@@ -45,6 +45,7 @@ namespace dt
     private:
         // Window-Related
         sf::RenderWindow window;
+        State currentState = State::Playing;
 
         // Drawn objects
         UserInterface ui;
@@ -54,7 +55,7 @@ namespace dt
 
         std::vector<sf::Sprite> entities; // enemies, food, and eggs
         
-        //Map related
+        // Map related
         const Map* map = nullptr;
         int centerX;
         int centerY;
