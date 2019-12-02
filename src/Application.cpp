@@ -73,5 +73,6 @@ namespace dt
       gameLogic.reset(new Logic(playerDino));
 
       // Change HumanView state
+      playerView->setState(HumanView::State::Playing, gameLogic.get());
     }
 }

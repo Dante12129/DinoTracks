@@ -26,12 +26,6 @@ namespace dt
     {
       window.setKeyRepeatEnabled(false);
       loadActionsFromFile();
-
-      // Create player's visual representation
-      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(initial.getPlayerVisual());
-      player.setTexture(playerTex);
-      player.setColor(sf::Color::Blue);
-      player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 
     void HumanView::processEvents()
@@ -239,6 +233,16 @@ namespace dt
       window.setView(window.getDefaultView());
 	  }
 
+	  void HumanView::setState(const State& state, const Logic* logic)
+    {
+      currentState = state;
+
+      if(state == State::Playing)
+      {
+        createFrom(*logic);
+      }
+    }
+
     void HumanView::loadActionsFromFile()
     {
       // Get keys from file
@@ -271,5 +275,14 @@ namespace dt
       input.associate(slow && down, WALK_DOWN);
       input.associate(slow && left, WALK_LEFT);
       input.associate(slow && right, WALK_RIGHT);
+    }
+
+    void HumanView::createFrom(const Logic& logic)
+    {
+      // Create player's visual representation
+      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(initial.getPlayerVisual());
+      player.setTexture(playerTex);
+      player.setColor(sf::Color::Blue);
+      player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 }

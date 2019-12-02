@@ -42,9 +42,13 @@ namespace dt
         // Signals
         void setWindowClosedCallback(std::function<void()> callback);
 
+        // State
+        void setState(const State& state, const Logic* logic = nullptr);
+
     private:
         // Methods
         void loadActionsFromFile();
+        void createFrom(const Logic& logic);
 
         // Window-Related
         sf::RenderWindow window;
