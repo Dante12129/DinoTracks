@@ -11,6 +11,7 @@
 
 #include <EndMenu.hpp>
 #include <Logic.hpp>
+#include <StartMenu.hpp>
 #include <Tags.hpp>
 
 // TODO: Create globals for transitioning to End
@@ -137,6 +138,10 @@ namespace dt
         window.setView(window.getDefaultView());
 
         ui.draw(window);
+      }
+      else if(currentState == State::Playing)
+      {
+        window.draw(StartMenu());
       }
       else if(currentState == State::End)
       {
