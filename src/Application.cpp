@@ -36,6 +36,7 @@ namespace dt
 
       // Create the Views
       playerView.reset(new HumanView(*gameLogic));
+      aiView.reset(new AIView);
 
       // Let the HumanView Quit The App
       playerView->setWindowClosedCallback([&] {
@@ -57,10 +58,14 @@ namespace dt
         // Process inputs and send them to logic
         playerView->processEvents();
         playerView->sendCommands(*gameLogic);
+        
+        // Check enemy positions and send commands to logic
+        aiView->sendCommands(*gameLogic);
 
         // Update the logical and visual state
         gameLogic->update(frameDelta);
         playerView->updateFrom(*gameLogic);
+        aiView->updateFrom(*gameLogic);
 
         // Actual rendering of visual state
         playerView->draw();
