@@ -4,7 +4,7 @@
 
 #include "views/HumanView.hpp"
 
-#include <iostream>
+//#include <iostream>
 
 #include <SFML/Window/Event.hpp>
 #include <Thor/Input/InputNames.hpp>
@@ -13,68 +13,24 @@
 #include <Logic.hpp>
 #include <Tags.hpp>
 
+// TODO: Create globals for transitioning to End
+// TODO: Create mechanism for starting and replaying
+// TODO: Extract stuff from HumanView Constructor
+// TODO: Update entities rather than just loading at start
+
 namespace dt
 {
     HumanView::HumanView(const Logic& initial) : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
     ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
-
-      //Get keys from file
-      std::ifstream keyFile;
-	  std::string filePath = "../resources/keys/KeyConfig.txt";
-	  keyFile.open(filePath);
-
-	  std::string keyUp;
-	  std::string keyDown;
-	  std::string keyLeft;
-	  std::string keyRight;
-	  std::string keySlow;
-
-	  keyFile >> keyUp >> keyUp >> keyDown >> keyDown >> keyLeft >> keyLeft >> keyRight >> keyRight >> keySlow >> keySlow;
-
-	  keyFile.close();
-
-      // Create default key associations
-      thor::Action up (thor::toKeyboardKey(keyUp), thor::Action::ReleaseOnce);
-      thor::Action down (thor::toKeyboardKey(keyDown), thor::Action::ReleaseOnce);
-      thor::Action left (thor::toKeyboardKey(keyLeft), thor::Action::ReleaseOnce);
-      thor::Action right (thor::toKeyboardKey(keyRight), thor::Action::ReleaseOnce);
-      thor::Action slow (thor::toKeyboardKey(keySlow), thor::Action::Hold);
-
-      input.associate(up, RUN_UP);
-      input.associate(down, RUN_DOWN);
-      input.associate(left, RUN_LEFT);
-      input.associate(right, RUN_RIGHT);
-      input.associate(slow && up, WALK_UP);
-      input.associate(slow && down, WALK_DOWN);
-      input.associate(slow && left, WALK_LEFT);
-      input.associate(slow && right, WALK_RIGHT);
-
-      const int dinoWidth = 32;
-      const int dinoHeight = 32;
+      loadActionsFromFile();
 
       // Create player's visual representation
       const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(initial.getPlayerVisual());
       player.setTexture(playerTex);
       player.setColor(sf::Color::Blue);
-      player.setPosition({dinoWidth * 20, dinoHeight * 11});
-
-      // Create visual representation of enemies, food, and eggs
-      auto entPositions = initial.getEntityPositions();
-
-      auto enemyVis = initial.getEntityVisuals();
-
-      entities.resize(33);
-      int i = 0;
-      for(sf::Sprite& sprite: entities)
-      {
-          const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(enemyVis.at(i));
-          sprite.setTexture(dinoTexture);
-          sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
-          ++i;
-      }
-
+      player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 
     void HumanView::processEvents()
@@ -145,6 +101,20 @@ namespace dt
       // Update Health and Energy Bar
       ui.setHealth(logic);
       ui.setEnergy(logic);
+
+      // Update visual representation of enemies, food, and eggs
+      auto entPositions = logic.getEntityPositions();
+      auto enemyVis = logic.getEntityVisuals();
+
+      entities.resize(33);
+      int i = 0;
+      for(sf::Sprite& sprite: entities)
+      {
+        const sf::Texture& dinoTexture = ResourceManager::currentManager->getTexture(enemyVis.at(i));
+        sprite.setTexture(dinoTexture);
+        sprite.setPosition({static_cast<float>(dinoWidth * entPositions.at(i).x), static_cast<float>(dinoHeight * entPositions.at(i).y)});
+        ++i;
+      }
     }
 
     void HumanView::draw()
@@ -263,4 +233,38 @@ namespace dt
 
       window.setView(window.getDefaultView());
 	  }
+
+    void HumanView::loadActionsFromFile()
+    {
+      // Get keys from file
+      std::ifstream keyFile;
+      std::string filePath = "../resources/keys/KeyConfig.txt";
+      keyFile.open(filePath);
+
+      std::string keyUp;
+      std::string keyDown;
+      std::string keyLeft;
+      std::string keyRight;
+      std::string keySlow;
+
+      keyFile >> keyUp >> keyUp >> keyDown >> keyDown >> keyLeft >> keyLeft >> keyRight >> keyRight >> keySlow >> keySlow;
+
+      keyFile.close();
+
+      // Create default key associations
+      thor::Action up (thor::toKeyboardKey(keyUp), thor::Action::ReleaseOnce);
+      thor::Action down (thor::toKeyboardKey(keyDown), thor::Action::ReleaseOnce);
+      thor::Action left (thor::toKeyboardKey(keyLeft), thor::Action::ReleaseOnce);
+      thor::Action right (thor::toKeyboardKey(keyRight), thor::Action::ReleaseOnce);
+      thor::Action slow (thor::toKeyboardKey(keySlow), thor::Action::Hold);
+
+      input.associate(up, RUN_UP);
+      input.associate(down, RUN_DOWN);
+      input.associate(left, RUN_LEFT);
+      input.associate(right, RUN_RIGHT);
+      input.associate(slow && up, WALK_UP);
+      input.associate(slow && down, WALK_DOWN);
+      input.associate(slow && left, WALK_LEFT);
+      input.associate(slow && right, WALK_RIGHT);
+    }
 }

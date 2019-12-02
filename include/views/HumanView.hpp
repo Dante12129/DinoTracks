@@ -43,8 +43,13 @@ namespace dt
         void setWindowClosedCallback(std::function<void()> callback);
 
     private:
+        // Methods
+        void loadActionsFromFile();
+
         // Window-Related
         sf::RenderWindow window;
+
+        // State-Related
         State currentState = State::Playing;
 
         // Drawn objects
@@ -56,6 +61,8 @@ namespace dt
         std::vector<sf::Sprite> entities; // enemies, food, and eggs
         
         // Map related
+        const int dinoWidth = 32;
+        const int dinoHeight = 32;
         const Map* map = nullptr;
         int centerX;
         int centerY;
