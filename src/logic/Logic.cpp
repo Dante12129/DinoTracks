@@ -22,31 +22,36 @@ namespace dt
 {
     Logic::Logic()
     {
-        // Load the default map
-        map.loadMapFromFile(1);
+      // Load the default map
+      map.loadMapFromFile(1);
 
-        // Resize vector and assign Entity IDs based on position
-        entities.resize(35);
-        for(int i=0; i<=34; i++){
-            entities[i].setID(i);
-        }
+      // Resize vector and assign Entity IDs based on position
+      entities.resize(35);
+      for(int i=0; i<=34; i++)
+      {
+          entities[i].setID(i);
+      }
 
-        // Generate random coordinates
-        std::vector<sf::Vector2i> entityCoords = generateCoords(35);
+      // Generate random coordinates
+      std::vector<sf::Vector2i> entityCoords = generateCoords(35);
+//      for(const sf::Vector2i& coords : entityCoords)
+//      {
+//        std::cout << "Coords: " << thor::toString(coords) << std::endl;
+//      }
 
-        // Create player
-        EntityBuilder playerBuilder(entities[PLAYER]);
-        playerBuilder.addPositionComponent(entityCoords[PLAYER]);
-        playerBuilder.addVelocityComponent({0, 0});
-        playerBuilder.addEnergyComponent(100);
-        playerBuilder.addHealthComponent(100);
-        playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
+      // Create player
+      EntityBuilder playerBuilder(entities[PLAYER]);
+      playerBuilder.addPositionComponent(entityCoords[PLAYER]);
+      playerBuilder.addVelocityComponent({0, 0});
+      playerBuilder.addEnergyComponent(100);
+      playerBuilder.addHealthComponent(100);
+      playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
 
-        // Create escape pod
-        Entity escapePod;
-        EntityBuilder escapePodBuilder(entities[ESCAPE_POD]); // entities[1]
-        escapePodBuilder.addPositionComponent(entityCoords[ESCAPE_POD]);
-        escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
+      // Create escape pod
+      Entity escapePod;
+      EntityBuilder escapePodBuilder(entities[ESCAPE_POD]); // entities[1]
+      escapePodBuilder.addPositionComponent(entityCoords[ESCAPE_POD]);
+      escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
 
         // Assign types and coordinates to enemies
       for (int i = ENEMY_START; i <= ENEMY_END; ++i)

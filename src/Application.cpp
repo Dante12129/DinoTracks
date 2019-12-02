@@ -59,7 +59,7 @@ namespace dt
         playerView->sendCommands(*gameLogic);
 
         // Update the logical and visual state
-        gameLogic->update(frameDelta);
+        if(gameLogic) gameLogic->update(frameDelta);
         playerView->updateFrom(*gameLogic);
 
         // Actual rendering of visual state
