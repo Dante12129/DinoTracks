@@ -43,7 +43,7 @@ namespace dt {
         }
 
         // Set value in buffer change
-        heaBuffer[id] = ene.getData().asInt + val;
+        heaBuffer[id] = newhea;
     }
 
     //This method set input val as the energy value
@@ -67,6 +67,8 @@ namespace dt {
 
         // Get food
         const Component& health = food.getComponent(FOOD);
+
+
 
         heal(dino, health.getData().asVec2i.y);
     }

@@ -28,6 +28,7 @@ namespace dt
     const std::string ESCAPE_TEX = "ESCAPE_TEX";
     const std::string MEAT = "MEAT";
     const std::string TREE = "TREE";
+    const std::string FRUIT = "FRUIT";
 
 //    Dinosaurs
     const std::string STEGOSAURUS = "STEGOSAURUS";
