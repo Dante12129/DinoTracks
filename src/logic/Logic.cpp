@@ -20,7 +20,7 @@
 
 namespace dt
 {
-    Logic::Logic()
+    Logic::Logic(const std::string& playerDino)
     {
       // Load the default map
       map.loadMapFromFile(1);
@@ -45,7 +45,7 @@ namespace dt
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
       playerBuilder.addHealthComponent(100);
-      playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
+      playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
 
       // Create escape pod
       Entity escapePod;

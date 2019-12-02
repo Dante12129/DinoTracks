@@ -22,6 +22,9 @@ namespace dt
       // Main Game Loop
       int loop();
 
+      // States
+      void startGame(const std::string& playerDino);
+
   private:
       // Status
       bool running = true;
