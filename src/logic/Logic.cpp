@@ -77,7 +77,7 @@ namespace dt
           EntityBuilder herbBuilder(entities[i]);
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
-          herbBuilder.addVisualComponent(TREE);
+          herbBuilder.addVisualComponent(FRUIT);
           herbBuilder.addFoodComponent(10, 10);
       }
 
