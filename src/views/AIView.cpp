@@ -30,23 +30,23 @@ namespace dt
 		entities = logic.getEntityPositions();
 		player = logic.getPlayerPosition();
 		
-		int xMin = player.x - 5;
-		int xMax = player.x + 5;
-		int yMin = player.y - 5;
-		int yMax = player.y + 5;
+		int xMin = player.x - 7;
+		int xMax = player.x + 7;
+		int yMin = player.y - 7;
+		int yMax = player.y + 7;
 		
 		for (int i = 0; i < enemyStates.size(); i++)
 		{
 			if (entities[i + ENEMY_START - 1].x <= xMax && entities[i + ENEMY_START - 1].x >= xMin && entities[i + ENEMY_START - 1].y <= yMax && entities[i + ENEMY_START - 1].y >= yMin)
 			{
 				enemyStates[i] = true;
-				//std::cout << player.x << " " << player.y << " " << entities[i + ENEMY_START].x << " " << entities[i + ENEMY_START].y << std::endl;
+				//std::cout << player.x << " " << player.y << " " << entities[i + ENEMY_START - 1].x << " " << entities[i + ENEMY_START - 1].y << std::endl;
 				//std::cout << i << ": true" << std::endl;
 			}
 			else
 			{
 				enemyStates[i] = false;
-				//std::cout << player.x << " " << player.y << " " << entities[i + ENEMY_START].x << " " << entities[i + ENEMY_START].y << std::endl;
+				//std::cout << player.x << " " << player.y << " " << entities[i + ENEMY_START - 1].x << " " << entities[i + ENEMY_START - 1].y << std::endl;
 				//std::cout << i << ": false" << std::endl;
 			}
 		}
@@ -54,7 +54,37 @@ namespace dt
 	
 	void AIView::sendCommands(Logic& logic) const
 	{
+		std::vector<sf::Vector2i> entities;
+		sf::Vector2i player;
 		
+		entities = logic.getEntityPositions();
+		player = logic.getPlayerPosition();
+		
+		std::cout << entities.size() << std::endl;
+		
+		for (int i = 0; i < enemyStates.size(); i++)
+		{
+			std::cout << i + ENEMY_START - 1 << std::endl;
+			if (enemyStates[i] == true)
+			{
+				if (entities[i + ENEMY_START - 1].x < player.x)
+				{
+					logic.moveEnemy(i + ENEMY_START - 1, Direction::Right);
+				}
+				if (entities[i + ENEMY_START - 1].x > player.x)
+				{
+					logic.moveEnemy(i + ENEMY_START - 1, Direction::Left);
+				}
+				if (entities[i + ENEMY_START - 1].y < player.y)
+				{
+					logic.moveEnemy(i + ENEMY_START - 1, Direction::Down);
+				}
+				if (entities[i + ENEMY_START - 1].y < player.y)
+				{
+					logic.moveEnemy(i + ENEMY_START - 1, Direction::Up);
+				}
+			}
+		}
 	}
 
 }
