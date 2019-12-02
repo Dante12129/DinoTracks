@@ -16,12 +16,19 @@
 
 namespace dt
 {
-    // Forward Delcarations
+    // Forward Declarations
     class Logic;
 
     class HumanView
     {
     public:
+        // Enums
+        enum class State {
+            Start,
+            Playing,
+            End
+        };
+
         // Constructors
         HumanView(const Logic& initial);
 
