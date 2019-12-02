@@ -29,11 +29,11 @@ namespace dt
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
 
+      // Create the Views
+      playerView.reset(new HumanView());
+
       // Create the Logic
       startGame(TYRANNOSAURUS);
-
-      // Create the Views
-      playerView.reset(new HumanView(*gameLogic));
 
       // Let the HumanView Quit The App
       playerView->setWindowClosedCallback([&] {

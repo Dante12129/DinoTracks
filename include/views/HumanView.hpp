@@ -30,7 +30,7 @@ namespace dt
         };
 
         // Constructors
-        HumanView(const Logic& initial);
+        HumanView();
 
         // Game Loop
         void processEvents();

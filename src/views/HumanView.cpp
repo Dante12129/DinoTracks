@@ -21,8 +21,8 @@
 
 namespace dt
 {
-    HumanView::HumanView(const Logic& initial) : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
-    ui(window.getSize())
+    HumanView::HumanView() : window({1366, 768}, "DinoTracks", sf::Style::Titlebar | sf::Style::Close),
+                             ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
       loadActionsFromFile();
@@ -280,7 +280,7 @@ namespace dt
     void HumanView::createFrom(const Logic& logic)
     {
       // Create player's visual representation
-      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(initial.getPlayerVisual());
+      const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(logic.getPlayerVisual());
       player.setTexture(playerTex);
       player.setColor(sf::Color::Blue);
       player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
