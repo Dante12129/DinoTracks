@@ -24,6 +24,7 @@ namespace dt
         // Action Creation
         void associate(const thor::Action& action, const std::string& tag);
         void setWindowCloseCallback(std::function<void()> callback);
+        void clearActions();
 
         // Game Loop
         void clearEvents();
