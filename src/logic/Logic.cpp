@@ -114,7 +114,7 @@ namespace dt
 
     void Logic::doTurn()
     {
-      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+//      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
 
         // Go through each entity and update it with systems
         for(Entity& entity : entities)
@@ -132,7 +132,7 @@ namespace dt
             }
         }
 
-      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+//      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
 
         // Stop player
         movement.stop(entities[PLAYER]);

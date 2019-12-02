@@ -22,6 +22,7 @@ namespace dt {
 
         // Get energy and food components
         Component& energyComponent = dino.getComponent(ENERGY);
+//        std::cout << "Energy update for: " << dino.getID() << " is " << energyComponent.getData().asInt - eneBuffer[id] << std::endl;
 
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(eneBuffer[id]));
@@ -35,12 +36,12 @@ namespace dt {
         // Get energy
         Component& ene = dino.getComponent(ENERGY);
 
-        int newene = ene.getData().asInt+val;
+        int newene = eneBuffer[id] + val;
         // Check value of energy
-        if (newene>=100){
+        if (newene >= 100){
             newene = 100;
         }
-        else if(newene<=0){
+        else if(newene <= 0){
             newene = 0;
         }
 

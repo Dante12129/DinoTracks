@@ -69,7 +69,7 @@ namespace dt
     }
 
     // Perform actions on entities based on collision
-    entityCollision(entity, collidedEntity, velocity, position);
+    int spacesMoved = entityCollision(entity, collidedEntity, velocity, position);
 
     // Calculate new position based on velocity
     sf::Vector2i newPosition = position + finalVelocity;
@@ -78,11 +78,12 @@ namespace dt
     // Deduct energy based on spaces moved
     if(entity.hasComponent(ENERGY))
     {
-      int terrain = map.getTile(newPosition.x, newPosition.y);
       if(finalVelocity.x != 0)
         enesys.adjust(entity, -1 * abs(finalVelocity.x));
       if(finalVelocity.y != 0)
         enesys.adjust(entity, -1 * abs(finalVelocity.y));
+      if(spacesMoved != 0)
+        enesys.adjust(entity, -1 * spacesMoved);
     }
   }
 
@@ -144,8 +145,9 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
-  void MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
+  int MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
   {
+      int spacesMoved = 0;
       if (collidedEntity != nullptr)
       {
           if (entity.getID() == 0) // Player initiates collision
@@ -162,14 +164,13 @@ namespace dt
               else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
               {
                   // Check velocity and move player over food
-                  if (velocity.x > 0) { position.x += 1; }
-                  else if (velocity.x < 0) { position.x += -1; }
+                  if (velocity.x > 0) { position.x += 1;  }
+                  else if (velocity.x < 0) { position.x += -1; spacesMoved = 1; }
 
-                  if (velocity.y > 0) { position.y += 1; }
-                  else if (velocity.y < 0) { position.y += -1; }
+                  if (velocity.y > 0) { position.y += 1; spacesMoved = 1; }
+                  else if (velocity.y < 0) { position.y += -1; spacesMoved = 1; }
 
-                  std::cout << "Collision with food." << std::endl;
-                  std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
+                  std::cout << "Collision with food: " << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
 
 //                  HealthSystem and EnergySystem eat
                   heasys.eat(entity, *collidedEntity);
@@ -178,11 +179,11 @@ namespace dt
               else if (id >= EGG_START && id <= EGG_END) // Collision with egg
               {
                   // Check velocity and move player over egg
-                  if (velocity.x > 0) { position.x += 1; }
-                  else if (velocity.x < 0) { position.x += -1; }
+                  if (velocity.x > 0) { position.x += 1; spacesMoved = 1; }
+                  else if (velocity.x < 0) { position.x += -1; spacesMoved = 1; }
 
-                  if (velocity.y > 0) { position.y += 1; }
-                  else if (velocity.y < 0) { position.y += -1; }
+                  if (velocity.y > 0) { position.y += 1; spacesMoved = 1; }
+                  else if (velocity.y < 0) { position.y += -1; spacesMoved = 1; }
 
 //                  std::cout << "Collision with egg." << std::endl;
                   const Component& scoreComponent = collidedEntity->getComponent(SCORE);
@@ -193,6 +194,8 @@ namespace dt
 
           }
       }
+
+      return spacesMoved;
   }
   int MovementSystem::getScoreCount() const
   {
