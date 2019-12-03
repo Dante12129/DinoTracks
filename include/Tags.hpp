@@ -60,6 +60,10 @@ namespace dt
     const int GRASS_TOP_LEFT = 5;
     const int MOUNTAIN = 6;
     const int FOREST = 7;
+    
+// Map
+	const int MAP_HEIGHT = 150;
+	const int MAP_WIDTH = 153;
 
 //    Entity ranges
 
