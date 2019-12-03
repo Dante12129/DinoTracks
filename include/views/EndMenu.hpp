@@ -7,14 +7,23 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
+#include <Menu.hpp>
+
 // Forward Declarations
 namespace sf { class RenderTarget; }
 
 namespace dt
 {
-  class EndMenu : public sf::Drawable
+  // Forward Declarations
+  class InputManager;
+
+  class EndMenu : public Menu
   {
   public:
+      // Input
+      void registerActions(InputManager& input) override;
+
+      // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
   };
 }

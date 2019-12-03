@@ -7,6 +7,8 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <InputManager.hpp>
+
 namespace dt
 {
     void StartMenu::registerActions(InputManager& input)
