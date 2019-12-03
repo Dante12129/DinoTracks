@@ -60,31 +60,38 @@ namespace dt
 		entities = logic.getEntityPositions();
 		player = logic.getPlayerPosition();
 		
-		std::cout << entities.size() << std::endl;
-		
 		for (int i = 0; i < enemyStates.size(); i++)
 		{
-			std::cout << i + ENEMY_START - 1 << std::endl;
+			//std::cout << enemyStates[i] << " ";
 			if (enemyStates[i] == true)
 			{
-				if (entities[i + ENEMY_START - 1].x < player.x)
+				if (abs(entities[i + ENEMY_START - 1].x - player.x) > abs(entities[i + ENEMY_START - 1].y - player.y))
 				{
-					logic.moveEnemy(i + ENEMY_START - 1, Direction::Right);
+					//move horizontal
+					if (entities[i + ENEMY_START - 1].x < player.x)
+					{
+						logic.moveEnemy(i + ENEMY_START, Direction::Right);
+					}
+					else
+					{
+						logic.moveEnemy(i + ENEMY_START, Direction::Left);
+					}
 				}
-				if (entities[i + ENEMY_START - 1].x > player.x)
+				else
 				{
-					logic.moveEnemy(i + ENEMY_START - 1, Direction::Left);
-				}
-				if (entities[i + ENEMY_START - 1].y < player.y)
-				{
-					logic.moveEnemy(i + ENEMY_START - 1, Direction::Down);
-				}
-				if (entities[i + ENEMY_START - 1].y < player.y)
-				{
-					logic.moveEnemy(i + ENEMY_START - 1, Direction::Up);
+					//move vertical
+					if (entities[i + ENEMY_START - 1].y > player.y)
+					{
+						logic.moveEnemy(i + ENEMY_START, Direction::Up);
+					}
+					else
+					{
+						logic.moveEnemy(i + ENEMY_START, Direction::Down);
+					}
 				}
 			}
 		}
+		//std::cout << "\n";
 	}
 
 }

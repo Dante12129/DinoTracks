@@ -223,10 +223,9 @@ namespace dt
             case Direction::Right:
                 movement.moveRight(entities[id], 1);
                 break;
-            case Direction::None:
-                movement.stop(entities[id]);
-                break;
         }
+        
+        //movement.stop(entities[id]);
 	}
 
     const sf::Vector2i& Logic::getPlayerPosition() const
