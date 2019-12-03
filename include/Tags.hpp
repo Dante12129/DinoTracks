@@ -59,7 +59,6 @@ namespace dt
     const int MOUNTAIN = 6;
 
 //    Entity ranges
-
     const int PLAYER = 0;
     const int ESCAPE_POD = 1;
     const int ENEMY_START = 2;
@@ -72,6 +71,17 @@ namespace dt
     const int EGG_END = 34;
 
 //    Sounds and music
+    const std::string SOUND_WIN = "SOUND_WIN";
+    const std::string SOUND_LOSE = "SOUND_LOSE";
+    const std::string SOUND_EAT_HERB = "SOUND_EAT_HERB";
+    const std::string SOUND_EAT_CARN = "SOUND_EAT_CARN";
+    const std::string SOUND_COMBAT = "SOUND_COMBAT";
+    const std::string SOUND_TER_COLLISION = "SOUND_TER_COLLISION";
+    const std::string MUSIC_COMBAT = "MUSIC_COMBAT";
+    const std::string MUSIC_GAMEPLAY = "MUSIC_GAMEPLAY";
+    const std::string MUSIC_LOSE = "MUSIC_LOSE";
+    const std::string MUSIC_WIN = "MUSIC_WIN";
+    const std::string MUSIC_MENU = "MUSIC_MENU";
 
 }
 

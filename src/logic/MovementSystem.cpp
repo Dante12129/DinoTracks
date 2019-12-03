@@ -63,7 +63,11 @@ namespace dt
         break;
       }
       if(map.getTile(position.x, position.y + i) != 1)
-        break;
+      {
+          // terrain collision
+          SoundManager::curSoundManager->addToQueue(SOUND_TER_COLLISION);
+          break;
+      }
       else
         finalVelocity.y = i;
     }
@@ -154,9 +158,38 @@ namespace dt
               int id = collidedEntity->getID();
               std::cout << "Entity Collision: " << id << std::endl;
 
+              if(id == ESCAPE_POD)
+              {
+                  // Check velocity and move player over pod
+                  if (velocity.x > 0) { position.x += 1; }
+                  else if (velocity.x < 0) { position.x += -1; }
+
+                  if (velocity.y > 0) { position.y += 1; }
+                  else if (velocity.y < 0) { position.y += -1; }
+
+                  std::cout << "Collision with escape pod." << std::endl;
+
+                  if(score == 15)
+                  {
+                      // win
+                      std::cout << "Win." << std::endl;
+                      SoundManager::curSoundManager->addToQueue(SOUND_WIN);
+                  }
+                  else
+                  {
+                      // lose
+                      std::cout << "Lose." << std::endl;
+                      SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
+                  }
+
+              }
+
               if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
               {
 //                std::cout << "Collision with enemy." << std::endl;
+
+                SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
+
 //                 CombatSystem
               }
               else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
@@ -167,6 +200,10 @@ namespace dt
 
                   if (velocity.y > 0) { position.y += 1; }
                   else if (velocity.y < 0) { position.y += -1; }
+
+                  // Check type of food to queue sound
+                  if(id >= FOOD_HERB_START && id <= FOOD_HERB_END) { SoundManager::curSoundManager->addToQueue(SOUND_EAT_HERB); }
+                  else { SoundManager::curSoundManager->addToQueue(SOUND_EAT_CARN); }
 
                   std::cout << "Collision with food." << std::endl;
                   std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;

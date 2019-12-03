@@ -13,6 +13,8 @@
 #include <InputManager.hpp>
 #include <UserInterface.hpp>
 #include <Map.hpp>
+#include <SoundManager.hpp>
+#include <queue>
 
 namespace dt
 {
@@ -31,6 +33,7 @@ namespace dt
         void updateFrom(const Logic& logic);
         void draw();
         void drawMap();
+        void playSounds();
 
         // Signals
         void setWindowClosedCallback(std::function<void()> callback);
@@ -42,8 +45,6 @@ namespace dt
         // Drawn objects
         UserInterface ui;
         sf::Sprite player;
-        std::vector<sf::Sprite> enemies;
-        std::vector<sf::Sprite> eggs;
 
         std::vector<sf::Sprite> entities; // enemies, food, and eggs
         
@@ -55,6 +56,8 @@ namespace dt
 
         // Input-Related
         InputManager input;
+
+        SoundManager sounds;
     };
 }
 

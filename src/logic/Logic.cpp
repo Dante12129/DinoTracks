@@ -17,11 +17,15 @@
 #include <DinosaurType.hpp>
 #include <components/Visual.hpp>
 #include "Tags.hpp"
+#include "SoundManager.hpp"
 
 namespace dt
 {
     Logic::Logic()
     {
+        //Set global SoundManager
+        SoundManager::curSoundManager = &sounds;
+
         // Load the default map
         map.loadMapFromFile(1);
 
@@ -100,7 +104,6 @@ namespace dt
             eggBuilder.addVisualComponent(EGG);
             eggBuilder.addScoreComponent(1);
         }
-
     }
 
     void Logic::update(const sf::Time& delta)
@@ -145,11 +148,13 @@ namespace dt
         if(turnCount <= 0)
         {
             std::cout << "Game over." << std::endl;
+            SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
         }
 
         // End game if no health
         if(entities[PLAYER].getComponent("Health").getData().asInt<=0){
             std::cout << "Game over because of low health." << std::endl;
+            SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
         }
 
 //        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";

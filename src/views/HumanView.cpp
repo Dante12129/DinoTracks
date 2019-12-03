@@ -144,6 +144,8 @@ namespace dt
       // Update Health and Energy Bar
       ui.setHealth(logic);
       ui.setEnergy(logic);
+
+      
     }
 
     void HumanView::draw()

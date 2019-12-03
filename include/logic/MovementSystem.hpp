@@ -15,6 +15,7 @@
 #include "EnergySystem.hpp"
 #include "Map.hpp"
 #include "HealthSystem.hpp"
+#include "SoundManager.hpp"
 
 namespace dt
 {
