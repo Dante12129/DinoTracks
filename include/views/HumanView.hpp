@@ -26,7 +26,8 @@ namespace dt
         enum class State {
             Start,
             Playing,
-            End
+            End,
+            None
         };
 
         // Constructors
@@ -48,13 +49,14 @@ namespace dt
     private:
         // Methods
         void loadActionsFromFile();
+        void goToStart();
         void createFrom(const Logic& logic);
 
         // Window-Related
         sf::RenderWindow window;
 
         // State-Related
-        State currentState = State::Playing;
+        State currentState = State::None;
 
         // Drawn objects
         UserInterface ui;

@@ -9,6 +9,18 @@
 
 namespace dt
 {
+    void StartMenu::registerActions(InputManager& input)
+    {
+      // Clear previous state actions
+      input.clearActions();
+
+      // Create actions
+      thor::Action nextState(sf::Keyboard::Enter);
+
+      // Register actions
+      input.associate(nextState, "NEXT_STATE");
+    }
+
     void StartMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
       sf::RectangleShape rect({300, 300});

@@ -25,7 +25,6 @@ namespace dt
                              ui(window.getSize())
     {
       window.setKeyRepeatEnabled(false);
-      loadActionsFromFile();
     }
 
     void HumanView::processEvents()
@@ -237,7 +236,11 @@ namespace dt
     {
       currentState = state;
 
-      if(state == State::Playing)
+      if(state == State::Start)
+      {
+        goToStart();
+      }
+      else if(state == State::Playing)
       {
         createFrom(*logic);
       }
@@ -245,6 +248,9 @@ namespace dt
 
     void HumanView::loadActionsFromFile()
     {
+      // Clear previous state actions
+      input.clearActions();
+
       // Get keys from file
       std::ifstream keyFile;
       std::string filePath = "../resources/keys/KeyConfig.txt";
@@ -277,8 +283,16 @@ namespace dt
       input.associate(slow && right, WALK_RIGHT);
     }
 
+    void HumanView::goToStart()
+    {
+      // Load appropriate actions
+    }
+
     void HumanView::createFrom(const Logic& logic)
     {
+      // Load appropriate actions
+      loadActionsFromFile();
+
       // Create player's visual representation
       const sf::Texture& playerTex = ResourceManager::currentManager->getTexture(logic.getPlayerVisual());
       player.setTexture(playerTex);
