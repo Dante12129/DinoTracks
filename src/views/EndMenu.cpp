@@ -11,13 +11,14 @@
 
 namespace dt
 {
+    EndMenu::EndMenu(Application& app) : app(app)
+    {}
+
     void EndMenu::registerActions(class dt::InputManager& input)
     {}
 
     void EndMenu::processEvents(const InputManager& input)
-    {
-
-    }
+    {}
 
     void EndMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

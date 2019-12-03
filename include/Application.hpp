@@ -24,6 +24,7 @@ namespace dt
 
       // States
       void startGame(const std::string& playerDino);
+      void endGame();
 
   private:
       // Status

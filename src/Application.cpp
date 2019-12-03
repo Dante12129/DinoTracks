@@ -76,4 +76,10 @@ namespace dt
       // Change HumanView state
       playerView->setState(HumanView::State::Playing, *this, gameLogic.get());
     }
+
+    void Application::endGame()
+    {
+      // Change HumanView state
+      playerView->setState(HumanView::State::End, *this, gameLogic.get());
+    }
 }

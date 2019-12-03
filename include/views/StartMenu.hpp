@@ -7,7 +7,6 @@
 
 #include <SFML/Graphics/Drawable.hpp>
 
-#include <Application.hpp>
 #include <Menu.hpp>
 
 // Forward Declarations
@@ -16,13 +15,14 @@ namespace sf { class RenderTarget; }
 namespace dt
 {
   // Forward Declarations
+  class Application;
   class InputManager;
 
   class StartMenu : public Menu
   {
   public:
       // Constructors
-      StartMenu(Application& app);
+      explicit StartMenu(Application& app);
 
       // Input
       void registerActions(InputManager& input) override;

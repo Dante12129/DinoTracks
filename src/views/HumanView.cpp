@@ -242,6 +242,10 @@ namespace dt
       {
         createFrom(*logic);
       }
+      else if(state == State::End)
+      {
+        goToEnd(app);
+      }
     }
 
     void HumanView::loadActionsFromFile()
@@ -300,5 +304,14 @@ namespace dt
       player.setTexture(playerTex);
       player.setColor(sf::Color::Blue);
       player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
+    }
+
+    void HumanView::goToEnd(dt::Application& app)
+    {
+      // Create menu
+      menu.reset(new EndMenu(app));
+
+      // Load appropriate actions
+      menu->registerActions(input);
     }
 }

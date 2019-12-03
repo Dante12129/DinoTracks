@@ -15,17 +15,24 @@ namespace sf { class RenderTarget; }
 namespace dt
 {
   // Forward Declarations
+  class Application;
   class InputManager;
 
   class EndMenu : public Menu
   {
   public:
+      // Constructors
+      EndMenu(Application& app);
+
       // Input
       void registerActions(InputManager& input) override;
       void processEvents(const InputManager& input) override;
 
       // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+  private:
+      Application& app;
   };
 }
 

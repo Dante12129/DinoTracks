@@ -7,6 +7,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <Application.hpp>
 #include <InputManager.hpp>
 #include <Tags.hpp>
 
