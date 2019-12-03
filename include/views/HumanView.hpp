@@ -11,13 +11,14 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <InputManager.hpp>
-#include <UserInterface.hpp>
 #include <Map.hpp>
 #include <Menu.hpp>
+#include <UserInterface.hpp>
 
 namespace dt
 {
     // Forward Declarations
+    class Application;
     class Logic;
 
     class HumanView
@@ -45,12 +46,12 @@ namespace dt
         void setWindowClosedCallback(std::function<void()> callback);
 
         // State
-        void setState(const State& state, const Logic* logic = nullptr);
+        void setState(const State& state, Application& app, const Logic* logic = nullptr);
 
     private:
         // Methods
         void loadActionsFromFile();
-        void goToStart();
+        void goToStart(Application& app);
         void createFrom(const Logic& logic);
 
         // Window-Related
@@ -63,10 +64,8 @@ namespace dt
         // Drawn objects
         UserInterface ui;
         sf::Sprite player;
-        std::vector<sf::Sprite> enemies;
-        std::vector<sf::Sprite> eggs;
 
-        std::vector<sf::Sprite> entities; // enemies, food, and eggs
+        std::vector<sf::Sprite> entities; // escape pod, enemies, food, and eggs
         
         // Map related
         const int dinoWidth = 32;

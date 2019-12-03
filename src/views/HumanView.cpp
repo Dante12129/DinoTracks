@@ -14,6 +14,7 @@
 #include <Menu.hpp>
 #include <StartMenu.hpp>
 #include <Tags.hpp>
+#include <Application.hpp>
 
 // TODO: Create globals for transitioning to End
 // TODO: Create mechanism for starting and replaying
@@ -30,7 +31,8 @@ namespace dt
     {
       sf::Event event;
       input.updateAll(window);
-      if(currentState == State::Start || currentState == State::End);
+      if(currentState == State::Start || currentState == State::End)
+        menu->processEvents(input);
     }
 
     void HumanView::sendCommands(Logic& logic) const
@@ -228,13 +230,13 @@ namespace dt
       window.setView(window.getDefaultView());
 	  }
 
-	  void HumanView::setState(const State& state, const Logic* logic)
+	  void HumanView::setState(const State& state, Application& app, const Logic* logic)
     {
       currentState = state;
 
       if(state == State::Start)
       {
-        goToStart();
+        goToStart(app);
       }
       else if(state == State::Playing)
       {
@@ -279,10 +281,10 @@ namespace dt
       input.associate(slow && right, WALK_RIGHT);
     }
 
-    void HumanView::goToStart()
+    void HumanView::goToStart(Application& app)
     {
       // Create menu
-      menu.reset(new StartMenu);
+      menu.reset(new StartMenu(app));
 
       // Load appropriate actions
       menu->registerActions(input);

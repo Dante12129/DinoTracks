@@ -8,9 +8,13 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include <InputManager.hpp>
+#include <Tags.hpp>
 
 namespace dt
 {
+    StartMenu::StartMenu(Application& app) : app(app)
+    {}
+
     void StartMenu::registerActions(InputManager& input)
     {
       // Clear previous state actions
@@ -25,7 +29,8 @@ namespace dt
 
     void StartMenu::processEvents(const InputManager& input)
     {
-
+      if(input.isActive("NEXT_STATE"))
+        app.startGame(TYRANNOSAURUS);
     }
 
     void StartMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const

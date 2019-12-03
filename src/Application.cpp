@@ -31,9 +31,10 @@ namespace dt
 
       // Create the Views
       playerView.reset(new HumanView());
+      playerView->setState(HumanView::State::Start, *this, nullptr);
 
       // Create the Logic
-      startGame(TYRANNOSAURUS);
+//      startGame(TYRANNOSAURUS);
 
       // Let the HumanView Quit The App
       playerView->setWindowClosedCallback([&] {
@@ -73,6 +74,6 @@ namespace dt
       gameLogic.reset(new Logic(playerDino));
 
       // Change HumanView state
-      playerView->setState(HumanView::State::Playing, gameLogic.get());
+      playerView->setState(HumanView::State::Playing, *this, gameLogic.get());
     }
 }
