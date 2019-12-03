@@ -10,6 +10,8 @@
 
 namespace dt
 {
+    Application* Application::currentApplication = nullptr;
+
     Application::Application()
     {
       // Set the global ResourceManager
@@ -31,7 +33,7 @@ namespace dt
 
       // Create the Views
       playerView.reset(new HumanView());
-      playerView->setState(HumanView::State::Start, *this, nullptr);
+      playerView->setState(HumanView::State::Start, nullptr);
 
       // Create the Logic
 //      startGame(TYRANNOSAURUS);
@@ -40,6 +42,9 @@ namespace dt
       playerView->setWindowClosedCallback([&] {
           running = false;
       });
+
+      // Set the global application
+      currentApplication = this;
     }
 
     int Application::loop()
@@ -74,12 +79,12 @@ namespace dt
       gameLogic.reset(new Logic(playerDino));
 
       // Change HumanView state
-      playerView->setState(HumanView::State::Playing, *this, gameLogic.get());
+      playerView->setState(HumanView::State::Playing, gameLogic.get());
     }
 
     void Application::endGame()
     {
       // Change HumanView state
-      playerView->setState(HumanView::State::End, *this, gameLogic.get());
+      playerView->setState(HumanView::State::End, gameLogic.get());
     }
 }

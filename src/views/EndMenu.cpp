@@ -11,7 +11,7 @@
 
 namespace dt
 {
-    EndMenu::EndMenu(Application& app) : app(app)
+    EndMenu::EndMenu()
     {}
 
     void EndMenu::registerActions(class dt::InputManager& input)

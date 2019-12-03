@@ -46,14 +46,14 @@ namespace dt
         void setWindowClosedCallback(std::function<void()> callback);
 
         // State
-        void setState(const State& state, Application& app, const Logic* logic = nullptr);
+        void setState(const State& state, const Logic* logic = nullptr);
 
     private:
         // Methods
         void loadActionsFromFile();
-        void goToStart(Application& app);
+        void goToStart();
         void createFrom(const Logic& logic);
-        void goToEnd(Application& app);
+        void goToEnd();
 
         // Window-Related
         sf::RenderWindow window;

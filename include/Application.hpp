@@ -16,6 +16,9 @@ namespace dt
   class Application
   {
   public:
+      // Global Application (will be initialized in constructor)
+      static Application* currentApplication;
+
       // Constructors
       Application();
 

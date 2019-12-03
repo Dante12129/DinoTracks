@@ -13,7 +13,7 @@
 
 namespace dt
 {
-    StartMenu::StartMenu(Application& app) : app(app)
+    StartMenu::StartMenu()
     {}
 
     void StartMenu::registerActions(InputManager& input)
@@ -31,7 +31,7 @@ namespace dt
     void StartMenu::processEvents(const InputManager& input)
     {
       if(input.isActive("NEXT_STATE"))
-        app.startGame(TYRANNOSAURUS);
+        Application::currentApplication->startGame(TYRANNOSAURUS);
     }
 
     void StartMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const

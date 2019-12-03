@@ -43,7 +43,7 @@ namespace dt
 
       if (!fileResult)
       {
-        throw std::runtime_error("Could not resource file: " + filename);
+        throw std::runtime_error("Could not open resource file: " + filename);
       }
       if (!insertResult)
       {

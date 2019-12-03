@@ -22,7 +22,7 @@ namespace dt
   {
   public:
       // Constructors
-      EndMenu(Application& app);
+      EndMenu();
 
       // Input
       void registerActions(InputManager& input) override;
@@ -30,9 +30,6 @@ namespace dt
 
       // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
-  private:
-      Application& app;
   };
 }
 

@@ -14,10 +14,8 @@
 #include <Menu.hpp>
 #include <StartMenu.hpp>
 #include <Tags.hpp>
-#include <Application.hpp>
 
-// TODO: Create globals for transitioning to End
-// TODO: Create mechanism for starting and replaying
+// TODO: Actual menus
 
 namespace dt
 {
@@ -230,13 +228,13 @@ namespace dt
       window.setView(window.getDefaultView());
 	  }
 
-	  void HumanView::setState(const State& state, Application& app, const Logic* logic)
+	  void HumanView::setState(const State& state, const Logic* logic)
     {
       currentState = state;
 
       if(state == State::Start)
       {
-        goToStart(app);
+        goToStart();
       }
       else if(state == State::Playing)
       {
@@ -244,7 +242,7 @@ namespace dt
       }
       else if(state == State::End)
       {
-        goToEnd(app);
+        goToEnd();
       }
     }
 
@@ -285,10 +283,10 @@ namespace dt
       input.associate(slow && right, WALK_RIGHT);
     }
 
-    void HumanView::goToStart(Application& app)
+    void HumanView::goToStart()
     {
       // Create menu
-      menu.reset(new StartMenu(app));
+      menu.reset(new StartMenu());
 
       // Load appropriate actions
       menu->registerActions(input);
@@ -306,10 +304,10 @@ namespace dt
       player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 
-    void HumanView::goToEnd(dt::Application& app)
+    void HumanView::goToEnd()
     {
       // Create menu
-      menu.reset(new EndMenu(app));
+      menu.reset(new EndMenu());
 
       // Load appropriate actions
       menu->registerActions(input);
