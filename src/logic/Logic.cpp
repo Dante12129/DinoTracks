@@ -29,8 +29,10 @@ namespace dt
         // Load the default map
         map.loadMapFromFile(1);
 
-        SoundManager::curSoundManager->setMusic(MUSIC_GAMEPLAY);
+        SoundManager::curSoundManager->setMusic("../resources/sounds/" + MUSIC_GAMEPLAY);
         SoundManager::curSoundManager->getMusic().play();
+        SoundManager::curSoundManager->getMusic().setLoop(true);
+        SoundManager::curSoundManager->getMusic().setVolume(40);
 
         // Resize vector and assign Entity IDs based on position
         entities.resize(35);

@@ -77,11 +77,11 @@ namespace dt
     const std::string SOUND_EAT_CARN = "SOUND_EAT_CARN";
     const std::string SOUND_COMBAT = "SOUND_COMBAT";
     const std::string SOUND_TER_COLLISION = "SOUND_TER_COLLISION";
-    const std::string MUSIC_COMBAT = "MUSIC_COMBAT";
-    const std::string MUSIC_GAMEPLAY = "MUSIC_GAMEPLAY";
-    const std::string MUSIC_LOSE = "MUSIC_LOSE";
-    const std::string MUSIC_WIN = "MUSIC_WIN";
-    const std::string MUSIC_MENU = "MUSIC_MENU";
+    const std::string MUSIC_COMBAT = "combat_song.wav";
+    const std::string MUSIC_GAMEPLAY = "gameplay_song.wav";
+    const std::string MUSIC_LOSE = "lose_song.wav";
+    const std::string MUSIC_WIN = "win_song.wav";
+    const std::string MUSIC_MENU = "menu_song.wav";
 
 }
 
