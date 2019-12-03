@@ -59,6 +59,7 @@ namespace dt
     const int GRASS_TOP_RIGHT = 4;
     const int GRASS_TOP_LEFT = 5;
     const int MOUNTAIN = 6;
+    const int FOREST = 7;
 
 //    Entity ranges
 

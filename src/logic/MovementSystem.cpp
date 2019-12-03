@@ -203,7 +203,7 @@ namespace dt
   }
 
   void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy) {
-      std::cout << "Enter combat";
+      std::cout << "Enter combat\n";
       while(player.getComponent(HEALTH).getData().asInt>0 && enemy.getComponent(HEALTH).getData().asInt>0){
           int playerhea = player.getComponent(HEALTH).getData().asInt;
           int playerattack = player.getComponent(ATTRIBUTES).getData().asVec2i.x;
@@ -212,19 +212,19 @@ namespace dt
           int enemyattack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
           int enemydefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
 
-            std::cout<<"combating ..."<<"\n";
+            std::cout<<"combat ..."<<"\n";
 
           if(playerhea + playerdefense - enemyattack <= 0){
               heasys.set(player, 0);
-              std::cout << "Game Over in Combat";
+              std::cout << "Game Over in Combat\n";
           }
           else if(enemyhea + enemydefense - playerattack <= 0){
               heasys.set(enemy, 0);
-              std::cout<<enemy.getComponent(HEALTH).getData().asInt;
-              std::cout << "Enemy Dinosaur die";
+              std::cout<<enemy.getComponent(HEALTH).getData().asInt << std::endl;
+              std::cout << "Enemy Dinosaur die\n";
           }
           else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0){
-              std::cout << "can't lose health";
+              std::cout << "can't lose health\n";
           }
           else{
               //player.getComponent(HEALTH).setData(playerhea + playerdefense - enemyattack);
