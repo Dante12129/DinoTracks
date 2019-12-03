@@ -23,6 +23,12 @@ namespace dt
       callbacks.connect0("EXIT", callback);
     }
 
+    void InputManager::clearActions()
+    {
+      map.clearActions();
+      map["EXIT"] = thor::Action(sf::Event::Closed);
+    }
+
     void InputManager::clearEvents()
     {
       map.clearEvents();

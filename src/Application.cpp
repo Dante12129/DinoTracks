@@ -29,14 +29,12 @@ namespace dt
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
 
-
+      // Create the Views
+      playerView.reset(new HumanView());
+      aiView.reset(new AIView);
 
       // Create the Logic
-      gameLogic.reset(new Logic);
-
-      // Create the Views
-      playerView.reset(new HumanView(*gameLogic));
-      aiView.reset(new AIView);
+      startGame(TYRANNOSAURUS);
 
       // Let the HumanView Quit The App
       playerView->setWindowClosedCallback([&] {
@@ -57,20 +55,29 @@ namespace dt
 
         // Process inputs and send them to logic
         playerView->processEvents();
-        playerView->sendCommands(*gameLogic);
-        
+        if(gameLogic) playerView->sendCommands(*gameLogic);
+
         // Check enemy positions and send commands to logic
-        aiView->sendCommands(*gameLogic);
+        if(gameLogic) aiView->sendCommands(*gameLogic);
 
         // Update the logical and visual state
-        gameLogic->update(frameDelta);
-        playerView->updateFrom(*gameLogic);
-        aiView->updateFrom(*gameLogic);
+        if(gameLogic) gameLogic->update(frameDelta);
+        if(gameLogic) playerView->updateFrom(*gameLogic);
+        if(gameLogic) aiView->updateFrom(*gameLogic);
 
         // Actual rendering of visual state
         playerView->draw();
       }
 
       return 0;
+    }
+
+    void Application::startGame(const std::string& playerDino)
+    {
+      // Create Logic
+      gameLogic.reset(new Logic(playerDino));
+
+      // Change HumanView state
+      playerView->setState(HumanView::State::Playing, gameLogic.get());
     }
 }

@@ -16,14 +16,22 @@
 
 namespace dt
 {
-    // Forward Delcarations
+    // Forward Declarations
     class Logic;
 
     class HumanView
     {
     public:
+        // Enums
+        enum class State {
+            Start,
+            Playing,
+            End,
+            None
+        };
+
         // Constructors
-        HumanView(const Logic& initial);
+        HumanView();
 
         // Game Loop
         void processEvents();
@@ -35,9 +43,20 @@ namespace dt
         // Signals
         void setWindowClosedCallback(std::function<void()> callback);
 
+        // State
+        void setState(const State& state, const Logic* logic = nullptr);
+
     private:
+        // Methods
+        void loadActionsFromFile();
+        void goToStart();
+        void createFrom(const Logic& logic);
+
         // Window-Related
         sf::RenderWindow window;
+
+        // State-Related
+        State currentState = State::None;
 
         // Drawn objects
         UserInterface ui;
@@ -47,7 +66,9 @@ namespace dt
 
         std::vector<sf::Sprite> entities; // enemies, food, and eggs
         
-        //Map related
+        // Map related
+        const int dinoWidth = 32;
+        const int dinoHeight = 32;
         const Map* map = nullptr;
         int centerX;
         int centerY;

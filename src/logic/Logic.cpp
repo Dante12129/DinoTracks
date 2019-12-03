@@ -20,35 +20,41 @@
 
 namespace dt
 {
-    Logic::Logic()
+    Logic::Logic(const std::string& playerDino)
     {
-        // Load the default map
-        map.loadMapFromFile(1);
+      // Load the default map
+      map.loadMapFromFile(1);
 
-        // Resize vector and assign Entity IDs based on position
-        entities.resize(35);
-        for(int i=0; i<=34; i++){
-            entities[i].setID(i);
-        }
+      // Resize vector and assign Entity IDs based on position
+      entities.resize(35);
+      for(int i=0; i<=34; i++)
+      {
+          entities[i].setID(i);
+      }
 
-        // Generate random coordinates
-        std::vector<sf::Vector2i> entityCoords = generateCoords(35);
+      // Generate random coordinates
+      std::vector<sf::Vector2i> entityCoords = generateCoords(35);
+//      for(const sf::Vector2i& coords : entityCoords)
+//      {
+//        std::cout << "Coords: " << thor::toString(coords) << std::endl;
+//      }
 
-        // Create player
-        DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-        EntityBuilder playerBuilder(entities[PLAYER]);
-        playerBuilder.addPositionComponent(entityCoords[PLAYER]);
-        playerBuilder.addVelocityComponent({0, 0});
-        playerBuilder.addEnergyComponent(100);
-        playerBuilder.addHealthComponent(100);
-        playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
-        playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
+      // Create player
+      DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+      EntityBuilder playerBuilder(entities[PLAYER]);
+      playerBuilder.addPositionComponent(entityCoords[PLAYER]);
+      playerBuilder.addVelocityComponent({0, 0});
+      playerBuilder.addEnergyComponent(100);
+      playerBuilder.addHealthComponent(100);
+      playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
+      playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
 
-        // Create escape pod
-        Entity escapePod;
-        EntityBuilder escapePodBuilder(entities[ESCAPE_POD]); // entities[1]
-        escapePodBuilder.addPositionComponent(entityCoords[ESCAPE_POD]);
-        escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
+
+      // Create escape pod
+      Entity escapePod;
+      EntityBuilder escapePodBuilder(entities[ESCAPE_POD]); // entities[1]
+      escapePodBuilder.addPositionComponent(entityCoords[ESCAPE_POD]);
+      escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
 
         // Assign types and coordinates to enemies
       for (int i = ENEMY_START; i <= ENEMY_END; ++i)
@@ -72,7 +78,7 @@ namespace dt
         dinoBuilder.addHealthComponent(dino.getHealth());
         dinoBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
         dinoBuilder.addVisualComponent(dinoString);
-
+        dinoBuilder.addVelocityComponent({0, 0});
 	    }
 
       // Create herb food
@@ -118,7 +124,7 @@ namespace dt
 
     void Logic::doTurn()
     {
-      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+//      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
 
         // Go through each entity and update it with systems
         for(Entity& entity : entities)
@@ -136,7 +142,7 @@ namespace dt
             }
         }
 
-      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+//      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
 
         // Stop player
         movement.stop(entities[PLAYER]);
@@ -204,6 +210,28 @@ namespace dt
 
         actionPerformed = true;
     }
+
+    void Logic::moveEnemy(int id, Direction dir)
+    {
+		switch (dir)
+        {
+            case Direction::Up:
+                movement.moveUp(entities[id], 1);
+                break;
+            case Direction::Down:
+                movement.moveDown(entities[id], 1);
+                break;
+            case Direction::Left:
+                movement.moveLeft(entities[id], 1);
+                break;
+            case Direction::Right:
+                movement.moveRight(entities[id], 1);
+                break;
+            case Direction::None:
+                movement.stop(entities[id]);
+                break;
+        }
+	}
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {

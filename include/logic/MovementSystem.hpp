@@ -29,8 +29,8 @@ namespace dt
       void moveLeft(dt::Entity& dino, int velocity);
       void moveRight(dt::Entity& dino, int velocity);
       void stop(dt::Entity& dino);
-      void entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position);
       void fight(dt::Entity& player, dt::Entity& enemy);
+      int entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position);
 
       int getScoreCount() const;
 
