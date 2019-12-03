@@ -31,7 +31,7 @@ namespace dt
 
 	int Map::getTile(int x, int y) const 
 	{
-    int tileType = terrainMap[x + (96 * y)];
+    int tileType = terrainMap[x + (150 * y)];
     return tileType;
 	}
 

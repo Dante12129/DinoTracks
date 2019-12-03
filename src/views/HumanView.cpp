@@ -191,9 +191,9 @@ namespace dt
       int posX = 0;
       int posY = 0;
 
-      for (int r = 0; r < 66; ++r)
+      for (int r = 0; r < 149; ++r)
       {
-        for (int c = 0; c < 96; ++c)
+        for (int c = 0; c < 149; ++c)
         {
           switch (map->getTile(c, r))
           {
