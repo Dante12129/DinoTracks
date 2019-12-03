@@ -46,7 +46,7 @@ namespace dt
         collidedEntity = const_cast<Entity*>(&*it);
         break;
       }
-      else if(map.getTile(position.x + i, position.y) != 1)
+      else if(map.getTile(position.x + i, position.y) != 1 && map.getTile(position.x + i, position.y) != 7)
         break;
       else
         finalVelocity.x = i;
@@ -62,7 +62,7 @@ namespace dt
         collidedEntity = const_cast<Entity*>(&*it);
         break;
       }
-      if(map.getTile(position.x, position.y + i) != 1)
+      if(map.getTile(position.x, position.y + i) != 1 && map.getTile(position.x, position.y + i) != 7)
         break;
       else
         finalVelocity.y = i;
