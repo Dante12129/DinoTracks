@@ -216,20 +216,22 @@ namespace dt
 		switch (dir)
         {
             case Direction::Up:
+                movement.stop(entities[id]);
                 movement.moveUp(entities[id], 1);
                 break;
             case Direction::Down:
+                movement.stop(entities[id]);
                 movement.moveDown(entities[id], 1);
                 break;
             case Direction::Left:
+                movement.stop(entities[id]);
                 movement.moveLeft(entities[id], 1);
                 break;
             case Direction::Right:
+                movement.stop(entities[id]);
                 movement.moveRight(entities[id], 1);
                 break;
         }
-        
-        //movement.stop(entities[id]);
 	}
 
     const sf::Vector2i& Logic::getPlayerPosition() const
