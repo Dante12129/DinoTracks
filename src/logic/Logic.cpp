@@ -35,12 +35,14 @@ namespace dt
         std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
         // Create player
+        DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
         EntityBuilder playerBuilder(entities[PLAYER]);
         playerBuilder.addPositionComponent(entityCoords[PLAYER]);
         playerBuilder.addVelocityComponent({0, 0});
         playerBuilder.addEnergyComponent(100);
         playerBuilder.addHealthComponent(100);
         playerBuilder.addVisualComponent(TYRANNOSAURUS); // To be changed when textures added
+        playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
 
         // Create escape pod
         Entity escapePod;
@@ -68,7 +70,9 @@ namespace dt
 
         dinoBuilder.addPositionComponent(entityCoords.at(i));
         dinoBuilder.addHealthComponent(dino.getHealth());
+        dinoBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
         dinoBuilder.addVisualComponent(dinoString);
+
 	    }
 
       // Create herb food

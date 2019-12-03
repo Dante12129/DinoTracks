@@ -30,10 +30,10 @@ namespace dt {
         // Get id
         int id = dino.getID();
 
-        // Get energy
-        Component &ene = dino.getComponent(HEALTH);
+        // Get health
+        Component &hea = dino.getComponent(HEALTH);
 
-        int newhea = ene.getData().asInt + val;
+        int newhea = hea.getData().asInt + val;
         // Check value of energy
         if (newhea>=100){
             newhea = 100;
@@ -62,8 +62,8 @@ namespace dt {
         // Get id
         int id = dino.getID();
 
-        // Get energy
-        Component& ene = dino.getComponent(HEALTH);
+        // Get health
+        Component& hea = dino.getComponent(HEALTH);
 
         // Get food
         const Component& health = food.getComponent(FOOD);

@@ -11,6 +11,7 @@
 #include <components/Food.hpp>
 #include <components/Visual.hpp>
 #include <components/Score.hpp>
+#include <components/Attributes.hpp>
 
 namespace dt
 {
@@ -63,6 +64,13 @@ namespace dt
     void EntityBuilder::addScoreComponent(int sc)
     {
         auto component = std::unique_ptr<Score>(new Score(sc));
+
+        entity.addComponent(component);
+    }
+
+    void EntityBuilder::addAttributesComponent(int attack, int defense)
+    {
+        auto component = std::unique_ptr<Attributes>(new Attributes(attack, defense));
 
         entity.addComponent(component);
     }

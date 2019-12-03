@@ -23,6 +23,7 @@ namespace dt
         void addFoodComponent(int food_ene, int food_hea);
         void addVisualComponent(const std::string& vis);
         void addScoreComponent(int sc);
+        void addAttributesComponent(int attack, int defense);
 
     private:
         Entity& entity;
