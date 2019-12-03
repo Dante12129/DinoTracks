@@ -19,10 +19,10 @@ namespace dt {
         int id = dino.getID();
 
         // Get energy and food components
-        Component &energyComponent = dino.getComponent(HEALTH);
+        Component &healthComponent = dino.getComponent(HEALTH);
 
         // Use buffer change map to update energy
-        energyComponent.setData(ComponentData(heaBuffer[id]));
+        healthComponent.setData(ComponentData(heaBuffer[id]));
     }
 
     //This method add input val to the original energy value
@@ -30,13 +30,13 @@ namespace dt {
         // Get id
         int id = dino.getID();
 
-        // Get energy
-        Component &ene = dino.getComponent(HEALTH);
+        // Get health
+        Component &hea = dino.getComponent(HEALTH);
 
-        int newhea = ene.getData().asInt + val;
-        // Check value of energy
-        if (newhea>=100){
-            newhea = 100;
+        int newhea = hea.getData().asVec2i.x + val;
+        // Check value of health
+        if (newhea>=hea.getData().asVec2i.y){
+            newhea = hea.getData().asVec2i.y;
         }
         else if(newhea<=0){
             newhea = 0;
@@ -51,9 +51,6 @@ namespace dt {
         // Get id
         int id = dino.getID();
 
-        // Get energy
-        Component &ene = dino.getComponent(HEALTH);
-
         // Set value in buffer change
         heaBuffer[id] = val;
     }
@@ -62,15 +59,14 @@ namespace dt {
         // Get id
         int id = dino.getID();
 
-        // Get energy
-        Component& ene = dino.getComponent(HEALTH);
+        // Get health
+        Component& hea = dino.getComponent(HEALTH);
 
         // Get food
-        const Component& health = food.getComponent(FOOD);
+        const Component& food_hea = food.getComponent(FOOD);
 
 
-
-        heal(dino, health.getData().asVec2i.y);
+        heal(dino, food_hea.getData().asVec2i.y);
     }
 
 

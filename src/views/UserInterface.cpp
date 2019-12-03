@@ -32,17 +32,29 @@ namespace dt
 
         uidivider.setSize(sf::Vector2f(7, uiview.getSize().y));
         uidivider.setFillColor(border);
-        uidivider.setPosition(uiview.getSize().x/5, 0);
+        uidivider.setPosition(uiview.getSize().x/4, 0);
 
         // set size according to health percentage
-        healthbar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
+        healthbar.setSize(sf::Vector2f(uidivider.getPosition().x - 100, uiview.getSize().y/35));
         healthbar.setFillColor(sf::Color::Red);
         healthbar.setPosition(10, healthbar.getSize().y);
 
         // set size according to energy percentage
-        energybar.setSize(sf::Vector2f(uidivider.getPosition().x - 20, uiview.getSize().y/35));
+        energybar.setSize(sf::Vector2f(uidivider.getPosition().x - 100, uiview.getSize().y/35));
         energybar.setFillColor(sf::Color::Yellow);
         energybar.setPosition(10,  3 * energybar.getSize().y);
+
+        // set health text
+        heanum.setString("100");
+        heanum.setCharacterSize(20);
+        heanum.setFillColor(sf::Color::Black);
+        heanum.setPosition(uidivider.getPosition().x - 80,healthbar.getSize().y);
+
+        // set energy text
+        enenum.setString("100");
+        enenum.setCharacterSize(20);
+        enenum.setFillColor(sf::Color::Black);
+        enenum.setPosition(uidivider.getPosition().x - 80,3 * energybar.getSize().y);
 
         meteorcountdown.setString("METEOR HIT IN: ");
         meteorcountdown.setCharacterSize(25);
@@ -71,6 +83,8 @@ namespace dt
         turns.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
         scorecount.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
         score.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
+        heanum.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
+        enenum.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
 
 		window.draw(uibackground);
 		window.draw(uidivider);
@@ -80,6 +94,8 @@ namespace dt
 		window.draw(turns);
 		window.draw(scorecount);
 		window.draw(score);
+		window.draw(heanum);
+		window.draw(enenum);
 
 		window.setView(window.getDefaultView());
 	}
@@ -99,14 +115,16 @@ namespace dt
     void UserInterface::setEnergy(const dt::Logic &logic) {
 	    int cur_ene = logic.getPlayerEnergy();
 	    //std::cout<<cur_ene;
-        energybar.setSize(sf::Vector2f((uidivider.getPosition().x - 20)*cur_ene/100, uiview.getSize().y/35));
+        energybar.setSize(sf::Vector2f((uidivider.getPosition().x - 100)*cur_ene/100, uiview.getSize().y/35));
+        enenum.setString(std::to_string(cur_ene));
 	}
 
     // This method adjust health bar according energy percentage get from logic
-    // Currently using 100 as maximum health
 	void UserInterface::setHealth(const dt::Logic &logic) {
         int cur_hea = logic.getPlayerHealth();
+        int max_hea = logic.getPlayerMaxHealth();
         //std::cout<<cur_hea;
-        healthbar.setSize(sf::Vector2f((uidivider.getPosition().x - 20)*cur_hea/100, uiview.getSize().y/35));
+        healthbar.setSize(sf::Vector2f((uidivider.getPosition().x - 100)*cur_hea/max_hea, uiview.getSize().y/35));
+        heanum.setString(std::to_string(cur_hea));
 	}
 }

@@ -53,6 +53,7 @@ namespace dt
         const std::string& getPlayerVisual() const;
         int getPlayerEnergy() const;
         int getPlayerHealth() const;
+        int getPlayerMaxHealth() const;
 
         // View-Logic Communication For Map
         const Map& getMap() const;

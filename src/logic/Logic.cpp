@@ -45,7 +45,7 @@ namespace dt
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
-      playerBuilder.addHealthComponent(100);
+      playerBuilder.addHealthComponent(dino.getHealth());
       playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
       playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
 
@@ -249,7 +249,11 @@ namespace dt
     }
 
     int Logic::getPlayerHealth() const {
-      return entities[PLAYER].getComponent(HEALTH).getData().asInt;
+      return entities[PLAYER].getComponent(HEALTH).getData().asVec2i.x;
+    }
+
+    int Logic::getPlayerMaxHealth() const {
+        return entities[PLAYER].getComponent(HEALTH).getData().asVec2i.y;
     }
 
     const Map& Logic::getMap() const

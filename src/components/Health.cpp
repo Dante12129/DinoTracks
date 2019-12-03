@@ -8,8 +8,11 @@
 
 namespace dt
 {
-    Health::Health(int x) : hea(x)
-    {}
+    Health::Health(int x)
+    {
+        hea_per.asVec2i.x = x;
+        hea_per.asVec2i.y = x;
+    }
 
     std::string Health::getName() const
     {
@@ -18,11 +21,11 @@ namespace dt
 
     const ComponentData& Health::getData() const
     {
-        return hea;
+        return hea_per;
     }
 
     void Health::setData(const ComponentData& data)
     {
-        hea.asInt = data.asInt;
+        hea_per.asVec2i.x = data.asInt;
     }
 }
