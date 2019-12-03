@@ -23,6 +23,11 @@ namespace dt
       input.associate(nextState, "NEXT_STATE");
     }
 
+    void StartMenu::processEvents(const InputManager& input)
+    {
+
+    }
+
     void StartMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
       sf::RectangleShape rect({300, 300});

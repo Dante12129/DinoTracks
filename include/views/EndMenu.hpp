@@ -22,6 +22,7 @@ namespace dt
   public:
       // Input
       void registerActions(InputManager& input) override;
+      void processEvents(const InputManager& input) override;
 
       // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

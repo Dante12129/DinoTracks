@@ -11,13 +11,12 @@
 
 #include <EndMenu.hpp>
 #include <Logic.hpp>
+#include <Menu.hpp>
 #include <StartMenu.hpp>
 #include <Tags.hpp>
 
 // TODO: Create globals for transitioning to End
 // TODO: Create mechanism for starting and replaying
-// TODO: Extract stuff from HumanView Constructor
-// TODO: Update entities rather than just loading at start
 
 namespace dt
 {
@@ -31,6 +30,7 @@ namespace dt
     {
       sf::Event event;
       input.updateAll(window);
+      if(currentState == State::Start || currentState == State::End);
     }
 
     void HumanView::sendCommands(Logic& logic) const
@@ -132,13 +132,9 @@ namespace dt
 
         ui.draw(window);
       }
-      else if(currentState == State::Playing)
+      else if(currentState == State::Start || currentState == State::End)
       {
-        window.draw(StartMenu());
-      }
-      else if(currentState == State::End)
-      {
-        window.draw(EndMenu());
+        window.draw(*menu);
       }
 
       window.display();
@@ -285,7 +281,11 @@ namespace dt
 
     void HumanView::goToStart()
     {
+      // Create menu
+      menu.reset(new StartMenu);
+
       // Load appropriate actions
+      menu->registerActions(input);
     }
 
     void HumanView::createFrom(const Logic& logic)

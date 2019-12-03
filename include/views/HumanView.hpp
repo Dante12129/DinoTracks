@@ -13,6 +13,7 @@
 #include <InputManager.hpp>
 #include <UserInterface.hpp>
 #include <Map.hpp>
+#include <Menu.hpp>
 
 namespace dt
 {
@@ -57,6 +58,7 @@ namespace dt
 
         // State-Related
         State currentState = State::None;
+        std::unique_ptr<Menu> menu;
 
         // Drawn objects
         UserInterface ui;

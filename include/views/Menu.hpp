@@ -24,6 +24,7 @@ namespace dt
 
       // Input
       virtual void registerActions(InputManager& input) = 0;
+      virtual void processEvents(const InputManager& input) = 0;
 
       // Drawing
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;
