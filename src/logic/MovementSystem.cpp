@@ -16,7 +16,7 @@
 
 namespace dt
 {
-  MovementSystem::MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys)
+  MovementSystem::MovementSystem(std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys)
       : entities(entities), enesys(enesys), map(map), heasys(heasys)
   {}
 
@@ -159,7 +159,7 @@ namespace dt
               if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
               {
 //                std::cout << "Collision with enemy." << std::endl;
-//                 CombatSystem
+                  fight(entities[0], entities[id]);
               }
               else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
               {
@@ -200,5 +200,41 @@ namespace dt
   int MovementSystem::getScoreCount() const
   {
       return score;
+  }
+
+  void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy) {
+      std::cout << "Enter combat";
+      while(player.getComponent(HEALTH).getData().asInt>0 && enemy.getComponent(HEALTH).getData().asInt>0){
+          int playerhea = player.getComponent(HEALTH).getData().asInt;
+          int playerattack = player.getComponent(ATTRIBUTES).getData().asVec2i.x;
+          int playerdefense = player.getComponent(ATTRIBUTES).getData().asVec2i.y;
+          int enemyhea = enemy.getComponent(HEALTH).getData().asInt;
+          int enemyattack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
+          int enemydefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
+
+            std::cout<<"combating ..."<<"\n";
+
+          if(playerhea + playerdefense - enemyattack <= 0){
+              heasys.set(player, 0);
+              std::cout << "Game Over in Combat";
+          }
+          else if(enemyhea + enemydefense - playerattack <= 0){
+              heasys.set(enemy, 0);
+              std::cout<<enemy.getComponent(HEALTH).getData().asInt;
+              std::cout << "Enemy Dinosaur die";
+          }
+          else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0){
+              std::cout << "can't lose health";
+          }
+          else{
+              //player.getComponent(HEALTH).setData(playerhea + playerdefense - enemyattack);
+              //enemy.getComponent(HEALTH).setData(enemyhea + enemydefense - playerattack);
+              heasys.heal(player, playerdefense - enemyattack);
+              heasys.heal(enemy, enemydefense - playerattack);
+              std::cout<<enemy.getComponent(HEALTH).getData().asInt<<"\n";
+          }
+          heasys.update(player);
+          heasys.update(enemy);
+      }
   }
 }

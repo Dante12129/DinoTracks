@@ -49,6 +49,7 @@ namespace dt
     const std::string FOOD = "Food";
     const std::string VISUAL = "Visual";
     const std::string SCORE = "Score";
+    const std::string ATTRIBUTES = "Attributes";
 
 //    Tiles
     const int WATER = 0;

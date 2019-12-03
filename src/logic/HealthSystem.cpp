@@ -33,7 +33,7 @@ namespace dt {
         // Get energy
         Component &ene = dino.getComponent(HEALTH);
 
-        int newhea = heaBuffer[id] + val;
+        int newhea = ene.getData().asInt + val;
         // Check value of energy
         if (newhea>=100){
             newhea = 100;

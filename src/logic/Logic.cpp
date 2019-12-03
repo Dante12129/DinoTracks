@@ -40,12 +40,15 @@ namespace dt
 //      }
 
       // Create player
+      DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
       EntityBuilder playerBuilder(entities[PLAYER]);
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
       playerBuilder.addHealthComponent(100);
       playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
+      playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
+
 
       // Create escape pod
       Entity escapePod;
@@ -73,6 +76,7 @@ namespace dt
 
         dinoBuilder.addPositionComponent(entityCoords.at(i));
         dinoBuilder.addHealthComponent(dino.getHealth());
+        dinoBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
         dinoBuilder.addVisualComponent(dinoString);
         dinoBuilder.addVelocityComponent({0, 0});
 	    }
@@ -206,7 +210,7 @@ namespace dt
 
         actionPerformed = true;
     }
-    
+
     void Logic::moveEnemy(int id, Direction dir)
     {
 		switch (dir)
