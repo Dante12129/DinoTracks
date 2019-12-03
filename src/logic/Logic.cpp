@@ -289,8 +289,8 @@ namespace dt
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)
     {
         std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
-        std::uniform_int_distribution<int> x_cord(1, 96);
-        std::uniform_int_distribution<int> y_cord(1, 66);
+        std::uniform_int_distribution<int> x_cord(21, 130);
+        std::uniform_int_distribution<int> y_cord(12, 139);
 
         std::vector<sf::Vector2i> coordinates;
 
@@ -300,7 +300,7 @@ namespace dt
             int y = y_cord(mt);
             sf::Vector2i coord(x, y);
 
-            while (map.getTile(coord.x,coord.y) != 1 && (std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) == occupiedSpaces.end()))
+            while (map.getTile(coord.x,coord.y) != 1 && map.getTile(coord.x, coord.y) != 7 && (std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) == occupiedSpaces.end()))
             {
                 coord.x = x_cord(mt);
                 coord.y = y_cord(mt);
