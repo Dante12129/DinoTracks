@@ -23,7 +23,7 @@ namespace dt
       resources.load(ResourceManager::Type::Texture, STEGOSAURUS, "stegosaurus.png");
       resources.load(ResourceManager::Type::Texture, EGG, "egg.png");
       resources.load(ResourceManager::Type::Texture, MEAT, "meat.png");
-      resources.load(ResourceManager::Type::Texture, TREE, "tree.png");
+      resources.load(ResourceManager::Type::Texture, FRUIT, "fruit.png");
       resources.load(ResourceManager::Type::Texture, ESCAPE_TEX, "escape_pod.png");
       resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
@@ -31,6 +31,7 @@ namespace dt
 
       // Create the Views
       playerView.reset(new HumanView());
+      aiView.reset(new AIView);
 
       // Create the Logic
       startGame(TYRANNOSAURUS);
@@ -56,9 +57,13 @@ namespace dt
         playerView->processEvents();
         if(gameLogic) playerView->sendCommands(*gameLogic);
 
+        // Check enemy positions and send commands to logic
+        if(gameLogic) aiView->sendCommands(*gameLogic);
+
         // Update the logical and visual state
         if(gameLogic) gameLogic->update(frameDelta);
         if(gameLogic) playerView->updateFrom(*gameLogic);
+        if(gameLogic) aiView->updateFrom(*gameLogic);
 
         // Actual rendering of visual state
         playerView->draw();

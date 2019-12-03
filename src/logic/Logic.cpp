@@ -74,6 +74,7 @@ namespace dt
         dinoBuilder.addPositionComponent(entityCoords.at(i));
         dinoBuilder.addHealthComponent(dino.getHealth());
         dinoBuilder.addVisualComponent(dinoString);
+        dinoBuilder.addVelocityComponent({0, 0});
 	    }
 
       // Create herb food
@@ -82,7 +83,7 @@ namespace dt
           EntityBuilder herbBuilder(entities[i]);
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
-          herbBuilder.addVisualComponent(TREE);
+          herbBuilder.addVisualComponent(FRUIT);
           herbBuilder.addFoodComponent(10, 10);
       }
 
@@ -205,6 +206,28 @@ namespace dt
 
         actionPerformed = true;
     }
+    
+    void Logic::moveEnemy(int id, Direction dir)
+    {
+		switch (dir)
+        {
+            case Direction::Up:
+                movement.moveUp(entities[id], 1);
+                break;
+            case Direction::Down:
+                movement.moveDown(entities[id], 1);
+                break;
+            case Direction::Left:
+                movement.moveLeft(entities[id], 1);
+                break;
+            case Direction::Right:
+                movement.moveRight(entities[id], 1);
+                break;
+            case Direction::None:
+                movement.stop(entities[id]);
+                break;
+        }
+	}
 
     const sf::Vector2i& Logic::getPlayerPosition() const
     {

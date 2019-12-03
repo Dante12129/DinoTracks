@@ -68,6 +68,8 @@ namespace dt {
         // Get food
         const Component& health = food.getComponent(FOOD);
 
+
+
         heal(dino, health.getData().asVec2i.y);
     }
 

@@ -59,6 +59,7 @@ namespace dt
 
         // View-Logic Communication For Enemies
         std::vector<std::string> getEntityVisuals() const;
+        void moveEnemy(int id, Direction dir);
 
         //View-Logic Communication for Enemies, Food, and Eggs
         std::vector<sf::Vector2i> getEntityPositions() const;
