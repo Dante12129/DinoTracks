@@ -129,7 +129,7 @@ namespace dt
     void HumanView::updateFrom(const Logic& logic)
     {
       // Update player's position on screen
-      //player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
+      // player.setPosition({player.getSize().x * logic.getPlayerPosition().x, player.getSize().y * logic.getPlayerPosition().y});
         
       map = &logic.getMap();
       centerX = (logic.getPlayerPosition().x + 1) * 32 + 11;
@@ -145,7 +145,21 @@ namespace dt
       ui.setHealth(logic);
       ui.setEnergy(logic);
 
-      
+
+
+
+//      Play sounds in queue
+      while(!SoundManager::curSoundManager->getQueue().empty())
+      {
+          soundBuffer.loadFromFile(SoundManager::curSoundManager->getQueue().front());
+          playSound.setBuffer(soundBuffer);
+          playSound.play();
+//          std::cout << "play sound" << std::endl;
+          if(playSound.getStatus() == sf::Sound::Stopped)
+          {
+              SoundManager::curSoundManager->getQueue().pop();
+          }
+      }
     }
 
     void HumanView::draw()

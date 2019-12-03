@@ -16,8 +16,9 @@ namespace dt
     public:
         static SoundManager* curSoundManager;
         void addToQueue(std::string sound);
-        std::queue<std::string> getQueue();
-        sf::Music getMusic();
+        std::queue<std::string>& getQueue();
+        sf::Music& getMusic();
+        sf::Music& setMusic(std::string);
 
     private:
         std::queue<std::string> soundQueue;

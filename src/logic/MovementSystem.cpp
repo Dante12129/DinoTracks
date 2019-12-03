@@ -66,6 +66,7 @@ namespace dt
       {
           // terrain collision
           SoundManager::curSoundManager->addToQueue(SOUND_TER_COLLISION);
+          std::cout<<"terrain collision"<<std::endl;
           break;
       }
       else

@@ -14,13 +14,18 @@ namespace dt
         soundQueue.push(sound);
     }
 
-    std::queue<std::string> SoundManager::getQueue()
+    std::queue<std::string>& SoundManager::getQueue()
     {
         return soundQueue;
     }
 
-    sf::Music SoundManager::getMusic()
+    sf::Music& SoundManager::getMusic()
     {
         return curMusic;
+    }
+
+    sf::Music& SoundManager::setMusic(std::string soundFile)
+    {
+        curMusic.openFromFile(soundFile);
     }
 }

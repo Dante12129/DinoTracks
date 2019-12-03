@@ -33,7 +33,6 @@ namespace dt
         void updateFrom(const Logic& logic);
         void draw();
         void drawMap();
-        void playSounds();
 
         // Signals
         void setWindowClosedCallback(std::function<void()> callback);
@@ -57,7 +56,8 @@ namespace dt
         // Input-Related
         InputManager input;
 
-        SoundManager sounds;
+        sf::Sound playSound;
+        sf::SoundBuffer soundBuffer;
     };
 }
 
