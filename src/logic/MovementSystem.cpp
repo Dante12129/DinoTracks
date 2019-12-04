@@ -46,7 +46,7 @@ namespace dt
         if (entity.getID() != e.getID())
         {
           return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
-	    }
+	      }
       });
       if(it != entities.cend())
       {
@@ -54,7 +54,11 @@ namespace dt
         break;
       }
       else if(map.getTile(position.x + i, position.y) != 1)
+      {
+        // terrain collision
+        SoundManager::curSoundManager->addToQueue(SOUND_TER_COLLISION);
         break;
+      }
       else
         finalVelocity.x = i;
     }
@@ -72,11 +76,10 @@ namespace dt
         collidedEntity = const_cast<Entity*>(&*it);
         break;
       }
-      if(map.getTile(position.x, position.y + i) != 1)
+      else if(map.getTile(position.x, position.y + i) != 1)
       {
           // terrain collision
           SoundManager::curSoundManager->addToQueue(SOUND_TER_COLLISION);
-          std::cout<<"terrain collision"<<std::endl;
           break;
       }
       else
