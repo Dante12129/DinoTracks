@@ -32,6 +32,9 @@ namespace dt {
 
         // Use buffer change map to update energy
         healthComponent.setData(ComponentData(heaBuffer[id]));
+
+        if (heaBuffer[id] <= 0 && dino.getID() != PLAYER)
+          dino.setRegen(true);
     }
 
     //This method add input val to the original energy value
