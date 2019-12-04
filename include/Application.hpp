@@ -8,6 +8,7 @@
 #include <memory>
 
 #include <ResourceManager.hpp>
+#include <EndMenu.hpp>
 #include <logic/Logic.hpp>
 #include <views/HumanView.hpp>
 
@@ -28,7 +29,7 @@ namespace dt
       // States
       void showStart();
       void startGame(const std::string& playerDino);
-      void endGame();
+      void endGame(EndMenu::Reason reason);
 
   private:
       // Status

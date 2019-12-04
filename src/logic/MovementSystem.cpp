@@ -160,7 +160,7 @@ namespace dt
 
               if (id == ESCAPE_POD)
               {
-                Application::currentApplication->endGame();
+                Application::currentApplication->endGame(EndMenu::Reason::Pod);
               }
               else if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
               {

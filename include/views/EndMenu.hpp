@@ -21,6 +21,14 @@ namespace dt
   class EndMenu : public Menu
   {
   public:
+      // Enums
+      enum class Reason {
+          Meteor,
+          Health,
+          Energy,
+          Pod
+      };
+
       // Constructors
       EndMenu(const Logic& logic);
 

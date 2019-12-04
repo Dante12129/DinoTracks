@@ -151,19 +151,19 @@ namespace dt
         if(turnCount <= 0)
         {
 //            std::cout << "Game over." << std::endl;
-            Application::currentApplication->endGame();
+          Application::currentApplication->endGame(EndMenu::Reason::Meteor);
         }
 
         // End game if no health
         if(entities[PLAYER].getComponent(HEALTH).getData().asInt<=0){
 //            std::cout << "Game over because of low health." << std::endl;
-            Application::currentApplication->endGame();
+          Application::currentApplication->endGame(EndMenu::Reason::Health);
         }
 
         // End game if no energy
         if(entities[PLAYER].getData(ENERGY).asInt <= 0)
         {
-          Application::currentApplication->endGame();
+          Application::currentApplication->endGame(EndMenu::Reason::Energy);
         }
 
 //        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
