@@ -21,6 +21,10 @@ namespace dt
 
 // Combined input
     const std::string NEXT_STATE = "NEXT_STATE";
+    const std::string CHOOSE_UP = "CHOOSE_UP";
+    const std::string CHOOSE_DOWN = "CHOOSE_DOWN";
+    const std::string CHOOSE_LEFT = "CHOOSE_LEFT";
+    const std::string CHOOSE_RIGHT = "CHOOSE_RIGHT";
 
 //    Resources
     const std::string TERRAIN = "TERRAIN";

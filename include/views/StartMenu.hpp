@@ -29,6 +29,15 @@ namespace dt
 
       // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+  private:
+      int currentDinoSelection = 0;
+      int currentLevelSelection = 1;
+      int chooserSelected = 0;
+
+      const sf::Color normalColor = sf::Color::White;
+      const sf::Color highlightColor = sf::Color::Cyan;
+      const int maxLevels = 3;
   };
 }
 
