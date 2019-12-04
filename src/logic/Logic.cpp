@@ -150,13 +150,20 @@ namespace dt
         turnCount -= 1;
         if(turnCount <= 0)
         {
-            std::cout << "Game over." << std::endl;
+//            std::cout << "Game over." << std::endl;
             Application::currentApplication->endGame();
         }
 
         // End game if no health
-        if(entities[PLAYER].getComponent("Health").getData().asInt<=0){
-            std::cout << "Game over because of low health." << std::endl;
+        if(entities[PLAYER].getComponent(HEALTH).getData().asInt<=0){
+//            std::cout << "Game over because of low health." << std::endl;
+            Application::currentApplication->endGame();
+        }
+
+        // End game if no energy
+        if(entities[PLAYER].getData(ENERGY).asInt <= 0)
+        {
+          Application::currentApplication->endGame();
         }
 
 //        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
