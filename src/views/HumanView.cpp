@@ -111,14 +111,9 @@ namespace dt
 //      Play sounds in queue
       while(!SoundManager::curSoundManager->getQueue().empty())
       {
-          soundBuffer.loadFromFile(SoundManager::curSoundManager->getQueue().front());
-          playSound.setBuffer(soundBuffer);
+          playSound.setBuffer(ResourceManager::currentManager->getSoundBuffer(SoundManager::curSoundManager->getQueue().front()));
           playSound.play();
-//          std::cout << "play sound" << std::endl;
-          if(playSound.getStatus() == sf::Sound::Stopped)
-          {
-              SoundManager::curSoundManager->getQueue().pop();
-          }
+          SoundManager::curSoundManager->getQueue().pop();
       }
     }
 
