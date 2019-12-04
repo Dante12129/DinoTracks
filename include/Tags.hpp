@@ -39,6 +39,7 @@ namespace dt
     const std::string PACHYCEPHALOSAURUS = "PACHYCEPHALOSAURUS";
     const std::string PROTOCERATOPS = "PROTOCERATOPS";
     const std::string PARASAUROLOPHUS = "PARASAUROLOPHUS";
+    const int NUM_TYPES = 8; 
 
 
 //    Components

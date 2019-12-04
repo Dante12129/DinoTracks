@@ -57,21 +57,51 @@ namespace dt
       escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
 
         // Assign types and coordinates to enemies
+      std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
+      std::uniform_int_distribution<int> dinoType(1, NUM_TYPES);  
+      
       for (int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
         EntityBuilder dinoBuilder(entities[i]);
         DinosaurType dino;
         std::string dinoString;
+        
+        int type = dinoType(mt);
 
-        if (i % 2 == 0)
+        switch(type)
         {
-          dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
-          dinoString = STEGOSAURUS;
-        }
-        else
-        {
-          dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-          dinoString = TYRANNOSAURUS;
+			case (1):
+				dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
+				dinoString = STEGOSAURUS;
+				break;
+			case (2):
+				dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+				dinoString = TYRANNOSAURUS;
+				break;
+			case (3):
+				dino = ResourceManager::currentManager->getDinosaurType(PARASAUROLOPHUS);
+				dinoString = PARASAUROLOPHUS;
+				break;
+			case (4):
+				dino = ResourceManager::currentManager->getDinosaurType(SPINOSAURUS);
+				dinoString = SPINOSAURUS;
+				break;
+			case (5):
+				dino = ResourceManager::currentManager->getDinosaurType(ALLOSAURUS);
+				dinoString = ALLOSAURUS;
+				break;
+			case (6):
+				dino = ResourceManager::currentManager->getDinosaurType(PACHYCEPHALOSAURUS);
+				dinoString = PACHYCEPHALOSAURUS;
+				break;
+			case (7):
+				dino = ResourceManager::currentManager->getDinosaurType(PROTOCERATOPS);
+				dinoString = PROTOCERATOPS;
+				break;
+			case (8):
+				dino = ResourceManager::currentManager->getDinosaurType(VELOCIRAPTOR);
+				dinoString = VELOCIRAPTOR;
+				break;
         }
 
         dinoBuilder.addPositionComponent(entityCoords.at(i));

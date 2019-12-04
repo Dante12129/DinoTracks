@@ -19,14 +19,26 @@ namespace dt
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the textures, fonts, or sounds subdirectories of the resources directory
       resources.load(ResourceManager::Type::Texture, TERRAIN, "terrain.png");
-      resources.load(ResourceManager::Type::Texture, TYRANNOSAURUS, "Tyrannosaurus.png");
+      resources.load(ResourceManager::Type::Texture, TYRANNOSAURUS, "tyrannosaurus.png");
       resources.load(ResourceManager::Type::Texture, STEGOSAURUS, "stegosaurus.png");
+      resources.load(ResourceManager::Type::Texture, VELOCIRAPTOR, "velociraptor.png");
+      resources.load(ResourceManager::Type::Texture, SPINOSAURUS, "spinosaurus.png");
+      resources.load(ResourceManager::Type::Texture, ALLOSAURUS, "allosaurus.png");
+      resources.load(ResourceManager::Type::Texture, PACHYCEPHALOSAURUS, "pachycephalosaurus.png");
+      resources.load(ResourceManager::Type::Texture, PROTOCERATOPS, "protoceratops.png");
+      resources.load(ResourceManager::Type::Texture, PARASAUROLOPHUS, "parasaurolophus.png");
       resources.load(ResourceManager::Type::Texture, EGG, "egg.png");
       resources.load(ResourceManager::Type::Texture, MEAT, "meat.png");
       resources.load(ResourceManager::Type::Texture, FRUIT, "fruit.png");
       resources.load(ResourceManager::Type::Texture, ESCAPE_TEX, "escape_pod.png");
-      resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
-      resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "stegosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "tyrannosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, VELOCIRAPTOR, "velociraptor.txt");
+      resources.load(ResourceManager::Type::DinosaurType, SPINOSAURUS, "spinosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, ALLOSAURUS, "allosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, PACHYCEPHALOSAURUS, "pachycephalosaurus.txt");
+      resources.load(ResourceManager::Type::DinosaurType, PROTOCERATOPS, "protoceratops.txt");
+      resources.load(ResourceManager::Type::DinosaurType, PARASAUROLOPHUS, "parasaurolophus.txt");
       resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
 
       // Create the Views
