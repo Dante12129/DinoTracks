@@ -300,7 +300,7 @@ namespace dt
             int y = y_cord(mt);
             sf::Vector2i coord(x, y);
 
-            while (map.getTile(coord.x,coord.y) != 1 && map.getTile(coord.x, coord.y) != 7 && (std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) == occupiedSpaces.end()))
+            while (map.getTile(coord.x,coord.y) != 1 && (std::find(occupiedSpaces.begin(), occupiedSpaces.end(), coord) == occupiedSpaces.end()))
             {
                 coord.x = x_cord(mt);
                 coord.y = y_cord(mt);
