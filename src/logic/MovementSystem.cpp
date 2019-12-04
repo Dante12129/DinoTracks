@@ -196,12 +196,8 @@ namespace dt
 
               std::cout << "Collision with escape pod." << std::endl;
 
-              if (score >= 15)
-              {
-                // win
-                SoundManager::curSoundManager->addToQueue(SOUND_WIN);
-                Application::currentApplication->endGame(EndMenu::Reason::Pod);
-              }
+              SoundManager::curSoundManager->addToQueue(SOUND_WIN);
+              Application::currentApplication->endGame(EndMenu::Reason::Pod);
             }
             else if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
             {

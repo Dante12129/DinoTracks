@@ -8,9 +8,18 @@
 #include "Tags.hpp"
 
 namespace dt {
-    HealthSystem::HealthSystem(){
-        for (int i=0; i<=40; i++){
-            heaBuffer.insert({i,100});
+    void HealthSystem::init(const std::vector<Entity>& entities)
+    {
+        for (int i = 0; i < 35; i++)
+        {
+          if (entities.at(i).hasComponent(HEALTH))
+          {
+            heaBuffer.insert({i, entities.at(i).getData(HEALTH).asVec2i.y}); // Init buffer to max health
+          }
+          else
+          {
+            heaBuffer.insert({i, 0});
+          }
         }
     }
 
@@ -33,7 +42,7 @@ namespace dt {
         // Get health
         Component &hea = dino.getComponent(HEALTH);
 
-        int newhea = hea.getData().asVec2i.x + val;
+        int newhea = heaBuffer[id] + val;
         // Check value of health
         if (newhea>=hea.getData().asVec2i.y){
             newhea = hea.getData().asVec2i.y;
@@ -68,7 +77,4 @@ namespace dt {
 
         heal(dino, food_hea.getData().asVec2i.y);
     }
-
-
-
 }

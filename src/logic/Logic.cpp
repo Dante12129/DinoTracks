@@ -46,7 +46,7 @@ namespace dt
         std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
       // Create player
-      DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+      DinosaurType dino = ResourceManager::currentManager->getDinosaurType(playerDino);
       EntityBuilder playerBuilder(entities[PLAYER]);
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
@@ -76,38 +76,38 @@ namespace dt
 
         switch(type)
         {
-			case (1):
-				dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
-				dinoString = STEGOSAURUS;
-				break;
-			case (2):
-				dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-				dinoString = TYRANNOSAURUS;
-				break;
-			case (3):
-				dino = ResourceManager::currentManager->getDinosaurType(PARASAUROLOPHUS);
-				dinoString = PARASAUROLOPHUS;
-				break;
-			case (4):
-				dino = ResourceManager::currentManager->getDinosaurType(SPINOSAURUS);
-				dinoString = SPINOSAURUS;
-				break;
-			case (5):
-				dino = ResourceManager::currentManager->getDinosaurType(ALLOSAURUS);
-				dinoString = ALLOSAURUS;
-				break;
-			case (6):
-				dino = ResourceManager::currentManager->getDinosaurType(PACHYCEPHALOSAURUS);
-				dinoString = PACHYCEPHALOSAURUS;
-				break;
-			case (7):
-				dino = ResourceManager::currentManager->getDinosaurType(PROTOCERATOPS);
-				dinoString = PROTOCERATOPS;
-				break;
-			case (8):
-				dino = ResourceManager::currentManager->getDinosaurType(VELOCIRAPTOR);
-				dinoString = VELOCIRAPTOR;
-				break;
+        case (1):
+          dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
+          dinoString = STEGOSAURUS;
+          break;
+        case (2):
+          dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+          dinoString = TYRANNOSAURUS;
+          break;
+        case (3):
+          dino = ResourceManager::currentManager->getDinosaurType(PARASAUROLOPHUS);
+          dinoString = PARASAUROLOPHUS;
+          break;
+        case (4):
+          dino = ResourceManager::currentManager->getDinosaurType(SPINOSAURUS);
+          dinoString = SPINOSAURUS;
+          break;
+        case (5):
+          dino = ResourceManager::currentManager->getDinosaurType(ALLOSAURUS);
+          dinoString = ALLOSAURUS;
+          break;
+        case (6):
+          dino = ResourceManager::currentManager->getDinosaurType(PACHYCEPHALOSAURUS);
+          dinoString = PACHYCEPHALOSAURUS;
+          break;
+        case (7):
+          dino = ResourceManager::currentManager->getDinosaurType(PROTOCERATOPS);
+          dinoString = PROTOCERATOPS;
+          break;
+        case (8):
+          dino = ResourceManager::currentManager->getDinosaurType(VELOCIRAPTOR);
+          dinoString = VELOCIRAPTOR;
+          break;
         }
 
         dinoBuilder.addPositionComponent(entityCoords.at(i));
@@ -146,6 +146,8 @@ namespace dt
             eggBuilder.addVisualComponent(EGG);
             eggBuilder.addScoreComponent(1);
         }
+
+        health.init(entities);
     }
 
     void Logic::update(const sf::Time& delta)
@@ -195,7 +197,7 @@ namespace dt
         }
 
         // End game if no health
-        if(entities[PLAYER].getComponent("Health").getData().asInt<=0)
+        if(entities[PLAYER].getData(HEALTH).asVec2i.x <= 0)
         {
 //            std::cout << "Game over because of low health." << std::endl;
           SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
