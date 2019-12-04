@@ -28,7 +28,7 @@ namespace dt
 
       // States
       void showStart();
-      void startGame(const std::string& playerDino);
+      void startGame(const std::string& playerDino, int level);
       void endGame(EndMenu::Reason reason);
 
   private:

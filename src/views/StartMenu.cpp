@@ -63,7 +63,7 @@ namespace dt
     void StartMenu::processEvents(const InputManager& input)
     {
       if(input.isActive(NEXT_STATE))
-        Application::currentApplication->startGame(toString(currentDinoSelection));
+        Application::currentApplication->startGame(toString(currentDinoSelection), currentLevelSelection);
 
       if(input.isActive(CHOOSE_UP) || input.isActive(CHOOSE_DOWN))
       {
@@ -87,7 +87,7 @@ namespace dt
         if(chooserSelected)
         {
           currentLevelSelection--;
-          currentLevelSelection = currentLevelSelection < 0 ? maxLevels : currentLevelSelection;
+          currentLevelSelection = currentLevelSelection < 1 ? maxLevels : currentLevelSelection;
         }
         else
         {

@@ -82,10 +82,10 @@ namespace dt
       playerView->setState(HumanView::State::Start, nullptr);
     }
 
-    void Application::startGame(const std::string& playerDino)
+    void Application::startGame(const std::string& playerDino, int level)
     {
       // Create Logic
-      gameLogic.reset(new Logic(playerDino));
+      gameLogic.reset(new Logic(playerDino, level));
 
       // Change HumanView state
       playerView->setState(HumanView::State::Playing, gameLogic.get());

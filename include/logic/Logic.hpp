@@ -39,7 +39,7 @@ namespace dt
     {
     public:
         // Constructors
-        Logic(const std::string& playerDino);
+        Logic(const std::string& playerDino, int level);
 
         // Game Loop
         void update(const sf::Time& delta);

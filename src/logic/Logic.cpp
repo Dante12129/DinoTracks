@@ -21,10 +21,10 @@
 
 namespace dt
 {
-    Logic::Logic(const std::string& playerDino)
+    Logic::Logic(const std::string& playerDino, int level)
     {
       // Load the default map
-      map.loadMapFromFile(1);
+      map.loadMapFromFile(level);
 
       // Resize vector and assign Entity IDs based on position
       entities.resize(35);
