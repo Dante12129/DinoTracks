@@ -213,23 +213,86 @@ namespace dt
 
     void Logic::moveEnemy(int id, Direction dir)
     {
+		sf::Vector2i curPos = entities[id].getData(POSITION).asVec2i;
+		sf::Vector2i playerPos = entities[0].getData(POSITION).asVec2i;
+		
 		switch (dir)
         {
             case Direction::Up:
                 movement.stop(entities[id]);
-                movement.moveUp(entities[id], 1);
+                
+                if (map.getTile(curPos.x, curPos.y - 1) != 1)
+                {
+					if (playerPos.x < curPos.x)
+					{
+						movement.moveLeft(entities[id], 1);
+					}
+					else
+					{
+						movement.moveRight(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveUp(entities[id], 1);
+				}
                 break;
             case Direction::Down:
                 movement.stop(entities[id]);
-                movement.moveDown(entities[id], 1);
+                
+                if (map.getTile(curPos.x, curPos.y + 1) != 1)
+                {
+					if (playerPos.x < curPos.x)
+					{
+						movement.moveLeft(entities[id], 1);
+					}
+					else
+					{
+						movement.moveRight(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveDown(entities[id], 1);
+				}
                 break;
             case Direction::Left:
                 movement.stop(entities[id]);
-                movement.moveLeft(entities[id], 1);
+                
+                if (map.getTile(curPos.x - 1, curPos.y) != 1)
+                {
+					if (playerPos.y < curPos.y)
+					{
+						movement.moveUp(entities[id], 1);
+					}
+					else
+					{
+						movement.moveDown(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveLeft(entities[id], 1);
+				}
                 break;
             case Direction::Right:
                 movement.stop(entities[id]);
-                movement.moveRight(entities[id], 1);
+                
+                if (map.getTile(curPos.x + 1, curPos.y) != 1)
+                {
+					if (playerPos.y < curPos.y)
+					{
+						movement.moveUp(entities[id], 1);
+					}
+					else
+					{
+						movement.moveDown(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveRight(entities[id], 1);
+				}
                 break;
         }
 	}
