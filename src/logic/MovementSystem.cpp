@@ -151,7 +151,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
-  int MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
+  int MovementSystem::entityCollision(Entity& entity, Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
   {
       int spacesMoved = 0;
       if (collidedEntity != nullptr)
@@ -181,6 +181,8 @@ namespace dt
 //                  HealthSystem and EnergySystem eat
                   heasys.eat(entity, *collidedEntity);
                   enesys.eat(entity, *collidedEntity);
+                  
+                  collidedEntity->setRegen(true);
               }
               else if (id >= EGG_START && id <= EGG_END) // Collision with egg
               {
@@ -196,6 +198,8 @@ namespace dt
                   int eggScore = scoreComponent.getData().asInt;
                   score += eggScore;
 //                  std::cout << "Score: " << score << std::endl;
+
+				  collidedEntity->setRegen(true);
               }
 
           }
@@ -228,6 +232,8 @@ namespace dt
               heasys.set(enemy, 0);
               std::cout<<enemy.getComponent(HEALTH).getData().asInt << std::endl;
               std::cout << "Enemy Dinosaur die\n";
+              
+              enemy.setRegen(true);
           }
           else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0){
               std::cout << "can't lose health\n";

@@ -30,6 +30,7 @@ namespace dt
       for(int i=0; i<=34; i++)
       {
           entities[i].setID(i);
+          entities[i].setRegen(false);
       }
 
       // Generate random coordinates
@@ -170,6 +171,21 @@ namespace dt
             if(entity.hasComponent(HEALTH)){
                 health.update(entity);
             }
+            
+            if(entity.getRegen()){
+				occupiedSpaces.clear();
+				
+				for(Entity& entity : entities)
+				{
+					occupiedSpaces.push_back(entity.getComponent(POSITION).getData().asVec2i);
+				}
+				std::vector<sf::Vector2i> newCoords = generateCoords(1);
+				Component& positionComponent = entity.getComponent(POSITION);
+				sf::Vector2i newPosition = newCoords[0];
+				positionComponent.setData(ComponentData(newPosition));
+				
+				entity.setRegen(false);
+			}
         }
 
 //      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
