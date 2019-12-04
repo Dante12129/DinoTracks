@@ -74,6 +74,7 @@ namespace dt
 	const int MAP_WIDTH = 153;
 
 //    Entity ranges
+    const int MAX_ENTITIES = 35;
     const int PLAYER = 0;
     const int ESCAPE_POD = 1;
     const int ENEMY_START = 2;

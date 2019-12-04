@@ -12,7 +12,7 @@
 namespace dt {
     void EnergySystem::init(const std::vector<Entity>& entities)
     {
-      for (int i = 0; i < 35; i++)
+      for (int i = 0; i < MAX_ENTITIES; i++)
       {
         if (entities.at(i).hasComponent(ENERGY))
         {

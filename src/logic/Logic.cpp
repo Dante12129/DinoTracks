@@ -28,7 +28,7 @@ namespace dt
       map.loadMapFromFile(level);
 
       // Resize vector and assign Entity IDs based on position
-      entities.resize(35);
+      entities.resize(MAX_ENTITIES);
       for(int i=0; i<=34; i++){
           entities[i].setID(i);
           entities[i].setRegen(false);
