@@ -26,6 +26,7 @@ namespace dt
       int loop();
 
       // States
+      void showStart();
       void startGame(const std::string& playerDino);
       void endGame();
 

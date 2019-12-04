@@ -25,7 +25,7 @@ namespace dt
       thor::Action nextState(sf::Keyboard::Enter);
 
       // Register actions
-      input.associate(nextState, "NEXT_STATE");
+      input.associate(nextState, NEXT_STATE);
     }
 
     void StartMenu::processEvents(const InputManager& input)

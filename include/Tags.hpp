@@ -19,6 +19,9 @@ namespace dt
     const std::string WALK_LEFT = "WALK_LEFT";
     const std::string WALK_RIGHT = "WALK_RIGHT";
 
+// Combined input
+    const std::string NEXT_STATE = "NEXT_STATE";
+
 //    Resources
     const std::string TERRAIN = "TERRAIN";
     const std::string TREX_TEX = "TREX_TEX";

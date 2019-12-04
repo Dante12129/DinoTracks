@@ -73,6 +73,15 @@ namespace dt
       return 0;
     }
 
+    void Application::showStart()
+    {
+      // Delete logic
+      if(gameLogic) gameLogic.release();
+
+      // Change HumanView state
+      playerView->setState(HumanView::State::Start, nullptr);
+    }
+
     void Application::startGame(const std::string& playerDino)
     {
       // Create Logic
