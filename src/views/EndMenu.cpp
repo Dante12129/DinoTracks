@@ -13,8 +13,10 @@
 
 namespace dt
 {
-    EndMenu::EndMenu()
-    {}
+    EndMenu::EndMenu(const Logic& logic)
+    {
+      finalScore = logic.getScore();
+    }
 
     void EndMenu::registerActions(class dt::InputManager& input)
     {
@@ -30,7 +32,7 @@ namespace dt
 
     void EndMenu::processEvents(const InputManager& input)
     {
-      if(input.isActive("NEXT_STATE"))
+      if(input.isActive(NEXT_STATE))
         Application::currentApplication->showStart();
     }
 

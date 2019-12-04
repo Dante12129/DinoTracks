@@ -15,14 +15,14 @@ namespace sf { class RenderTarget; }
 namespace dt
 {
   // Forward Declarations
-  class Application;
   class InputManager;
+  class Logic;
 
   class EndMenu : public Menu
   {
   public:
       // Constructors
-      EndMenu();
+      EndMenu(const Logic& logic);
 
       // Input
       void registerActions(InputManager& input) override;
@@ -30,6 +30,9 @@ namespace dt
 
       // Drawing
       void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
+  private:
+      int finalScore;
   };
 }
 

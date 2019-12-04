@@ -53,7 +53,7 @@ namespace dt
         void loadActionsFromFile();
         void goToStart();
         void createFrom(const Logic& logic);
-        void goToEnd();
+        void goToEnd(const Logic& logic);
 
         // Window-Related
         sf::RenderWindow window;

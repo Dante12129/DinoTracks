@@ -242,7 +242,7 @@ namespace dt
       }
       else if(state == State::End)
       {
-        goToEnd();
+        goToEnd(*logic);
       }
     }
 
@@ -304,10 +304,10 @@ namespace dt
       player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 
-    void HumanView::goToEnd()
+    void HumanView::goToEnd(const Logic& logic)
     {
       // Create menu
-      menu.reset(new EndMenu());
+      menu.reset(new EndMenu(logic));
 
       // Load appropriate actions
       menu->registerActions(input);

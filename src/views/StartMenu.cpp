@@ -30,7 +30,7 @@ namespace dt
 
     void StartMenu::processEvents(const InputManager& input)
     {
-      if(input.isActive("NEXT_STATE"))
+      if(input.isActive(NEXT_STATE))
         Application::currentApplication->startGame(TYRANNOSAURUS);
     }
 

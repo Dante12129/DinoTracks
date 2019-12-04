@@ -9,6 +9,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <Thor/Graphics/ToString.hpp>
 
+#include <Application.hpp>
 #include "components/Component.hpp"
 #include "Entity.hpp"
 #include "Tags.hpp"
@@ -145,6 +146,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
+
   int MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position)
   {
       int spacesMoved = 0;
@@ -156,12 +158,16 @@ namespace dt
               int id = collidedEntity->getID();
               std::cout << "Entity Collision: " << id << std::endl;
 
-              if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
+              if (id == ESCAPE_POD)
+              {
+                Application::currentApplication->endGame();
+              }
+              else if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
               {
 //                std::cout << "Collision with enemy." << std::endl;
 //                 CombatSystem
               }
-              else if(id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
+              else if (id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
               {
                   // Check velocity and move player over food
                   if (velocity.x > 0) { position.x += 1;  }
@@ -197,6 +203,7 @@ namespace dt
 
       return spacesMoved;
   }
+
   int MovementSystem::getScoreCount() const
   {
       return score;
