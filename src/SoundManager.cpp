@@ -27,13 +27,17 @@ namespace dt
     void SoundManager::setMusic(const std::string& soundFile)
     {
         curMusic.openFromFile("../resources/sounds/" + soundFile);
+        currentFile = soundFile;
     }
 
     void SoundManager::playMusic(const std::string& soundFile)
     {
-      setMusic(soundFile);
-      curMusic.play();
-      curMusic.setLoop(true);
-      curMusic.setVolume(40);
+      if (soundFile != currentFile)
+      {
+        setMusic(soundFile);
+        curMusic.play();
+        curMusic.setLoop(true);
+        curMusic.setVolume(40);
+      }
     }
 }

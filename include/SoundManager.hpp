@@ -28,7 +28,7 @@ namespace dt
     private:
         std::queue<std::string> soundQueue;
         sf::Music curMusic;
-
+        std::string currentFile;
     };
 }
 

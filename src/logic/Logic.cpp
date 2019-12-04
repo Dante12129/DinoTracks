@@ -184,8 +184,8 @@ namespace dt
         if(turnCount <= 0)
         {
 //            std::cout << "Game over." << std::endl;
-          Application::currentApplication->endGame(EndMenu::Reason::Meteor);
           SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
+          Application::currentApplication->endGame(EndMenu::Reason::Meteor);
         }
 
         // End game if no health
@@ -199,6 +199,7 @@ namespace dt
         // End game if no energy
         if(entities[PLAYER].getData(ENERGY).asInt <= 0)
         {
+          SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
           Application::currentApplication->endGame(EndMenu::Reason::Energy);
         }
 

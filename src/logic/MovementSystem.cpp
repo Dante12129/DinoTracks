@@ -86,6 +86,11 @@ namespace dt
     // Perform actions on entities based on collision
     int spacesMoved = entityCollision(entity, collidedEntity, velocity, position, dinoType);
 
+    // Play the normal music if combat didn't happen
+    if(entity.getID() == PLAYER) std::cout << "Spaces moved: " << spacesMoved << std::endl;
+    if (entity.getID() == PLAYER && spacesMoved != -2)
+      SoundManager::curSoundManager->playMusic(MUSIC_GAMEPLAY);
+
     // Calculate new position based on velocity
     sf::Vector2i newPosition = position + finalVelocity;
     positionComponent.setData(ComponentData(newPosition));
@@ -202,8 +207,10 @@ namespace dt
             else if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
             {
 //                std::cout << "Collision with enemy." << std::endl;
-              fight(entities[0], entities[id]);
+              fight(entities[PLAYER], entities[id]);
               SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
+              SoundManager::curSoundManager->playMusic(MUSIC_COMBAT);
+              spacesMoved = -2;
             }
             else if (id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
             {
@@ -317,6 +324,13 @@ namespace dt
               collidedEntity->setRegen(true);
             }
 
+          }
+          else if (entity.getID() >= ENEMY_START && entity.getID() <= ENEMY_END && collidedEntity->getID() == PLAYER)
+          {
+            fight(entities[PLAYER], entity);
+            SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
+            SoundManager::curSoundManager->playMusic(MUSIC_COMBAT);
+            spacesMoved = -2;
           }
       }
 
