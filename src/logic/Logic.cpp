@@ -116,7 +116,7 @@ namespace dt
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
           herbBuilder.addVisualComponent(FRUIT);
-          herbBuilder.addFoodComponent(10, 10);
+          herbBuilder.addFoodComponent(15, 10);
       }
 
       // Create carn food
@@ -126,7 +126,7 @@ namespace dt
 
           carnBuilder.addPositionComponent({-5, -5});
           carnBuilder.addVisualComponent(MEAT);
-          carnBuilder.addFoodComponent(20, 20);
+          carnBuilder.addFoodComponent(30, 20);
       }
 
       // Create eggs

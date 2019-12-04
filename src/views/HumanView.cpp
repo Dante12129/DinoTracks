@@ -98,7 +98,7 @@ namespace dt
       auto entPositions = logic.getEntityPositions();
       auto enemyVis = logic.getEntityVisuals();
 
-      entities.resize(33);
+      entities.resize(MAX_ENTITIES - 1);
       int i = 0;
       for(sf::Sprite& sprite: entities)
       {
