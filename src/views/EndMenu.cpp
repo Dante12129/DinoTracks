@@ -12,6 +12,25 @@
 
 namespace dt
 {
+    std::string toString(EndMenu::Reason reason)
+    {
+      switch(reason)
+      {
+
+        case EndMenu::Reason::Meteor:
+          return "The meteor hit!";
+        case EndMenu::Reason::Health:
+          return "You ran out of health!";
+        case EndMenu::Reason::Energy:
+          return "You ran out of energy!";
+        case EndMenu::Reason::Pod:
+          return "ERROR";
+        case EndMenu::Reason::None:
+          return "ERROR";
+      }
+      return "ERROR";
+    }
+
     EndMenu::EndMenu(const Logic& logic, Reason reason)
     {
       finalScore = logic.getScore();
@@ -19,7 +38,10 @@ namespace dt
       if(reason == Reason::Pod)
         message = "You won!";
       else
+      {
         message = "You lost!";
+        reason_ = reason;
+      }
     }
 
     void EndMenu::registerActions(class dt::InputManager& input)
@@ -49,9 +71,14 @@ namespace dt
       centerTextHorizontal(messageText, target.getSize());
       target.draw(messageText, states);
 
+      sf::Text reasonText(toString(reason_), font, textSize);
+      centerTextHorizontal(reasonText, target.getSize());
+      reasonText.setPosition(reasonText.getPosition().x, messageText.getPosition().y + font.getLineSpacing(textSize));
+      target.draw(reasonText, states);
+
       sf::Text scoreText("Final Score: " + std::to_string(finalScore), font, textSize);
       centerTextHorizontal(scoreText, target.getSize());
-      scoreText.setPosition(scoreText.getPosition().x, messageText.getPosition().y + font.getLineSpacing(textSize) + 2);
+      scoreText.setPosition(scoreText.getPosition().x, reasonText.getPosition().y + font.getLineSpacing(textSize));
       target.draw(scoreText, states);
 
       sf::Text replayCommand("Press Enter To Play Again", font, textSize);

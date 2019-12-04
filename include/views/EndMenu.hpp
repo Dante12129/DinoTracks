@@ -45,6 +45,7 @@ namespace dt
   private:
       int finalScore;
       std::string message;
+      Reason reason_;
   };
 }
 

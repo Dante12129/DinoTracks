@@ -11,7 +11,7 @@ namespace dt
   Menu::~Menu()
   {}
 
-  void centerTextHorizontal(sf::Text& text, const sf::Vector2u dimensions)
+  void centerTextHorizontal(sf::Text& text, const sf::Vector2u& dimensions)
   {
     sf::FloatRect textRect = text.getLocalBounds();
     text.setOrigin(textRect.left + textRect.width/2.0f,

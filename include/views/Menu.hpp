@@ -31,7 +31,7 @@ namespace dt
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;
   };
 
-  void centerTextHorizontal(sf::Text& text, const sf::Vector2u dimensions);
+  void centerTextHorizontal(sf::Text& text, const sf::Vector2u& dimensions);
 }
 
 
