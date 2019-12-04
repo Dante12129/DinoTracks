@@ -11,6 +11,7 @@
 #include <EndMenu.hpp>
 #include <logic/Logic.hpp>
 #include <views/HumanView.hpp>
+#include <views/AIView.hpp>
 
 namespace dt
 {
@@ -38,6 +39,7 @@ namespace dt
       // Main Objects
       std::unique_ptr<Logic> gameLogic;
       std::unique_ptr<HumanView> playerView;
+      std::unique_ptr<AIView> aiView;
 
       // Managers
       ResourceManager resources;

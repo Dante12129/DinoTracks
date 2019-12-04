@@ -38,6 +38,8 @@ namespace dt
 	    sf::Text turns;
 	    sf::Text scorecount;
 	    sf::Text score;
+	    sf::Text heanum;
+	    sf::Text enenum;
     };
 }
 

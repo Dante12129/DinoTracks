@@ -35,6 +35,7 @@ namespace dt
     const std::string ESCAPE_TEX = "ESCAPE_TEX";
     const std::string MEAT = "MEAT";
     const std::string TREE = "TREE";
+    const std::string FRUIT = "FRUIT";
 
 //    Dinosaurs
     const std::string STEGOSAURUS = "STEGOSAURUS";
@@ -45,6 +46,7 @@ namespace dt
     const std::string PACHYCEPHALOSAURUS = "PACHYCEPHALOSAURUS";
     const std::string PROTOCERATOPS = "PROTOCERATOPS";
     const std::string PARASAUROLOPHUS = "PARASAUROLOPHUS";
+    const int NUM_TYPES = 8; 
 
 
 //    Components
@@ -55,6 +57,7 @@ namespace dt
     const std::string FOOD = "Food";
     const std::string VISUAL = "Visual";
     const std::string SCORE = "Score";
+    const std::string ATTRIBUTES = "Attributes";
 
 //    Tiles
     const int WATER = 0;
@@ -64,6 +67,11 @@ namespace dt
     const int GRASS_TOP_RIGHT = 4;
     const int GRASS_TOP_LEFT = 5;
     const int MOUNTAIN = 6;
+    const int FOREST = 7;
+    
+// Map
+	const int MAP_HEIGHT = 150;
+	const int MAP_WIDTH = 153;
 
 //    Entity ranges
     const int PLAYER = 0;

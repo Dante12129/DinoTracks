@@ -39,18 +39,22 @@ namespace dt
       entities.resize(35);
       for(int i=0; i<=34; i++){
           entities[i].setID(i);
+          entities[i].setRegen(false);
       }
 
         // Generate random coordinates
         std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
       // Create player
+      DinosaurType dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
       EntityBuilder playerBuilder(entities[PLAYER]);
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(100);
-      playerBuilder.addHealthComponent(100);
+      playerBuilder.addHealthComponent(dino.getHealth());
       playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
+      playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
+
 
       // Create escape pod
       Entity escapePod;
@@ -59,26 +63,58 @@ namespace dt
       escapePodBuilder.addVisualComponent(ESCAPE_TEX); //To be changed when textures added
 
         // Assign types and coordinates to enemies
+      std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
+      std::uniform_int_distribution<int> dinoType(1, NUM_TYPES);  
+      
       for (int i = ENEMY_START; i <= ENEMY_END; ++i)
       {
         EntityBuilder dinoBuilder(entities[i]);
         DinosaurType dino;
         std::string dinoString;
+        
+        int type = dinoType(mt);
 
-        if (i % 2 == 0)
+        switch(type)
         {
-          dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
-          dinoString = STEGOSAURUS;
-        }
-        else
-        {
-          dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
-          dinoString = TYRANNOSAURUS;
+			case (1):
+				dino = ResourceManager::currentManager->getDinosaurType(STEGOSAURUS);
+				dinoString = STEGOSAURUS;
+				break;
+			case (2):
+				dino = ResourceManager::currentManager->getDinosaurType(TYRANNOSAURUS);
+				dinoString = TYRANNOSAURUS;
+				break;
+			case (3):
+				dino = ResourceManager::currentManager->getDinosaurType(PARASAUROLOPHUS);
+				dinoString = PARASAUROLOPHUS;
+				break;
+			case (4):
+				dino = ResourceManager::currentManager->getDinosaurType(SPINOSAURUS);
+				dinoString = SPINOSAURUS;
+				break;
+			case (5):
+				dino = ResourceManager::currentManager->getDinosaurType(ALLOSAURUS);
+				dinoString = ALLOSAURUS;
+				break;
+			case (6):
+				dino = ResourceManager::currentManager->getDinosaurType(PACHYCEPHALOSAURUS);
+				dinoString = PACHYCEPHALOSAURUS;
+				break;
+			case (7):
+				dino = ResourceManager::currentManager->getDinosaurType(PROTOCERATOPS);
+				dinoString = PROTOCERATOPS;
+				break;
+			case (8):
+				dino = ResourceManager::currentManager->getDinosaurType(VELOCIRAPTOR);
+				dinoString = VELOCIRAPTOR;
+				break;
         }
 
         dinoBuilder.addPositionComponent(entityCoords.at(i));
         dinoBuilder.addHealthComponent(dino.getHealth());
+        dinoBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
         dinoBuilder.addVisualComponent(dinoString);
+        dinoBuilder.addVelocityComponent({0, 0});
 	    }
 
       // Create herb food
@@ -87,7 +123,7 @@ namespace dt
           EntityBuilder herbBuilder(entities[i]);
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
-          herbBuilder.addVisualComponent(TREE);
+          herbBuilder.addVisualComponent(FRUIT);
           herbBuilder.addFoodComponent(10, 10);
       }
 
@@ -96,7 +132,7 @@ namespace dt
       {
           EntityBuilder carnBuilder(entities[i]);
 
-          carnBuilder.addPositionComponent(entityCoords.at(i));
+          carnBuilder.addPositionComponent({-5, -5});
           carnBuilder.addVisualComponent(MEAT);
           carnBuilder.addFoodComponent(10, 10);
       }
@@ -174,6 +210,51 @@ namespace dt
 
 //        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
 //        std::cout << "Current energy: " << entities[0].getComponent("Energy").getData().asInt << "\n";
+
+
+		for (Entity& entity: entities)
+		{
+			if(entity.getRegen()){
+				occupiedSpaces.clear();
+				
+				for(Entity& entity : entities)
+				{
+					occupiedSpaces.push_back(entity.getComponent(POSITION).getData().asVec2i);
+				}
+				
+				if (entity.getID() <= ENEMY_END && entity.getID() >= ENEMY_START)
+				{
+					for (int i = FOOD_CARN_START; i <= FOOD_CARN_END; i++)
+					{
+						sf::Vector2i testPos = {-5, -5};
+						if (entities[i].getComponent(POSITION).getData().asVec2i == testPos)
+						{
+							Component& positionComponent = entities[i].getComponent(POSITION);
+							sf::Vector2i meatPos = entity.getComponent(POSITION).getData().asVec2i;
+							positionComponent.setData(ComponentData(meatPos));
+							break;
+						}
+					}
+				}
+								
+				if (entity.getID() <= FOOD_CARN_END && entity.getID() >= FOOD_CARN_START)
+				{
+					Component& positionComponent = entity.getComponent(POSITION);
+					sf::Vector2i newPosition = {-5, -5};
+					positionComponent.setData(ComponentData(newPosition));
+				}
+				else
+				{
+				
+					std::vector<sf::Vector2i> newCoords = generateCoords(1);
+					Component& positionComponent = entity.getComponent(POSITION);
+					sf::Vector2i newPosition = newCoords[0];
+					positionComponent.setData(ComponentData(newPosition));
+				}
+				
+				entity.setRegen(false);
+			}
+		}
     }
 
     int Logic::getTurn() const
@@ -221,6 +302,92 @@ namespace dt
         actionPerformed = true;
     }
 
+    void Logic::moveEnemy(int id, Direction dir)
+    {
+		sf::Vector2i curPos = entities[id].getData(POSITION).asVec2i;
+		sf::Vector2i playerPos = entities[0].getData(POSITION).asVec2i;
+		
+		switch (dir)
+        {
+            case Direction::Up:
+                movement.stop(entities[id]);
+                
+                if (map.getTile(curPos.x, curPos.y - 1) != 1)
+                {
+					if (playerPos.x < curPos.x)
+					{
+						movement.moveLeft(entities[id], 1);
+					}
+					else
+					{
+						movement.moveRight(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveUp(entities[id], 1);
+				}
+                break;
+            case Direction::Down:
+                movement.stop(entities[id]);
+                
+                if (map.getTile(curPos.x, curPos.y + 1) != 1)
+                {
+					if (playerPos.x < curPos.x)
+					{
+						movement.moveLeft(entities[id], 1);
+					}
+					else
+					{
+						movement.moveRight(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveDown(entities[id], 1);
+				}
+                break;
+            case Direction::Left:
+                movement.stop(entities[id]);
+                
+                if (map.getTile(curPos.x - 1, curPos.y) != 1)
+                {
+					if (playerPos.y < curPos.y)
+					{
+						movement.moveUp(entities[id], 1);
+					}
+					else
+					{
+						movement.moveDown(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveLeft(entities[id], 1);
+				}
+                break;
+            case Direction::Right:
+                movement.stop(entities[id]);
+                
+                if (map.getTile(curPos.x + 1, curPos.y) != 1)
+                {
+					if (playerPos.y < curPos.y)
+					{
+						movement.moveUp(entities[id], 1);
+					}
+					else
+					{
+						movement.moveDown(entities[id], 1);
+					}
+				}
+				else
+				{
+					movement.moveRight(entities[id], 1);
+				}
+                break;
+        }
+	}
+
     const sf::Vector2i& Logic::getPlayerPosition() const
     {
         return entities[PLAYER].getComponent(POSITION).getData().asVec2i;
@@ -236,7 +403,11 @@ namespace dt
     }
 
     int Logic::getPlayerHealth() const {
-      return entities[PLAYER].getComponent(HEALTH).getData().asInt;
+      return entities[PLAYER].getComponent(HEALTH).getData().asVec2i.x;
+    }
+
+    int Logic::getPlayerMaxHealth() const {
+        return entities[PLAYER].getComponent(HEALTH).getData().asVec2i.y;
     }
 
     const Map& Logic::getMap() const
@@ -272,8 +443,8 @@ namespace dt
     std::vector<sf::Vector2i> Logic::generateCoords(int numOfCoords)
     {
         std::mt19937 mt(std::chrono::system_clock::now().time_since_epoch().count());
-        std::uniform_int_distribution<int> x_cord(1, 96);
-        std::uniform_int_distribution<int> y_cord(1, 66);
+        std::uniform_int_distribution<int> x_cord(21, 130);
+        std::uniform_int_distribution<int> y_cord(12, 139);
 
         std::vector<sf::Vector2i> coordinates;
 

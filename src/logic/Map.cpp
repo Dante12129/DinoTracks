@@ -5,6 +5,8 @@
 
 #include "Map.hpp"
 
+#include <Tags.hpp>
+
 namespace dt
 {
 	
@@ -31,7 +33,7 @@ namespace dt
 
 	int Map::getTile(int x, int y) const 
 	{
-    int tileType = terrainMap[x + (96 * y)];
+    int tileType = terrainMap[x + (MAP_WIDTH * y)];
     return tileType;
 	}
 

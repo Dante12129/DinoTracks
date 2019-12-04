@@ -28,10 +28,14 @@ namespace dt
 
         void setID(int id);
         int getID() const;
+        
+        void setRegen(bool regen);
+        bool getRegen() const;
 
     private:
         std::unordered_map<std::string, std::unique_ptr<Component>> components; //map that stores the components of an entity
         int id;
+        bool regenerate;
     };
 }
 

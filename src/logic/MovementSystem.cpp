@@ -17,7 +17,7 @@
 
 namespace dt
 {
-  MovementSystem::MovementSystem(const std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys)
+  MovementSystem::MovementSystem(std::vector<Entity>& entities, EnergySystem& enesys, Map& map, HealthSystem& heasys)
       : entities(entities), enesys(enesys), map(map), heasys(heasys)
   {}
 
@@ -41,9 +41,12 @@ namespace dt
     // Test collision in all four directions
     for(int i = velocity.x > 0 ? 1 : -1; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
     {
-      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      auto it = std::find_if(entities.cbegin(), entities.cend(), [&](const Entity& e)
       {
-        return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
+        if (entity.getID() != e.getID())
+        {
+          return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
+	    }
       });
       if(it != entities.cend())
       {
@@ -57,9 +60,12 @@ namespace dt
     }
     for(int i = velocity.y > 0 ? 1 : -1; velocity.y != 0 && abs(i) <= abs(velocity.y); i += velocity.y > 0 ? 1 : -1)
     {
-      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      auto it = std::find_if(entities.cbegin(), entities.cend(), [&](const Entity& e)
       {
-          return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
+        if (entity.getID() != e.getID())
+        {
+		      return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
+		    }
       });
       if(it != entities.cend())
       {
@@ -154,7 +160,7 @@ namespace dt
     //set velocity as 0
     velo.setData({0, 0});
   }
-  int MovementSystem::entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position, std::string dinoType)
+  int MovementSystem::entityCollision(Entity& entity, Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position, std::string dinoType)
   {
       int spacesMoved = 0;
       if (collidedEntity != nullptr)
@@ -203,6 +209,7 @@ namespace dt
               if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
               {
 //                std::cout << "Collision with enemy." << std::endl;
+                fight(entities[0], entities[id]);
                 SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
               }
               else if (id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
@@ -253,10 +260,12 @@ namespace dt
                           std::cout << "Collision with food." << std::endl;
                           std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
 
-//                        HealthSystem and EnergySystem eat
+//                         HealthSystem and EnergySystem eat
                           heasys.eat(entity, *collidedEntity);
                           enesys.eat(entity, *collidedEntity);
-                      }
+
+                          collidedEntity->setRegen(true);
+//                       }
                       else {} // if not, do no move over or eat
                   }
 
@@ -275,6 +284,8 @@ namespace dt
                   int eggScore = scoreComponent.getData().asInt;
                   score += eggScore;
 //                  std::cout << "Score: " << score << std::endl;
+
+				          collidedEntity->setRegen(true);
               }
 
           }
@@ -286,5 +297,43 @@ namespace dt
   int MovementSystem::getScoreCount() const
   {
       return score;
+  }
+
+  void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy) {
+      std::cout << "Enter combat\n";
+      while(player.getComponent(HEALTH).getData().asInt>0 && enemy.getComponent(HEALTH).getData().asInt>0){
+          int playerhea = player.getComponent(HEALTH).getData().asInt;
+          int playerattack = player.getComponent(ATTRIBUTES).getData().asVec2i.x;
+          int playerdefense = player.getComponent(ATTRIBUTES).getData().asVec2i.y;
+          int enemyhea = enemy.getComponent(HEALTH).getData().asInt;
+          int enemyattack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
+          int enemydefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
+
+            std::cout<<"combat ..."<<"\n";
+
+          if(playerhea + playerdefense - enemyattack <= 0){
+              heasys.set(player, 0);
+              std::cout << "Game Over in Combat\n";
+          }
+          else if(enemyhea + enemydefense - playerattack <= 0){
+              heasys.set(enemy, 0);
+              std::cout<<enemy.getComponent(HEALTH).getData().asInt << std::endl;
+              std::cout << "Enemy Dinosaur die\n";
+
+              enemy.setRegen(true);
+          }
+          else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0){
+              std::cout << "can't lose health\n";
+          }
+          else{
+              //player.getComponent(HEALTH).setData(playerhea + playerdefense - enemyattack);
+              //enemy.getComponent(HEALTH).setData(enemyhea + enemydefense - playerattack);
+              heasys.heal(player, playerdefense - enemyattack);
+              heasys.heal(enemy, enemydefense - playerattack);
+              std::cout<<enemy.getComponent(HEALTH).getData().asInt<<"\n";
+          }
+          heasys.update(player);
+          heasys.update(enemy);
+      }
   }
 }

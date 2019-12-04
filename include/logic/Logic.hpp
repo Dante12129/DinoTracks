@@ -55,12 +55,14 @@ namespace dt
         const std::string& getPlayerVisual() const;
         int getPlayerEnergy() const;
         int getPlayerHealth() const;
+        int getPlayerMaxHealth() const;
 
         // View-Logic Communication For Map
         const Map& getMap() const;
 
         // View-Logic Communication For Enemies
         std::vector<std::string> getEntityVisuals() const;
+        void moveEnemy(int id, Direction dir);
 
         //View-Logic Communication for Enemies, Food, and Eggs
         std::vector<sf::Vector2i> getEntityPositions() const;

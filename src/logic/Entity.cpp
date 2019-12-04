@@ -52,4 +52,14 @@ namespace dt
     {
         return id;
     }
+    
+    void Entity::setRegen(bool regen) 
+    {
+		regenerate = regen;
+	}
+	
+	bool Entity::getRegen() const
+	{
+		return regenerate;
+	}
 }

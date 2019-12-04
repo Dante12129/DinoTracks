@@ -185,6 +185,10 @@ namespace dt
       sf::Sprite mountain;
       mountain.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
       mountain.setTextureRect(sf::IntRect(0, 64, 32, 32));
+      
+      sf::Sprite forest;
+      forest.setTexture(ResourceManager::currentManager->getTexture(TERRAIN));
+      forest.setTextureRect(sf::IntRect(32, 64, 32, 32));
 
       mapView.setCenter(sf::Vector2f(centerX, centerY));
       mapView.setSize(sf::Vector2f(1366, 768));
@@ -194,9 +198,9 @@ namespace dt
       int posX = 0;
       int posY = 0;
 
-      for (int r = 0; r < 66; ++r)
+      for (int r = 0; r < MAP_HEIGHT - 1; ++r)
       {
-        for (int c = 0; c < 96; ++c)
+        for (int c = 0; c < MAP_WIDTH - 1; ++c)
         {
           switch (map->getTile(c, r))
           {
@@ -227,6 +231,11 @@ namespace dt
             case MOUNTAIN:
               mountain.setPosition(sf::Vector2f(posX, posY));
               window.draw(mountain);
+              break;
+            case FOREST:
+			  forest.setPosition(sf::Vector2f(posX, posY));
+			  window.draw(forest);
+			  break;
           }
 
           posX += 32;
