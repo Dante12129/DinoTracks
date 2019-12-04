@@ -10,10 +10,19 @@
 #include "Tags.hpp"
 
 namespace dt {
-    EnergySystem::EnergySystem(){
-        for (int i=0; i<=40; i++){
-            eneBuffer.insert({i,100});
+    void EnergySystem::init(const std::vector<Entity>& entities)
+    {
+      for (int i = 0; i < 35; i++)
+      {
+        if (entities.at(i).hasComponent(ENERGY))
+        {
+          eneBuffer.insert({i, entities.at(i).getData(ENERGY).asVec2i.y}); // Init buffer to max health
         }
+        else
+        {
+          eneBuffer.insert({i, 0});
+        }
+      }
     }
 
     void EnergySystem::update(dt::Entity &dino) {
@@ -22,7 +31,6 @@ namespace dt {
 
         // Get energy and food components
         Component& energyComponent = dino.getComponent(ENERGY);
-//        std::cout << "Energy update for: " << dino.getID() << " is " << energyComponent.getData().asInt - eneBuffer[id] << std::endl;
 
         // Use buffer change map to update energy
         energyComponent.setData(ComponentData(eneBuffer[id]));
@@ -38,8 +46,8 @@ namespace dt {
 
         int newene = eneBuffer[id] + val;
         // Check value of energy
-        if (newene >= 100){
-            newene = 100;
+        if (newene >= ene.getData().asVec2i.y){
+            newene = ene.getData().asVec2i.y;
         }
         else if(newene <= 0){
             newene = 0;

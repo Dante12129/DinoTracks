@@ -8,8 +8,11 @@
 
 namespace dt
 {
-    Energy::Energy(int x) : ene(x)
-    {}
+    Energy::Energy(int x)
+    {
+      ene.asVec2i.x = x;
+      ene.asVec2i.y = x;
+    }
 
     std::string Energy::getName() const
     {
@@ -23,6 +26,6 @@ namespace dt
 
     void Energy::setData(const ComponentData& data)
     {
-        ene.asInt = data.asInt;
+        ene.asVec2i.x = data.asInt;
     }
 }

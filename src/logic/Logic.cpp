@@ -140,6 +140,7 @@ namespace dt
         }
 
         health.init(entities);
+        energy.init(entities);
     }
 
     void Logic::update(const sf::Time& delta)

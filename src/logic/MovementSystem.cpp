@@ -90,7 +90,6 @@ namespace dt
     int spacesMoved = entityCollision(entity, collidedEntity, velocity, position, dinoType);
 
     // Play the normal music if combat didn't happen
-    if(entity.getID() == PLAYER) std::cout << "Spaces moved: " << spacesMoved << std::endl;
     if (entity.getID() == PLAYER && spacesMoved != -2)
       SoundManager::curSoundManager->playMusic(MUSIC_GAMEPLAY);
 
@@ -105,7 +104,7 @@ namespace dt
         enesys.adjust(entity, -1 * abs(finalVelocity.x));
       if(finalVelocity.y != 0)
         enesys.adjust(entity, -1 * abs(finalVelocity.y));
-      if(spacesMoved != 0)
+      if(spacesMoved > 0)
         enesys.adjust(entity, -1 * spacesMoved);
     }
   }

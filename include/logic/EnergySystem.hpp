@@ -18,7 +18,7 @@ namespace dt
     class EnergySystem : public System //This system deals with functionality of energy
     {
     public:
-        EnergySystem();
+        void init(const std::vector<Entity>& entities);
         virtual void update(Entity& entity) override;
 
         void adjust(Entity& dino, int val);
