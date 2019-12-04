@@ -275,7 +275,9 @@ namespace dt
 
         if (spd == Speed::Fast)
         {
-            velocity = 3;
+            std::string dinoType = dynamic_cast<const Visual&>(entities[0].getComponent(VISUAL)).getString();
+            DinosaurType dino = ResourceManager::currentManager->getDinosaurType(dinoType);
+            velocity = dino.getSpeed();
         }
         else
         {
