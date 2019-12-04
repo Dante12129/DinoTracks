@@ -35,6 +35,8 @@ namespace dt
 
       int getScoreCount() const;
 
+      void fight(dt::Entity &player, dt::Entity &enemy);
+
   private:
       std::vector<Entity>& entities;
       EnergySystem& enesys;

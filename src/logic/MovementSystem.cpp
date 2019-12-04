@@ -168,125 +168,156 @@ namespace dt
           if (entity.getID() == 0) // Player initiates collision
           {
 //            std::cout << "Initiator: " << entity.getID() << std::endl;
-              int id = collidedEntity->getID();
-              std::cout << "Entity Collision: " << id << std::endl;
+            int id = collidedEntity->getID();
+            std::cout << "Entity Collision: " << id << std::endl;
 
-              if(id == ESCAPE_POD)
+            if (id == ESCAPE_POD)
+            {
+              // Check velocity and move player over pod
+              if (velocity.x > 0)
               {
-                // Check velocity and move player over pod
-                if (velocity.x > 0)
-                {
-                  position.x += 1;
-                  spacesMoved = 1;
-                }
-                else if (velocity.x < 0)
-                {
-                  position.x += -1;
-                  spacesMoved = 1;
-                }
-
-                if (velocity.y > 0)
-                {
-                  position.y += 1;
-                  spacesMoved = 1;
-                }
-                else if (velocity.y < 0)
-                {
-                  position.y += -1;
-                  spacesMoved = 1;
-                }
-
-                std::cout << "Collision with escape pod." << std::endl;
-
-                if (score >= 15)
-                {
-                  // win
-                  SoundManager::curSoundManager->addToQueue(SOUND_WIN);
-                  Application::currentApplication->endGame(EndMenu::Reason::Pod);
-                }
+                position.x += 1;
+                spacesMoved = 1;
+              } else if (velocity.x < 0)
+              {
+                position.x += -1;
+                spacesMoved = 1;
               }
 
-              if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
+              if (velocity.y > 0)
               {
+                position.y += 1;
+                spacesMoved = 1;
+              } else if (velocity.y < 0)
+              {
+                position.y += -1;
+                spacesMoved = 1;
+              }
+
+              std::cout << "Collision with escape pod." << std::endl;
+
+              if (score >= 15)
+              {
+                // win
+                SoundManager::curSoundManager->addToQueue(SOUND_WIN);
+                Application::currentApplication->endGame(EndMenu::Reason::Pod);
+              }
+            }
+            else if (id >= ENEMY_START && id <= ENEMY_END) // Collision with enemy
+            {
 //                std::cout << "Collision with enemy." << std::endl;
-                fight(entities[0], entities[id]);
-                SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
-              }
-              else if (id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
+              fight(entities[0], entities[id]);
+              SoundManager::curSoundManager->addToQueue(SOUND_COMBAT);
+            }
+            else if (id >= FOOD_HERB_START && id <= FOOD_CARN_END) //Collision with any food
+            {
+              std::cout << dinoType << std::endl;
+              // Check type of food to queue sound
+              if (id >= FOOD_HERB_START && id <= FOOD_HERB_END) // Collision with herb food
               {
-                  std::cout << dinoType << std::endl;
-                  // Check type of food to queue sound
-                  if(id >= FOOD_HERB_START && id <= FOOD_HERB_END) // Collision with herb food
+                // if dino is herb, move over food and eat
+                if (dinoType == STEGOSAURUS || dinoType == PACHYCEPHALOSAURUS ||
+                    dinoType == PARASAUROLOPHUS || dinoType == PROTOCERATOPS)
+                {
+                  // Check velocity and move player over food
+                  if (velocity.x > 0)
                   {
-                      // if dino is herb, move over food and eat
-                      if(dinoType == STEGOSAURUS || dinoType == PACHYCEPHALOSAURUS ||
-                      dinoType == PARASAUROLOPHUS || dinoType == PROTOCERATOPS)
-                      {
-                          // Check velocity and move player over food
-                          if (velocity.x > 0) { position.x += 1; spacesMoved = 1; }
-                          else if (velocity.x < 0) { position.x += -1; spacesMoved = 1; }
+                    position.x += 1;
+                    spacesMoved = 1;
+                  }
+                  else if (velocity.x < 0)
+                  {
+                    position.x += -1;
+                    spacesMoved = 1;
+                  }
 
-                          if (velocity.y > 0) { position.y += 1; spacesMoved = 1; }
-                          else if (velocity.y < 0) { position.y += -1; spacesMoved = 1; }
+                  if (velocity.y > 0)
+                  {
+                    position.y += 1;
+                    spacesMoved = 1;
+                  }
+                  else if (velocity.y < 0)
+                  {
+                    position.y += -1;
+                    spacesMoved = 1;
+                  }
 
-                          // Herb eat sound
-                          SoundManager::curSoundManager->addToQueue(SOUND_EAT_HERB);
+                  // Herb eat sound
+                  SoundManager::curSoundManager->addToQueue(SOUND_EAT_HERB);
 
-                          std::cout << "Collision with food." << std::endl;
-                          std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
+                  std::cout << "Collision with food." << std::endl;
+                  std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
 
 //                        HealthSystem and EnergySystem eat
-                          heasys.eat(entity, *collidedEntity);
-                          enesys.eat(entity, *collidedEntity);
-                      }
-                      else {} // if not, do not move over or eat
-                  }
-                  else // Collision with carn food
-                  {
-                      // if dino is carn, move over food and eat
-                      if(dinoType == TYRANNOSAURUS || dinoType == VELOCIRAPTOR ||
-                        dinoType == SPINOSAURUS || dinoType == ALLOSAURUS)
-                      {
-                          // Check velocity and move player over food
-                          if (velocity.x > 0) { position.x += 1; }
-                          else if (velocity.x < 0) { position.x += -1; }
-
-                          if (velocity.y > 0) { position.y += 1; }
-                          else if (velocity.y < 0) { position.y += -1; }
-
-                          // Carn eat sound
-                          SoundManager::curSoundManager->addToQueue(SOUND_EAT_CARN);
-
-                          std::cout << "Collision with food." << std::endl;
-                          std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
-
-//                         HealthSystem and EnergySystem eat
-                          heasys.eat(entity, *collidedEntity);
-                          enesys.eat(entity, *collidedEntity);
-
-                          collidedEntity->setRegen(true);
-//                       }
-                      else {} // if not, do no move over or eat
-                  }
-
+                  heasys.eat(entity, *collidedEntity);
+                  enesys.eat(entity, *collidedEntity);
+                }
+                else {} // if not, do not move over or eat
               }
-              else if (id >= EGG_START && id <= EGG_END) // Collision with egg
+              else // Collision with carn food
               {
-                  // Check velocity and move player over egg
-                  if (velocity.x > 0) { position.x += 1; spacesMoved = 1; }
-                  else if (velocity.x < 0) { position.x += -1; spacesMoved = 1; }
+                // if dino is carn, move over food and eat
+                if (dinoType == TYRANNOSAURUS || dinoType == VELOCIRAPTOR ||
+                    dinoType == SPINOSAURUS || dinoType == ALLOSAURUS)
+                {
+                  // Check velocity and move player over food
+                  if (velocity.x > 0)
+                  { position.x += 1; spacesMoved = 1; }
+                  else if (velocity.x < 0)
+                  { position.x += -1; spacesMoved = 1; }
 
-                  if (velocity.y > 0) { position.y += 1; spacesMoved = 1; }
-                  else if (velocity.y < 0) { position.y += -1; spacesMoved = 1; }
+                  if (velocity.y > 0)
+                  { position.y += 1; spacesMoved = 1; }
+                  else if (velocity.y < 0)
+                  { position.y += -1; spacesMoved = 1; }
+
+                  // Carn eat sound
+                  SoundManager::curSoundManager->addToQueue(SOUND_EAT_CARN);
+
+                  std::cout << "Collision with food." << std::endl;
+                  std::cout << thor::toString(collidedEntity->getData(FOOD).asVec2i) << std::endl;
+
+//                 HealthSystem and EnergySystem eat
+                  heasys.eat(entity, *collidedEntity);
+                  enesys.eat(entity, *collidedEntity);
+
+                  collidedEntity->setRegen(true);
+                 }
+                }
+            }
+            else if (id >= EGG_START && id <= EGG_END) // Collision with egg
+            {
+              // Check velocity and move player over egg
+              if (velocity.x > 0)
+              {
+                position.x += 1;
+                spacesMoved = 1;
+              }
+              else if (velocity.x < 0)
+              {
+                position.x += -1;
+                spacesMoved = 1;
+              }
+
+              if (velocity.y > 0)
+              {
+                position.y += 1;
+                spacesMoved = 1;
+              }
+              else if (velocity.y < 0)
+              {
+                position.y += -1;
+                spacesMoved = 1;
+              }
 
 //                  std::cout << "Collision with egg." << std::endl;
-                  const Component& scoreComponent = collidedEntity->getComponent(SCORE);
-                  int eggScore = scoreComponent.getData().asInt;
-                  score += eggScore;
+              const Component& scoreComponent = collidedEntity->getComponent(SCORE);
+              int eggScore = scoreComponent.getData().asInt;
+              score += eggScore;
 //                  std::cout << "Score: " << score << std::endl;
 
-				          collidedEntity->setRegen(true);
-              }
+              collidedEntity->setRegen(true);
+            }
 
           }
       }
@@ -299,7 +330,8 @@ namespace dt
       return score;
   }
 
-  void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy) {
+  void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy)
+  {
       std::cout << "Enter combat\n";
       while(player.getComponent(HEALTH).getData().asInt>0 && enemy.getComponent(HEALTH).getData().asInt>0){
           int playerhea = player.getComponent(HEALTH).getData().asInt;
@@ -311,21 +343,25 @@ namespace dt
 
             std::cout<<"combat ..."<<"\n";
 
-          if(playerhea + playerdefense - enemyattack <= 0){
+          if(playerhea + playerdefense - enemyattack <= 0)
+          {
               heasys.set(player, 0);
               std::cout << "Game Over in Combat\n";
           }
-          else if(enemyhea + enemydefense - playerattack <= 0){
+          else if(enemyhea + enemydefense - playerattack <= 0)
+          {
               heasys.set(enemy, 0);
               std::cout<<enemy.getComponent(HEALTH).getData().asInt << std::endl;
               std::cout << "Enemy Dinosaur die\n";
 
               enemy.setRegen(true);
           }
-          else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0){
+          else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0)
+          {
               std::cout << "can't lose health\n";
           }
-          else{
+          else
+          {
               //player.getComponent(HEALTH).setData(playerhea + playerdefense - enemyattack);
               //enemy.getComponent(HEALTH).setData(enemyhea + enemydefense - playerattack);
               heasys.heal(player, playerdefense - enemyattack);
