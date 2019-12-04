@@ -1,11 +1,12 @@
 //
-// Created by dan9c on 12/2/2019.
+// Created by Dan on 12/2/2019.
 //
 
 #ifndef DINOTRACKS_MENU_HPP
 #define DINOTRACKS_MENU_HPP
 
 #include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Text.hpp>
 
 // Forward Declarations
 namespace sf { class RenderTarget; }
@@ -29,6 +30,8 @@ namespace dt
       // Drawing
       virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override = 0;
   };
+
+  void centerTextHorizontal(sf::Text& text, const sf::Vector2u dimensions);
 }
 
 

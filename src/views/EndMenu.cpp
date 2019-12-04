@@ -4,7 +4,6 @@
 
 #include "EndMenu.hpp"
 
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
 #include <Application.hpp>
@@ -19,6 +18,8 @@ namespace dt
 
       if(reason == Reason::Pod)
         message = "You won!";
+      else
+        message = "You lost!";
     }
 
     void EndMenu::registerActions(class dt::InputManager& input)
@@ -41,8 +42,21 @@ namespace dt
 
     void EndMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-      sf::RectangleShape rect({300, 300});
-      rect.setFillColor(sf::Color::Yellow);
-      target.draw(rect, states);
+      sf::Font& font = ResourceManager::currentManager->getFont(METEOR_FONT);
+      unsigned textSize = 72;
+
+      sf::Text messageText(message, font, textSize);
+      centerTextHorizontal(messageText, target.getSize());
+      target.draw(messageText, states);
+
+      sf::Text scoreText("Final Score: " + std::to_string(finalScore), font, textSize);
+      centerTextHorizontal(scoreText, target.getSize());
+      scoreText.setPosition(scoreText.getPosition().x, messageText.getPosition().y + font.getLineSpacing(textSize) + 2);
+      target.draw(scoreText, states);
+
+      sf::Text replayCommand("Press Enter To Play Again", font, textSize);
+      centerTextHorizontal(replayCommand, target.getSize());
+      replayCommand.setPosition(replayCommand.getPosition().x, scoreText.getPosition().y + font.getLineSpacing(textSize) * 3);
+      target.draw(replayCommand, states);
     }
 }
