@@ -228,6 +228,9 @@ namespace dt
 				{
 					for (int i = FOOD_CARN_START; i <= FOOD_CARN_END; i++)
 					{
+					  // Reset health
+					  health.set(entity, entity.getData(HEALTH).asVec2i.y);
+
 						sf::Vector2i testPos = {-5, -5};
 						if (entities[i].getComponent(POSITION).getData().asVec2i == testPos)
 						{
