@@ -16,6 +16,7 @@
 #include "Map.hpp"
 #include "HealthSystem.hpp"
 #include "SoundManager.hpp"
+#include "Visual.hpp"
 
 namespace dt
 {
@@ -30,7 +31,7 @@ namespace dt
       void moveLeft(dt::Entity& dino, int velocity);
       void moveRight(dt::Entity& dino, int velocity);
       void stop(dt::Entity& dino);
-      void entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position);
+      void entityCollision(Entity& entity, const Entity* collidedEntity, const sf::Vector2i& velocity, sf::Vector2i& position, std::string dinoType);
 
       int getScoreCount() const;
 
