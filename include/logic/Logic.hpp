@@ -83,10 +83,6 @@ namespace dt
 
         // Entity Coordinates
         std::vector<sf::Vector2i> generateCoords(int numOfCoords);
-
-        // Sound Manager
-        SoundManager sounds;
-
     };
 }
 

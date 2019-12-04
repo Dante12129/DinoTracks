@@ -17,6 +17,12 @@ namespace dt
       // Set the global ResourceManager
       ResourceManager::currentManager = &resources;
 
+      // Set the global SoundManager
+      SoundManager::curSoundManager = &sounds;
+
+      // Set the global Application
+      currentApplication = this;
+
       // Load global resources here
       // E.g. resources.load(ResourceManager::Type::Texture, "TREX_TEX", "trex.png")
       // Resource must be in the textures, fonts, or sounds subdirectories of the resources directory
@@ -51,7 +57,6 @@ namespace dt
 
       // Create the Views
       playerView.reset(new HumanView());
-      playerView->setState(HumanView::State::Start, nullptr);
       aiView.reset(new AIView);
 
       // Let the HumanView Quit The App
@@ -59,8 +64,8 @@ namespace dt
           running = false;
       });
 
-      // Set the global application
-      currentApplication = this;
+      // Start the game
+      showStart();
     }
 
     int Application::loop()
@@ -98,6 +103,9 @@ namespace dt
       // Delete logic
       if(gameLogic) gameLogic.release();
 
+      // Play music
+      sounds.playMusic(MUSIC_MENU);
+
       // Change HumanView state
       playerView->setState(HumanView::State::Start, nullptr);
     }
@@ -107,12 +115,23 @@ namespace dt
       // Create Logic
       gameLogic.reset(new Logic(playerDino, level));
 
+      // Play music
+      sounds.playMusic(MUSIC_GAMEPLAY);
+
       // Change HumanView state
       playerView->setState(HumanView::State::Playing, gameLogic.get());
     }
 
     void Application::endGame(EndMenu::Reason reason)
     {
+      // Play music
+      if (reason == EndMenu::Reason::Energy || reason == EndMenu::Reason::Health || reason == EndMenu::Reason::Meteor)
+        sounds.playMusic(MUSIC_LOSE);
+      else if (reason == EndMenu::Reason::Pod)
+        sounds.playMusic(MUSIC_WIN);
+      else
+        sounds.getMusic().stop();
+
       // Change HumanView state
       playerView->setState(HumanView::State::End, gameLogic.get(), reason);
     }
