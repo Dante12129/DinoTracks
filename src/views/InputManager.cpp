@@ -10,7 +10,7 @@ namespace dt
 {
     InputManager::InputManager()
     {
-      map["EXIT"] = thor::Action(sf::Event::Closed);
+      map["EXIT"] = thor::Action(sf::Event::Closed) || thor::Action(sf::Keyboard::Escape, thor::Action::ReleaseOnce);
     }
 
     void InputManager::associate(const thor::Action& action, const std::string& tag)
@@ -26,7 +26,7 @@ namespace dt
     void InputManager::clearActions()
     {
       map.clearActions();
-      map["EXIT"] = thor::Action(sf::Event::Closed);
+      map["EXIT"] = thor::Action(sf::Event::Closed) || thor::Action(sf::Keyboard::Escape, thor::Action::ReleaseOnce);
     }
 
     void InputManager::clearEvents()
