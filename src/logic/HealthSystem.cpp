@@ -6,13 +6,11 @@
 #include "components/Component.hpp"
 #include "Entity.hpp"
 #include "Tags.hpp"
+#include "iostream"
 
 namespace dt {
-    HealthSystem::HealthSystem(){
-        for (int i=0; i<=40; i++){
-            heaBuffer.insert({i,100});
-        }
-    }
+    HealthSystem::HealthSystem()
+    {}
 
     void HealthSystem::update(Entity &dino) {
         // Get id
@@ -69,6 +67,14 @@ namespace dt {
         heal(dino, food_hea.getData().asVec2i.y);
     }
 
-
+    void HealthSystem::setentities(std::vector<Entity>& ents) {
+        for (int i=0; i<ents.size(); i++){
+            std::cout<<ents.size();
+            if(ents[i].hasComponent(HEALTH)){
+                int maxhea = ents[i].getComponent(HEALTH).getData().asVec2i.y;
+                heaBuffer.insert({i,maxhea});
+            }
+        }
+    }
 
 }

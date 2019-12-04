@@ -23,6 +23,7 @@ namespace dt
         void heal(Entity& dino, int val);
         void set(Entity& dino, int val);
         void eat(Entity& dino, const Entity& food);
+        void setentities(std::vector<Entity>& entities);
 
     private:
         // Unordered map for buffering changes

@@ -77,7 +77,9 @@ namespace dt
         // Systems
         EnergySystem energy;
         HealthSystem health;
+
         MovementSystem movement = MovementSystem(entities, energy, map, health);
+
 
         // Entity Coordinates
         std::vector<sf::Vector2i> generateCoords(int numOfCoords);

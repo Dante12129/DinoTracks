@@ -142,6 +142,9 @@ namespace dt
             eggBuilder.addScoreComponent(1);
         }
 
+        //initiate system
+        health.setentities(entities);
+
     }
 
     void Logic::update(const sf::Time& delta)
