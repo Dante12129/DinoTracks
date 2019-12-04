@@ -100,7 +100,7 @@ namespace dt
     const std::string MUSIC_MENU = "menu_song.wav";
 
 //    Other
-    const int MAX_ENERGY = 200;
+    const int MAX_ENERGY = 150;
 }
 
 

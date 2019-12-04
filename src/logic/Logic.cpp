@@ -164,15 +164,17 @@ namespace dt
             if(entity.hasComponent(POSITION) && entity.hasComponent(VELOCITY)){
                 movement.update(entity);
             }
-
-            if(entity.hasComponent(ENERGY)){
-                energy.update(entity);
-            }
-
-            if(entity.hasComponent(HEALTH)){
-                health.update(entity);
-            }
         }
+      for(Entity& entity : entities)
+      {
+        if(entity.hasComponent(ENERGY)){
+          energy.update(entity);
+        }
+
+        if(entity.hasComponent(HEALTH)){
+          health.update(entity);
+        }
+      }
 
 //      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
         std::cout << "Ending Health: " << entities[PLAYER].getData(HEALTH).asVec2i.x << std::endl;
