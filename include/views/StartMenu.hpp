@@ -36,7 +36,7 @@ namespace dt
       int chooserSelected = 0;
 
       const sf::Color normalColor = sf::Color::White;
-      const sf::Color highlightColor = sf::Color::Cyan;
+      const sf::Color highlightColor = sf::Color::Green;
       const int maxLevels = 3;
   };
 }

@@ -99,8 +99,11 @@ namespace dt
 
     void StartMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-      sf::Font& font = ResourceManager::currentManager->getFont(METEOR_FONT);
+      sf::Font& font = ResourceManager::currentManager->getFont(MAIN_FONT);
       unsigned textSize = 70;
+
+      sf::Sprite background(ResourceManager::currentManager->getTexture(BACKGROUND_START));
+      target.draw(background, states);
 
       sf::Text dinosaurText("Dinosaur: " + toString(currentDinoSelection), font, textSize);
       centerTextHorizontal(dinosaurText, target.getSize());
@@ -113,9 +116,10 @@ namespace dt
       levelText.setFillColor(chooserSelected ? highlightColor : normalColor);
       target.draw(levelText, states);
 
-      sf::Text instructions("Use WSAD To Change Values\nPress Enter To Start", font, textSize);
+      sf::Text instructions("Use WSAD To Change Values\nPress Enter To Start", font, textSize - 5);
       centerTextHorizontal(instructions, target.getSize());
-      instructions.setPosition(instructions.getPosition().x, levelText.getPosition().y + font.getLineSpacing(textSize) * 3);
+      instructions.setPosition(instructions.getPosition().x, levelText.getPosition().y + font.getLineSpacing(textSize) * 2);
+      instructions.setFillColor(normalColor);
       target.draw(instructions, states);
     }
 }

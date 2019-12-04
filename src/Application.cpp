@@ -47,13 +47,15 @@ namespace dt
       resources.load(ResourceManager::Type::DinosaurType, PACHYCEPHALOSAURUS, "pachycephalosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, PROTOCERATOPS, "protoceratops.txt");
       resources.load(ResourceManager::Type::DinosaurType, PARASAUROLOPHUS, "parasaurolophus.txt");
-      resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
+      resources.load(ResourceManager::Type::Font, MAIN_FONT, "Azonix.otf");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_WIN, "win_sound.wav");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_LOSE, "lose_sound.wav");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_EAT_HERB, "herb_eat.wav");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_EAT_CARN, "carn_eat.wav");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_COMBAT, "combat_sound.wav");
       resources.load(ResourceManager::Type::SoundBuffer, SOUND_TER_COLLISION, "terrain_collision.wav");
+      resources.load(ResourceManager::Type::Texture, BACKGROUND_START, "startmenu.jpg");
+      resources.load(ResourceManager::Type::Texture, BACKGROUND_END, "endmenu.png");
 
       // Create the Views
       playerView.reset(new HumanView());

@@ -79,12 +79,12 @@ namespace dt
 	{
 		window.setView(uiview);
 
-        meteorcountdown.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
-        turns.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
-        scorecount.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
-        score.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
-        heanum.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
-        enenum.setFont(ResourceManager::currentManager->getFont(METEOR_FONT));
+        meteorcountdown.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
+        turns.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
+        scorecount.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
+        score.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
+        heanum.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
+        enenum.setFont(ResourceManager::currentManager->getFont(MAIN_FONT));
 
 		window.draw(uibackground);
 		window.draw(uidivider);

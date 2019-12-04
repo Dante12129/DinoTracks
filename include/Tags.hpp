@@ -28,14 +28,13 @@ namespace dt
 
 //    Resources
     const std::string TERRAIN = "TERRAIN";
-    const std::string TREX_TEX = "TREX_TEX";
-    const std::string STEGO_TEX = "STEGO_TEX";
-    const std::string METEOR_FONT = "METEOR_FONT";
+    const std::string MAIN_FONT = "MAIN_FONT";
     const std::string EGG = "EGG";
     const std::string ESCAPE_TEX = "ESCAPE_TEX";
     const std::string MEAT = "MEAT";
-    const std::string TREE = "TREE";
     const std::string FRUIT = "FRUIT";
+    const std::string BACKGROUND_START = "BACKGROUND_START";
+    const std::string BACKGROUND_END = "BACKGROUND_END";
 
 //    Dinosaurs
     const std::string STEGOSAURUS = "STEGOSAURUS";

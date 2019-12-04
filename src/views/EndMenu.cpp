@@ -62,7 +62,7 @@ namespace dt
 
     void EndMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-      sf::Font& font = ResourceManager::currentManager->getFont(METEOR_FONT);
+      sf::Font& font = ResourceManager::currentManager->getFont(MAIN_FONT);
       unsigned textSize = 72;
 
       sf::Text messageText(message, font, textSize);
