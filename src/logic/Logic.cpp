@@ -127,7 +127,7 @@ namespace dt
       {
           EntityBuilder carnBuilder(entities[i]);
 
-          carnBuilder.addPositionComponent(entityCoords.at(i));
+          carnBuilder.addPositionComponent({-5, -5});
           carnBuilder.addVisualComponent(MEAT);
           carnBuilder.addFoodComponent(10, 10);
       }
@@ -171,21 +171,6 @@ namespace dt
             if(entity.hasComponent(HEALTH)){
                 health.update(entity);
             }
-            
-            if(entity.getRegen()){
-				occupiedSpaces.clear();
-				
-				for(Entity& entity : entities)
-				{
-					occupiedSpaces.push_back(entity.getComponent(POSITION).getData().asVec2i);
-				}
-				std::vector<sf::Vector2i> newCoords = generateCoords(1);
-				Component& positionComponent = entity.getComponent(POSITION);
-				sf::Vector2i newPosition = newCoords[0];
-				positionComponent.setData(ComponentData(newPosition));
-				
-				entity.setRegen(false);
-			}
         }
 
 //      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
@@ -210,6 +195,51 @@ namespace dt
 
 //        std::cout << "Current health: " << entities[0].getComponent("Health").getData().asInt << "\n";
 //        std::cout << "Current energy: " << entities[0].getComponent("Energy").getData().asInt << "\n";
+
+
+		for (Entity& entity: entities)
+		{
+			if(entity.getRegen()){
+				occupiedSpaces.clear();
+				
+				for(Entity& entity : entities)
+				{
+					occupiedSpaces.push_back(entity.getComponent(POSITION).getData().asVec2i);
+				}
+				
+				if (entity.getID() <= ENEMY_END && entity.getID() >= ENEMY_START)
+				{
+					for (int i = FOOD_CARN_START; i <= FOOD_CARN_END; i++)
+					{
+						sf::Vector2i testPos = {-5, -5};
+						if (entities[i].getComponent(POSITION).getData().asVec2i == testPos)
+						{
+							Component& positionComponent = entities[i].getComponent(POSITION);
+							sf::Vector2i meatPos = entity.getComponent(POSITION).getData().asVec2i;
+							positionComponent.setData(ComponentData(meatPos));
+							break;
+						}
+					}
+				}
+								
+				if (entity.getID() <= FOOD_CARN_END && entity.getID() >= FOOD_CARN_START)
+				{
+					Component& positionComponent = entity.getComponent(POSITION);
+					sf::Vector2i newPosition = {-5, -5};
+					positionComponent.setData(ComponentData(newPosition));
+				}
+				else
+				{
+				
+					std::vector<sf::Vector2i> newCoords = generateCoords(1);
+					Component& positionComponent = entity.getComponent(POSITION);
+					sf::Vector2i newPosition = newCoords[0];
+					positionComponent.setData(ComponentData(newPosition));
+				}
+				
+				entity.setRegen(false);
+			}
+		}
     }
 
     int Logic::getTurn() const
