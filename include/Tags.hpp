@@ -74,17 +74,17 @@ namespace dt
 	const int MAP_WIDTH = 153;
 
 //    Entity ranges
-    const int MAX_ENTITIES = 35;
+    const int MAX_ENTITIES = 47;
     const int PLAYER = 0;
     const int ESCAPE_POD = 1;
     const int ENEMY_START = 2;
-    const int ENEMY_END = 9;
-    const int FOOD_HERB_START = 10;
-    const int FOOD_HERB_END = 19;
-    const int FOOD_CARN_START = 20;
-    const int FOOD_CARN_END = 24;
-    const int EGG_START = 25;
-    const int EGG_END = 34;
+    const int ENEMY_END = 16;
+    const int FOOD_HERB_START = 17;
+    const int FOOD_HERB_END = 31;
+    const int FOOD_CARN_START = 32;
+    const int FOOD_CARN_END = 36;
+    const int EGG_START = 37;
+    const int EGG_END = 46;
 
 //    Sounds and music
     const std::string SOUND_WIN = "SOUND_WIN";

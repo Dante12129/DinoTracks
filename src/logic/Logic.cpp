@@ -29,13 +29,13 @@ namespace dt
 
       // Resize vector and assign Entity IDs based on position
       entities.resize(MAX_ENTITIES);
-      for(int i=0; i<=34; i++){
+      for(int i=0; i<MAX_ENTITIES; i++){
           entities[i].setID(i);
           entities[i].setRegen(false);
       }
 
-        // Generate random coordinates
-        std::vector<sf::Vector2i> entityCoords = generateCoords(35);
+      // Generate random coordinates
+      std::vector<sf::Vector2i> entityCoords = generateCoords(MAX_ENTITIES);
 
       // Create player
       DinosaurType dino = ResourceManager::currentManager->getDinosaurType(playerDino);
@@ -126,7 +126,7 @@ namespace dt
 
           carnBuilder.addPositionComponent({-5, -5});
           carnBuilder.addVisualComponent(MEAT);
-          carnBuilder.addFoodComponent(10, 10);
+          carnBuilder.addFoodComponent(20, 20);
       }
 
       // Create eggs

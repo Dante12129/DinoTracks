@@ -47,6 +47,7 @@ namespace dt
         {
           return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
 	      }
+        return false;
       });
       if(it != entities.cend())
       {
@@ -70,6 +71,7 @@ namespace dt
         {
 		      return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
 		    }
+        return false;
       });
       if(it != entities.cend())
       {
