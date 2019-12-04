@@ -247,6 +247,8 @@ namespace dt
 //                        HealthSystem and EnergySystem eat
                   heasys.eat(entity, *collidedEntity);
                   enesys.eat(entity, *collidedEntity);
+                  
+                  collidedEntity->setRegen(true);
                 }
                 else {} // if not, do not move over or eat
               }
