@@ -6,12 +6,14 @@
 #define DINOTRACKS_LOGIC_HPP
 
 #include <vector>
+#include <SoundManager.hpp>
 
 #include "logic/Entity.hpp"
 #include "MovementSystem.hpp"
 #include "EnergySystem.hpp"
 #include "HealthSystem.hpp"
 #include "Map.hpp"
+#include <SFML/Audio/Music.hpp>
 
 // Forward Declarations
 namespace sf { class Time; }
@@ -79,6 +81,10 @@ namespace dt
 
         // Entity Coordinates
         std::vector<sf::Vector2i> generateCoords(int numOfCoords);
+
+        // Sound Manager
+        SoundManager sounds;
+
     };
 }
 

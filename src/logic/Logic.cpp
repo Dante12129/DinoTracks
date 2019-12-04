@@ -18,6 +18,7 @@
 #include <DinosaurType.hpp>
 #include <components/Visual.hpp>
 #include <Tags.hpp>
+#include "SoundManager.hpp"
 
 namespace dt
 {
@@ -26,19 +27,22 @@ namespace dt
       // Load the default map
       map.loadMapFromFile(level);
 
+      //Set global SoundManager
+      SoundManager::curSoundManager = &sounds;
+
+      SoundManager::curSoundManager->setMusic("../resources/sounds/" + MUSIC_GAMEPLAY);
+      SoundManager::curSoundManager->getMusic().play();
+      SoundManager::curSoundManager->getMusic().setLoop(true);
+      SoundManager::curSoundManager->getMusic().setVolume(40);
+
       // Resize vector and assign Entity IDs based on position
       entities.resize(35);
-      for(int i=0; i<=34; i++)
-      {
+      for(int i=0; i<=34; i++){
           entities[i].setID(i);
       }
 
-      // Generate random coordinates
-      std::vector<sf::Vector2i> entityCoords = generateCoords(35);
-//      for(const sf::Vector2i& coords : entityCoords)
-//      {
-//        std::cout << "Coords: " << thor::toString(coords) << std::endl;
-//      }
+        // Generate random coordinates
+        std::vector<sf::Vector2i> entityCoords = generateCoords(35);
 
       // Create player
       EntityBuilder playerBuilder(entities[PLAYER]);
@@ -106,7 +110,6 @@ namespace dt
             eggBuilder.addVisualComponent(EGG);
             eggBuilder.addScoreComponent(1);
         }
-
     }
 
     void Logic::update(const sf::Time& delta)
@@ -152,11 +155,14 @@ namespace dt
         {
 //            std::cout << "Game over." << std::endl;
           Application::currentApplication->endGame(EndMenu::Reason::Meteor);
+          SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
         }
 
         // End game if no health
-        if(entities[PLAYER].getComponent(HEALTH).getData().asInt<=0){
+        if(entities[PLAYER].getComponent("Health").getData().asInt<=0)
+        {
 //            std::cout << "Game over because of low health." << std::endl;
+          SoundManager::curSoundManager->addToQueue(SOUND_LOSE);
           Application::currentApplication->endGame(EndMenu::Reason::Health);
         }
 

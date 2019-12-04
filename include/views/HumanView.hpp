@@ -11,10 +11,13 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include <InputManager.hpp>
+#include <UserInterface.hpp>
 #include <Map.hpp>
 #include <Menu.hpp>
 #include <UserInterface.hpp>
 #include "EndMenu.hpp"
+#include <SoundManager.hpp>
+#include <queue>
 
 namespace dt
 {
@@ -79,6 +82,9 @@ namespace dt
 
         // Input-Related
         InputManager input;
+
+        sf::Sound playSound;
+        sf::SoundBuffer soundBuffer;
     };
 }
 

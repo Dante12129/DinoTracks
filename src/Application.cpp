@@ -30,6 +30,12 @@ namespace dt
       resources.load(ResourceManager::Type::DinosaurType, STEGOSAURUS, "Stegosaurus.txt");
       resources.load(ResourceManager::Type::DinosaurType, TYRANNOSAURUS, "Tyrannosaurus.txt");
       resources.load(ResourceManager::Type::Font, METEOR_FONT, "Azonix.otf");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_WIN, "win_sound.wav");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_LOSE, "lose_sound.wav");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_EAT_HERB, "herb_eat.wav");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_EAT_CARN, "carn_eat.wav");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_COMBAT, "combat_sound.wav");
+      resources.load(ResourceManager::Type::SoundBuffer, SOUND_TER_COLLISION, "terrain_collision.wav");
 
       // Create the Views
       playerView.reset(new HumanView());

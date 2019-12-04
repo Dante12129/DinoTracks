@@ -35,4 +35,4 @@ file(GLOB COMPONENTS_SRC ${PROJECT_SOURCE_DIR}/src/components/*cpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 # Set target
-add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC} ${THOR_SRC} include/components/Score.hpp src/components/Score.cpp)
+add_executable(${PROJECT_NAME} ${SRC} ${LOGIC_SRC} ${VIEW_SRC} ${COMPONENTS_SRC} ${THOR_SRC} include/components/Score.hpp src/components/Score.cpp include/SoundManager.hpp src/SoundManager.cpp)
