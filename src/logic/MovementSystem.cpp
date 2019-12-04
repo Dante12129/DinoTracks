@@ -170,7 +170,7 @@ namespace dt
 
                   std::cout << "Collision with escape pod." << std::endl;
 
-                  if(score == 15)
+                  if(score >= 15)
                   {
                       // win
                       std::cout << "Win." << std::endl;
