@@ -13,9 +13,12 @@
 
 namespace dt
 {
-    EndMenu::EndMenu(const Logic& logic)
+    EndMenu::EndMenu(const Logic& logic, Reason reason)
     {
       finalScore = logic.getScore();
+
+      if(reason == Reason::Pod)
+        message = "You won!";
     }
 
     void EndMenu::registerActions(class dt::InputManager& input)

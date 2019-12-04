@@ -5,6 +5,8 @@
 #ifndef DINOTRACKS_ENDMENU_HPP
 #define DINOTRACKS_ENDMENU_HPP
 
+#include <string>
+
 #include <SFML/Graphics/Drawable.hpp>
 
 #include <Menu.hpp>
@@ -26,11 +28,12 @@ namespace dt
           Meteor,
           Health,
           Energy,
-          Pod
+          Pod,
+          None
       };
 
       // Constructors
-      EndMenu(const Logic& logic);
+      EndMenu(const Logic& logic, Reason reason);
 
       // Input
       void registerActions(InputManager& input) override;
@@ -41,6 +44,7 @@ namespace dt
 
   private:
       int finalScore;
+      std::string message;
   };
 }
 

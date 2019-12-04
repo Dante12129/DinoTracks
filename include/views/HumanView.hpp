@@ -14,6 +14,7 @@
 #include <Map.hpp>
 #include <Menu.hpp>
 #include <UserInterface.hpp>
+#include "EndMenu.hpp"
 
 namespace dt
 {
@@ -46,14 +47,14 @@ namespace dt
         void setWindowClosedCallback(std::function<void()> callback);
 
         // State
-        void setState(const State& state, const Logic* logic = nullptr);
+        void setState(const State& state, const Logic* logic = nullptr, EndMenu::Reason reason = EndMenu::Reason::None);
 
     private:
         // Methods
         void loadActionsFromFile();
         void goToStart();
         void createFrom(const Logic& logic);
-        void goToEnd(const Logic& logic);
+        void goToEnd(const Logic& logic, EndMenu::Reason reason);
 
         // Window-Related
         sf::RenderWindow window;

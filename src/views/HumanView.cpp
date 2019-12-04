@@ -228,7 +228,7 @@ namespace dt
       window.setView(window.getDefaultView());
 	  }
 
-	  void HumanView::setState(const State& state, const Logic* logic)
+	  void HumanView::setState(const State& state, const Logic* logic, EndMenu::Reason reason)
     {
       currentState = state;
 
@@ -242,7 +242,7 @@ namespace dt
       }
       else if(state == State::End)
       {
-        goToEnd(*logic);
+        goToEnd(*logic, reason);
       }
     }
 
@@ -304,10 +304,10 @@ namespace dt
       player.setPosition({static_cast<float>(dinoWidth * 20), static_cast<float>(dinoHeight * 11)});
     }
 
-    void HumanView::goToEnd(const Logic& logic)
+    void HumanView::goToEnd(const Logic& logic, EndMenu::Reason reason)
     {
       // Create menu
-      menu.reset(new EndMenu(logic));
+      menu.reset(new EndMenu(logic, reason));
 
       // Load appropriate actions
       menu->registerActions(input);

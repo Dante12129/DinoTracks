@@ -94,6 +94,6 @@ namespace dt
     void Application::endGame(EndMenu::Reason reason)
     {
       // Change HumanView state
-      playerView->setState(HumanView::State::End, gameLogic.get());
+      playerView->setState(HumanView::State::End, gameLogic.get(), reason);
     }
 }
