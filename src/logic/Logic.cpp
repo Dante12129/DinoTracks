@@ -10,13 +10,14 @@
 #include <SFML/System/Time.hpp>
 #include <Thor/Graphics/ToString.hpp>
 
+#include <Application.hpp>
 #include <Logic.hpp>
 #include <Entity.hpp>
 #include <EntityBuilder.hpp>
 #include <Map.hpp>
 #include <DinosaurType.hpp>
 #include <components/Visual.hpp>
-#include "Tags.hpp"
+#include <Tags.hpp>
 
 namespace dt
 {
@@ -150,6 +151,7 @@ namespace dt
         if(turnCount <= 0)
         {
             std::cout << "Game over." << std::endl;
+            Application::currentApplication->endGame();
         }
 
         // End game if no health

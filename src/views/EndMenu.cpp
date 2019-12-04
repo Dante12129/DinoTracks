@@ -7,6 +7,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 
+#include <Application.hpp>
 #include <InputManager.hpp>
 #include <Tags.hpp>
 
@@ -21,14 +22,17 @@ namespace dt
       input.clearActions();
 
       // Create actions
-      thor::Action nextState(sf::Keyboard::Enter);
+      thor::Action nextState(sf::Keyboard::Enter, thor::Action::ReleaseOnce);
 
       // Register actions
       input.associate(nextState, NEXT_STATE);
     }
 
     void EndMenu::processEvents(const InputManager& input)
-    {}
+    {
+      if(input.isActive("NEXT_STATE"))
+        Application::currentApplication->showStart();
+    }
 
     void EndMenu::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {

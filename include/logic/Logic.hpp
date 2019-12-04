@@ -70,7 +70,7 @@ namespace dt
         // State
         Map map;
         bool actionPerformed = false;
-        int turnCount = 100;
+        int turnCount = 10;
 
         // Systems
         EnergySystem energy;
