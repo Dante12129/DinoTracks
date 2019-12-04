@@ -69,9 +69,9 @@ namespace dt
     const int MOUNTAIN = 6;
     const int FOREST = 7;
     
-// Map
-	const int MAP_HEIGHT = 150;
-	const int MAP_WIDTH = 153;
+//    Map
+	  const int MAP_HEIGHT = 150;
+	  const int MAP_WIDTH = 153;
 
 //    Entity ranges
     const int MAX_ENTITIES = 47;
@@ -99,6 +99,8 @@ namespace dt
     const std::string MUSIC_WIN = "win_song.wav";
     const std::string MUSIC_MENU = "menu_song.wav";
 
+//    Other
+    const int MAX_ENERGY = 200;
 }
 
 

@@ -174,7 +174,7 @@ namespace dt
       int spacesMoved = 0;
       if (collidedEntity != nullptr)
       {
-          if (entity.getID() == 0) // Player initiates collision
+          if (entity.getID() == PLAYER) // Player initiates collision
           {
 //            std::cout << "Initiator: " << entity.getID() << std::endl;
             int id = collidedEntity->getID();
@@ -356,8 +356,8 @@ namespace dt
     int enemyAttack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
     int enemyDefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
 
-    std::cout << "Player Health: " << playerHea << std::endl;
-    std::cout << "Enemy Health: " << enemyHea << std::endl;
+    std::cout << "Starting Player Health: " << playerHea << std::endl;
+    std::cout << "Starting Enemy Health: " << enemyHea << std::endl;
 
     // Calculate damage
     int damageToPlayer = enemyAttack - playerDefense;
@@ -370,5 +370,8 @@ namespace dt
     // Adjust health
     heasys.heal(player, -damageToPlayer);
     heasys.heal(enemy, -damageToEnemy);
+
+    std::cout << "Ending Player Health: " << playerHea - damageToPlayer << std::endl;
+    std::cout << "Ending Enemy Health: " << enemyHea - damageToEnemy << std::endl;
   }
 }

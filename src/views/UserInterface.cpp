@@ -115,7 +115,7 @@ namespace dt
     void UserInterface::setEnergy(const dt::Logic &logic) {
 	    int cur_ene = logic.getPlayerEnergy();
 	    //std::cout<<cur_ene;
-        energybar.setSize(sf::Vector2f((uidivider.getPosition().x - 100)*cur_ene/100, uiview.getSize().y/35));
+        energybar.setSize(sf::Vector2f((uidivider.getPosition().x - 100)*cur_ene/MAX_ENERGY, uiview.getSize().y/35));
         enenum.setString(std::to_string(cur_ene));
 	}
 

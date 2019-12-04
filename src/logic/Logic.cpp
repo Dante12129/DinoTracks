@@ -42,7 +42,7 @@ namespace dt
       EntityBuilder playerBuilder(entities[PLAYER]);
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
-      playerBuilder.addEnergyComponent(100);
+      playerBuilder.addEnergyComponent(MAX_ENERGY);
       playerBuilder.addHealthComponent(dino.getHealth());
       playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
       playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
@@ -147,14 +147,16 @@ namespace dt
     {
         if(actionPerformed)
         {
-            doTurn();
-            actionPerformed = false;
+          std::cout << "\nNew Turn" << std::endl;
+          doTurn();
+          actionPerformed = false;
         }
     }
 
     void Logic::doTurn()
     {
 //      std::cout << "Starting Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+        std::cout << "Starting Health: " << entities[PLAYER].getData(HEALTH).asVec2i.x << std::endl;
 
         // Go through each entity and update it with systems
         for(Entity& entity : entities)
@@ -173,6 +175,7 @@ namespace dt
         }
 
 //      std::cout << "Ending Energy: " << entities[0].getData(ENERGY).asInt << std::endl;
+        std::cout << "Ending Health: " << entities[PLAYER].getData(HEALTH).asVec2i.x << std::endl;
 
         // Stop player
         movement.stop(entities[PLAYER]);
@@ -400,7 +403,7 @@ namespace dt
     }
 
     int Logic::getPlayerEnergy() const {
-      return entities[PLAYER].getComponent(ENERGY).getData().asInt;
+      return entities[PLAYER].getComponent(ENERGY).getData().asVec2i.x;
     }
 
     int Logic::getPlayerHealth() const {
