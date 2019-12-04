@@ -33,9 +33,9 @@ namespace dt
     
     enum class Speed
     {
-		Slow,
-		Fast
-	};
+		  Slow,
+		  Fast
+	  };
 
     class Logic
     {

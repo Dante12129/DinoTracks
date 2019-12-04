@@ -24,7 +24,7 @@ namespace dt
         case EndMenu::Reason::Energy:
           return "You ran out of energy!";
         case EndMenu::Reason::Pod:
-          return "ERROR";
+          return "";
         case EndMenu::Reason::None:
           return "ERROR";
       }
@@ -35,13 +35,11 @@ namespace dt
     {
       finalScore = logic.getScore();
 
+      reason_ = reason;
       if(reason == Reason::Pod)
         message = "You won!";
       else
-      {
         message = "You lost!";
-        reason_ = reason;
-      }
     }
 
     void EndMenu::registerActions(class dt::InputManager& input)

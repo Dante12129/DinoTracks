@@ -17,8 +17,8 @@ namespace dt
     class HealthSystem : public System //This system deals with functionality of energy
     {
     public:
-        HealthSystem();
-        virtual void update(Entity& entity) override;
+        void init(const std::vector<Entity>& entities);
+        void update(Entity& entity) override;
 
         void heal(Entity& dino, int val);
         void set(Entity& dino, int val);
