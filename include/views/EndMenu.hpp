@@ -46,6 +46,8 @@ namespace dt
       int finalScore;
       std::string message;
       Reason reason_;
+
+      const sf::Color normalColor = sf::Color::White;
   };
 }
 

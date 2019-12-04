@@ -65,6 +65,10 @@ namespace dt
       sf::Font& font = ResourceManager::currentManager->getFont(MAIN_FONT);
       unsigned textSize = 72;
 
+      sf::Sprite background(ResourceManager::currentManager->getTexture(BACKGROUND_END));
+      background.setScale({target.getSize().x / background.getLocalBounds().width, target.getSize().y / background.getLocalBounds().height});
+      target.draw(background, states);
+
       sf::Text messageText(message, font, textSize);
       centerTextHorizontal(messageText, target.getSize());
       target.draw(messageText, states);
