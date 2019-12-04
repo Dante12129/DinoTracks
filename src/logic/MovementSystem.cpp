@@ -37,9 +37,12 @@ namespace dt
     // Test collision in all four directions
     for(int i = velocity.x > 0 ? 1 : -1; velocity.x != 0 && abs(i) <= abs(velocity.x); i += velocity.x > 0 ? 1 : -1)
     {
-      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      auto it = std::find_if(entities.cbegin(), entities.cend(), [&](const Entity& e)
       {
-        return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
+        if (entity.getID() != e.getID())
+        {
+          return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x + i, position.y) : false;
+	    }
       });
       if(it != entities.cend())
       {
@@ -53,9 +56,12 @@ namespace dt
     }
     for(int i = velocity.y > 0 ? 1 : -1; velocity.y != 0 && abs(i) <= abs(velocity.y); i += velocity.y > 0 ? 1 : -1)
     {
-      auto it = std::find_if(entities.cbegin() + 1, entities.cend(), [&](const Entity& e)
+      auto it = std::find_if(entities.cbegin(), entities.cend(), [&](const Entity& e)
       {
-          return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
+        if (entity.getID() != e.getID())
+        {
+		  return e.hasComponent(POSITION) ? e.getData(POSITION).asVec2i == sf::Vector2i(position.x, position.y + i) : false;
+		}
       });
       if(it != entities.cend())
       {
