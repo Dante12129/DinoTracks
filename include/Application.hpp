@@ -43,6 +43,7 @@ namespace dt
 
       // Managers
       ResourceManager resources;
+      SoundManager sounds;
   };
 }
 

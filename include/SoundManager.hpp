@@ -15,10 +15,15 @@ namespace dt
     {
     public:
         static SoundManager* curSoundManager;
+
+        // Sound effects
         void addToQueue(std::string sound);
         std::queue<std::string>& getQueue();
+
+        // Music
         sf::Music& getMusic();
-        sf::Music& setMusic(std::string);
+        void setMusic(const std::string& soundFile);
+        void playMusic(const std::string& soundFile);
 
     private:
         std::queue<std::string> soundQueue;

@@ -27,14 +27,6 @@ namespace dt
       // Load the default map
       map.loadMapFromFile(level);
 
-      //Set global SoundManager
-      SoundManager::curSoundManager = &sounds;
-
-      SoundManager::curSoundManager->setMusic("../resources/sounds/" + MUSIC_GAMEPLAY);
-      SoundManager::curSoundManager->getMusic().play();
-      SoundManager::curSoundManager->getMusic().setLoop(true);
-      SoundManager::curSoundManager->getMusic().setVolume(40);
-
       // Resize vector and assign Entity IDs based on position
       entities.resize(35);
       for(int i=0; i<=34; i++){
@@ -228,6 +220,9 @@ namespace dt
 				{
 					for (int i = FOOD_CARN_START; i <= FOOD_CARN_END; i++)
 					{
+					  // Reset health
+					  health.set(entity, entity.getData(HEALTH).asVec2i.y);
+
 						sf::Vector2i testPos = {-5, -5};
 						if (entities[i].getComponent(POSITION).getData().asVec2i == testPos)
 						{

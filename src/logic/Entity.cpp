@@ -53,13 +53,13 @@ namespace dt
         return id;
     }
     
-    void Entity::setRegen(bool regen) 
+    void Entity::setRegen(bool regen)
     {
-		regenerate = regen;
-	}
+		  regenerate = regen;
+	  }
 	
-	bool Entity::getRegen() const
-	{
-		return regenerate;
-	}
+    bool Entity::getRegen() const
+    {
+      return regenerate;
+    }
 }

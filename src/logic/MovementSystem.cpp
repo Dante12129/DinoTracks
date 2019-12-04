@@ -330,44 +330,27 @@ namespace dt
 
   void MovementSystem::fight(dt::Entity &player, dt::Entity &enemy)
   {
-      std::cout << "Enter combat\n";
-      while(player.getComponent(HEALTH).getData().asInt>0 && enemy.getComponent(HEALTH).getData().asInt>0){
-          int playerhea = player.getComponent(HEALTH).getData().asInt;
-          int playerattack = player.getComponent(ATTRIBUTES).getData().asVec2i.x;
-          int playerdefense = player.getComponent(ATTRIBUTES).getData().asVec2i.y;
-          int enemyhea = enemy.getComponent(HEALTH).getData().asInt;
-          int enemyattack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
-          int enemydefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
+    std::cout << "Enter combat\n";
+    int playerHea = player.getComponent(HEALTH).getData().asVec2i.x;
+    int playerAttack = player.getComponent(ATTRIBUTES).getData().asVec2i.x;
+    int playerDefense = player.getComponent(ATTRIBUTES).getData().asVec2i.y;
+    int enemyHea = enemy.getComponent(HEALTH).getData().asInt;
+    int enemyAttack = enemy.getComponent(ATTRIBUTES).getData().asVec2i.x;
+    int enemyDefense = enemy.getComponent(ATTRIBUTES).getData().asVec2i.y;
 
-            std::cout<<"combat ..."<<"\n";
+    std::cout << "Player Health: " << playerHea << std::endl;
+    std::cout << "Enemy Health: " << enemyHea << std::endl;
 
-          if(playerhea + playerdefense - enemyattack <= 0)
-          {
-              heasys.set(player, 0);
-              std::cout << "Game Over in Combat\n";
-          }
-          else if(enemyhea + enemydefense - playerattack <= 0)
-          {
-              heasys.set(enemy, 0);
-              std::cout<<enemy.getComponent(HEALTH).getData().asInt << std::endl;
-              std::cout << "Enemy Dinosaur die\n";
+    // Calculate damage
+    int damageToPlayer = enemyAttack - playerDefense;
+    int damageToEnemy = playerAttack - enemyDefense;
 
-              enemy.setRegen(true);
-          }
-          else if(enemyattack-playerdefense<=0 || playerattack-enemydefense<=0)
-          {
-              std::cout << "can't lose health\n";
-          }
-          else
-          {
-              //player.getComponent(HEALTH).setData(playerhea + playerdefense - enemyattack);
-              //enemy.getComponent(HEALTH).setData(enemyhea + enemydefense - playerattack);
-              heasys.heal(player, playerdefense - enemyattack);
-              heasys.heal(enemy, enemydefense - playerattack);
-              std::cout<<enemy.getComponent(HEALTH).getData().asInt<<"\n";
-          }
-          heasys.update(player);
-          heasys.update(enemy);
-      }
+    // Constrain damage
+    if(damageToPlayer < 0) damageToPlayer = 0;
+    if(damageToEnemy < 0) damageToEnemy = 0;
+
+    // Adjust health
+    heasys.heal(player, -damageToPlayer);
+    heasys.heal(enemy, -damageToEnemy);
   }
 }

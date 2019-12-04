@@ -24,8 +24,16 @@ namespace dt
         return curMusic;
     }
 
-    sf::Music& SoundManager::setMusic(std::string soundFile)
+    void SoundManager::setMusic(const std::string& soundFile)
     {
-        curMusic.openFromFile(soundFile);
+        curMusic.openFromFile("../resources/sounds/" + soundFile);
+    }
+
+    void SoundManager::playMusic(const std::string& soundFile)
+    {
+      setMusic(soundFile);
+      curMusic.play();
+      curMusic.setLoop(true);
+      curMusic.setVolume(40);
     }
 }
