@@ -116,7 +116,7 @@ namespace dt
 
           herbBuilder.addPositionComponent(entityCoords.at(i));
           herbBuilder.addVisualComponent(FRUIT);
-          herbBuilder.addFoodComponent(15, 20);
+          herbBuilder.addFoodComponent(30, 20);
       }
 
       // Create carn food
