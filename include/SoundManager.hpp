@@ -17,7 +17,7 @@ namespace dt
         static SoundManager* curSoundManager;
 
         // Sound effects
-        void addToQueue(std::string sound);
+        void addToQueue(const std::string& sound);
         std::queue<std::string>& getQueue();
 
         // Music
