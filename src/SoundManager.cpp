@@ -9,7 +9,7 @@ namespace dt
 {
     SoundManager* SoundManager::curSoundManager = nullptr;
 
-    void SoundManager::addToQueue(std::string sound)
+    void SoundManager::addToQueue(const std::string& sound)
     {
         soundQueue.push(sound);
     }
