@@ -32,6 +32,7 @@ namespace dt
 
     void SoundManager::playMusic(const std::string& soundFile)
     {
+//      std::cout << "Playing music: " << soundFile << std::endl;
       if (soundFile != currentFile)
       {
         setMusic(soundFile);

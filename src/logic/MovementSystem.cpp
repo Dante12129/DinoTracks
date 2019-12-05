@@ -92,7 +92,7 @@ namespace dt
     int spacesMoved = entityCollision(entity, collidedEntity, velocity, position, dinoType);
 
     // Play the normal music if combat didn't happen
-    if (entity.getID() == PLAYER && spacesMoved != -2)
+    if (entity.getID() == PLAYER && spacesMoved != -2 && !win)
       SoundManager::curSoundManager->playMusic(MUSIC_GAMEPLAY);
 
     // Calculate new position based on velocity
@@ -205,6 +205,7 @@ namespace dt
 
               std::cout << "Collision with escape pod." << std::endl;
 
+              win = true;
               SoundManager::curSoundManager->addToQueue(SOUND_WIN);
               Application::currentApplication->endGame(EndMenu::Reason::Pod);
             }
