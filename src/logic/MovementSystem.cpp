@@ -360,8 +360,8 @@ namespace dt
     std::cout << "Starting Enemy Health: " << enemyHea << std::endl;
 
     // Calculate damage
-    int damageToPlayer = enemyAttack - playerDefense;
-    int damageToEnemy = playerAttack - enemyDefense;
+    int damageToPlayer = enemyAttack * (1-playerDefense/100);
+    int damageToEnemy = playerAttack * (1-enemyDefense/100);
 
     // Constrain damage
     if(damageToPlayer < 0) damageToPlayer = 0;

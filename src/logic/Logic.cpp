@@ -43,7 +43,7 @@ namespace dt
       playerBuilder.addPositionComponent(entityCoords[PLAYER]);
       playerBuilder.addVelocityComponent({0, 0});
       playerBuilder.addEnergyComponent(MAX_ENERGY);
-      playerBuilder.addHealthComponent(dino.getHealth());
+      playerBuilder.addHealthComponent(dino.getHealth()*2); // Increase the health a bit
       playerBuilder.addVisualComponent(playerDino); // To be changed when textures added
       playerBuilder.addAttributesComponent(dino.getAttack(), dino.getDefense());
 
@@ -126,7 +126,7 @@ namespace dt
 
           carnBuilder.addPositionComponent({-5, -5});
           carnBuilder.addVisualComponent(MEAT);
-          carnBuilder.addFoodComponent(30, 30);
+          carnBuilder.addFoodComponent(40, 50);
       }
 
       // Create eggs
