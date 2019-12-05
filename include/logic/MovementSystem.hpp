@@ -43,6 +43,7 @@ namespace dt
       HealthSystem& heasys;
       Map& map;
       int score = 0;
+      bool win = false;
   };
 }
 
