@@ -46,7 +46,7 @@ namespace dt
       input.clearActions();
 
       // Create actions
-      thor::Action nextState(sf::Keyboard::Enter, thor::Action::ReleaseOnce);
+      thor::Action nextState(sf::Keyboard::Return, thor::Action::ReleaseOnce);
       thor::Action chooseUp(sf::Keyboard::W, thor::Action::ReleaseOnce);
       thor::Action chooseDown(sf::Keyboard::S, thor::Action::ReleaseOnce);
       thor::Action chooseLeft(sf::Keyboard::A, thor::Action::ReleaseOnce);
