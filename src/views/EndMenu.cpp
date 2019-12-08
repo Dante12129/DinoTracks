@@ -48,7 +48,7 @@ namespace dt
       input.clearActions();
 
       // Create actions
-      thor::Action nextState(sf::Keyboard::Enter, thor::Action::ReleaseOnce);
+      thor::Action nextState(sf::Keyboard::Return, thor::Action::ReleaseOnce);
 
       // Register actions
       input.associate(nextState, NEXT_STATE);
