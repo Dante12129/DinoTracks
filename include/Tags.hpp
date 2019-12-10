@@ -100,6 +100,11 @@ namespace dt
 
 //    Other
     const int MAX_ENERGY = 150;
+#if SFML_VERSION_MAJOR >= 2 && SFML_VERSION_MINOR >= 5
+    #define ENTER_KEY sf::Keyboard::Enter
+#else
+    #define EENTER_KEY sf::Keyboard::Return
+#endif
 }
 
 
